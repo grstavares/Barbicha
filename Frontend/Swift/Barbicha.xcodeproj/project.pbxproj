@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10114B120862CA4009AE67D /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10114B020862CA4009AE67D /* UIStoryboardExtension.swift */; };
 		A1C21B53208534250046BDD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21B52208534250046BDD1 /* AppDelegate.swift */; };
 		A1C21B58208534250046BDD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C21B56208534250046BDD1 /* Main.storyboard */; };
 		A1C21B5A208534270046BDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C21B59208534270046BDD1 /* Assets.xcassets */; };
@@ -15,7 +16,6 @@
 		A1C21BCE208536F40046BDD1 /* Barbershop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21BCD208536F40046BDD1 /* Barbershop.swift */; };
 		A1C21BD0208536FE0046BDD1 /* Barber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21BCF208536FE0046BDD1 /* Barber.swift */; };
 		A1C21C22208539180046BDD1 /* PlazazCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C21C21208539180046BDD1 /* PlazazCore.framework */; };
-		A1C21C652085519B0046BDD1 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21C642085519B0046BDD1 /* UIStoryboardExtension.swift */; };
 		A1C21C68208552220046BDD1 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21C67208552220046BDD1 /* CollectionVC.swift */; };
 		A1C21C6C208556CB0046BDD1 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C21C6A208556CB0046BDD1 /* CollectionCell.swift */; };
 		A1C21C6D208556CB0046BDD1 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C21C6B208556CB0046BDD1 /* CollectionCell.xib */; };
@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A10114B020862CA4009AE67D /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C21B4F208534250046BDD1 /* barbicha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barbicha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C21B52208534250046BDD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C21B57208534250046BDD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +59,6 @@
 		A1C21BCD208536F40046BDD1 /* Barbershop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barbershop.swift; sourceTree = "<group>"; };
 		A1C21BCF208536FE0046BDD1 /* Barber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barber.swift; sourceTree = "<group>"; };
 		A1C21C21208539180046BDD1 /* PlazazCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PlazazCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1C21C642085519B0046BDD1 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C21C67208552220046BDD1 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		A1C21C6A208556CB0046BDD1 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		A1C21C6B208556CB0046BDD1 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		A1C21C632085516F0046BDD1 /* UIKitExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				A1C21C642085519B0046BDD1 /* UIStoryboardExtension.swift */,
+				A10114B020862CA4009AE67D /* UIStoryboardExtension.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -335,11 +335,11 @@
 				A1C21BCE208536F40046BDD1 /* Barbershop.swift in Sources */,
 				A1C21C68208552220046BDD1 /* CollectionVC.swift in Sources */,
 				A1C21C8C20858B2B0046BDD1 /* CollectionItemVC.swift in Sources */,
+				A10114B120862CA4009AE67D /* UIStoryboardExtension.swift in Sources */,
 				A1C21C7220855A390046BDD1 /* ExposableAsCollection.swift in Sources */,
 				A1C21C88208586830046BDD1 /* LocationVC.swift in Sources */,
 				A1C21C9020858F710046BDD1 /* Exposable.swift in Sources */,
 				A1C21C6C208556CB0046BDD1 /* CollectionCell.swift in Sources */,
-				A1C21C652085519B0046BDD1 /* UIStoryboardExtension.swift in Sources */,
 				A1C21BD0208536FE0046BDD1 /* Barber.swift in Sources */,
 				A1C21C86208582940046BDD1 /* MockData.swift in Sources */,
 				A1C21C8220857F2D0046BDD1 /* AppInstrospection.swift in Sources */,
