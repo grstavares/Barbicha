@@ -13,16 +13,19 @@ class CollectionVC: UIViewController {
     private var coordinator: AppCoordinator!
     private var presentedCollection: ExposableAsCollection!
     private var collectionItens = [Exposable]()
+    private var canNavigateBack: Bool = false
     
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var profileView: ProfileView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var moreDetailLabel: UILabel!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var buttonBack: UIButton!
+    @IBOutlet weak var buttonProfile: UIButton!
     @IBOutlet weak var buttonLocation: UIButton!
     @IBOutlet weak var buttonGallery: UIButton!
     
-    static func instantiate(with collection: ExposableAsCollection, using coordinator: AppCoordinator) -> CollectionVC? {
+    static func instantiate(with collection: ExposableAsCollection, using coordinator: AppCoordinator, canNavigateBack: Bool) -> CollectionVC? {
         
         let bundle = Bundle(for: self);
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
@@ -31,6 +34,7 @@ class CollectionVC: UIViewController {
             controller.coordinator = coordinator
             controller.presentedCollection = collection
             controller.collectionItens = collection.itens
+            controller.canNavigateBack = canNavigateBack
             return controller
             
         } else {return nil}
@@ -59,10 +63,16 @@ class CollectionVC: UIViewController {
         self.mainLabel.text = presentedCollection.mainLabel
         self.detailLabel.text = presentedCollection.detail
         self.moreDetailLabel.text = presentedCollection.moreDetail
-        if let image = presentedCollection.image, let uiImage = UIImage(data: image) { self.image.image = uiImage}
+        
+        self.profileView.setBorderWidth(5)
+        if let image = presentedCollection.image, let uiImage = UIImage(data: image) { self.profileView.setImage(uiImage)}
+        
+        self.buttonBack.isHidden = !self.canNavigateBack
         
     }
     
+    @IBAction func buttonBackClicked(_ sender: UIButton) {self.dismiss(animated: true, completion: nil)}
+    @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile(sender))}
     @IBAction func buttonLocationClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showLocation)}
     @IBAction func buttonGalleryClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showGallery)}
     
@@ -100,8 +110,9 @@ extension CollectionVC: UICollectionViewDelegate {
             self.coordinator.performAction(from: self, action: .showCollection(newCollection))
             
         case .detail:
-            let detail = reference as! ExposableAsDetails
-            self.coordinator.performAction(from: self, action: .showDetail(detail))
+            let shop = self.presentedCollection as! Barbershop
+            let barber = reference as! Barber
+            self.coordinator.performAction(from: self, action: .showBarber(shop, barber))
         }
 
     }

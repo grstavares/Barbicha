@@ -11,6 +11,8 @@ import PlazazCore
 
 class AppCoordinator {
     
+    private var currentUser: PlazazUser?
+    
     static let shared: AppCoordinator = AppCoordinator()
     private init() {}
     
@@ -20,10 +22,19 @@ class AppCoordinator {
     
     public func rootVC() -> UIViewController {
         
-        let mock = self.mockBarbershop
-        let rootVC = CollectionVC.instantiate(with: mock, using: self)
+        let mock = self.mainCollection
+        let rootVC = CollectionVC.instantiate(with: mock, using: self, canNavigateBack: false)
         return rootVC!
         
+    }
+    
+    public enum Action {
+        case showCollection(ExposableAsCollection)
+        case showBarbershop(Barbershop)
+        case showBarber(Barbershop, Barber)
+        case showLocation
+        case showGallery
+        case showProfile(AnyObject?)
     }
     
     public func performAction(from: UIViewController, action: Action) -> Void {
@@ -31,12 +42,17 @@ class AppCoordinator {
         
         switch action {
         case .showCollection(let collection):
-            debugPrint("will show collection = \(collection.mainLabel)")
-            
-        case .showDetail(let collectionItem):
-            let nextVC = CollectionItemVC.instantiate(with: collectionItem, using: self)
+            let nextVC = CollectionVC.instantiate(with: collection, using: self, canNavigateBack: true)
             from.present(nextVC!, animated: true, completion: nil)
-        
+            
+        case .showBarbershop(let shop):
+            let nextVC = CollectionVC.instantiate(with: shop, using: self, canNavigateBack: true)
+            from.present(nextVC!, animated: true, completion: nil)
+
+        case .showBarber(let shop, let barber):
+            let nextVC = CollectionItemVC.instantiate(with: shop, and: barber, using: self)
+            from.present(nextVC!, animated: true, completion: nil)
+            
         case .showLocation:
             let nextVC = LocationVC.instantiate(using: self)
             from.present(nextVC!, animated: true, completion: nil)
@@ -44,18 +60,32 @@ class AppCoordinator {
         case .showGallery:
             let nextVC = GalleryVC.instantiate(using: self)
             from.present(nextVC!, animated: true, completion: nil)
+
+        case .showProfile( _):
             
+            let userData = currentUser == nil ? self.mockUserData : self.userDataFromUser(user: currentUser!)
+            let nextVC = ProfileVC.instantiate(with: userData, using: self)
+            
+            let transitionDelegate = ProfileTransitionerDelegate()
+            from.transitioningDelegate = transitionDelegate
+            nextVC?.transitioningDelegate = transitionDelegate
+            nextVC?.modalPresentationStyle = .custom
+            
+            from.present(nextVC!, animated: true, completion: nil)
+
         }
         
     }
     
-    public enum Action {
-        case showCollection(ExposableAsCollection)
-        case showDetail(ExposableAsDetails)
-        case showLocation
-        case showGallery
+    private func userDataFromUser(user: PlazazUser) -> UserData {
+        
+        let uuid = user.uuid
+        let name = user.name
+        
+        let userData = UserData.init(uuid: uuid, name: name, apelido: "Apelido", phone: "+55 61", email: "@globo.com", image: nil)
+        return userData
+        
     }
-    
     
     
 }
