@@ -46,6 +46,7 @@
 		A1C77E5B20867B3500006DD9 /* ProfileTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */; };
 		A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */; };
 		A1D84C602086CDA300276FE0 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D84C5F2086CDA300276FE0 /* Appointment.swift */; };
+		A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitioner.swift; sourceTree = "<group>"; };
 		A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitionerDelegate.swift; sourceTree = "<group>"; };
 		A1D84C5F2086CDA300276FE0 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppColorPallete.swift; path = ../../../../../Swift/Commom/AppExtensions/AppColorPallete.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				A1C77DE5208638A600006DD9 /* AppDelegate.swift */,
 				A1C77DE2208638A600006DD9 /* AppCoordinator.swift */,
+				A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */,
 				A15D001C2086F04200271B9D /* AppUtilities.swift */,
 				A1C77DE4208638A600006DD9 /* AppInstrospection.swift */,
 				A1C77DE3208638A600006DD9 /* MockData.swift */,
@@ -390,6 +393,7 @@
 				A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */,
 				A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */,
 				A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */,
+				A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */,
 				A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */,
 				A1C77DFB208638EB00006DD9 /* LocationVC.swift in Sources */,
 				A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */,

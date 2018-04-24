@@ -80,6 +80,8 @@ class CollectionItemVC: UIViewController {
         if let image = barber.image, let uiImage = UIImage(data: image) { self.profileView.setImage(uiImage)}
         
         self.table.layer.cornerRadius = 10
+        
+        self.buttonDate.setTitle(formatter.string(from: self.selectedDate), for: UIControlState.normal)
         self.setControllerDate(date: self.selectedDate)
         
     }
@@ -94,8 +96,31 @@ class CollectionItemVC: UIViewController {
 
     private func setControllerDate(date: Date) -> Void {
         
-        self.selectedDate = date
-        self.buttonDate.setTitle(formatter.string(from: self.selectedDate), for: UIControlState.normal)
+        let activity: UIActivityIndicatorView = UIActivityIndicatorView()
+        activity.center = self.buttonDate.center
+        activity.hidesWhenStopped = true
+        activity.activityIndicatorViewStyle = .gray
+        self.view.addSubview(activity)
+        
+        activity.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        if self.selectedDate != date {
+            
+            self.appointments = self.barbershop.appointments(for: date, with: barber.uuid)
+            self.table.reloadData()
+            
+            self.selectedDate = date
+            self.buttonDate.setTitle(formatter.string(from: self.selectedDate), for: UIControlState.normal)
+
+            sleep(2)
+            
+        }
+        
+        self.setVisibleCellforNow()
+
+        activity.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
         
     }
     
@@ -104,6 +129,23 @@ class CollectionItemVC: UIViewController {
         let interval = TimeInterval(Double(appendingDays) * secondsInDay)
         let newDate = self.selectedDate.addingTimeInterval(interval)
         self.setControllerDate(date: newDate)
+        
+    }
+    
+    private func setVisibleCellforNow() -> Void {
+        
+        let now = Date()
+        for i in 0...self.appointments.count - 1 {
+            
+            if now < self.appointments[i].startDate {
+                
+                let indexPath = IndexPath(row: i, section: 0)
+                self.table.scrollToRow(at: indexPath, at: .top, animated: true)
+                return
+                
+            }
+            
+        }
         
     }
     

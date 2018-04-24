@@ -64,7 +64,7 @@ extension Barbershop {
         while dateWalk <  finalHour {
             
             var value: Appointment?
-            if dateWalk < startTime && dateWalk > endTime {
+            if dateWalk < startTime || dateWalk > endTime {
                 
                 value = Appointment.unavailable(for: dateWalk, interval: slot)
             
