@@ -7,11 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A150E5DB20ADB29A007C2916 /* PlazazCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E5D820ADB28A007C2916 /* PlazazCore.framework */; };
+		A150E5DD20ADB342007C2916 /* PlazazCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A150E5D820ADB28A007C2916 /* PlazazCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A150E5E220ADB43C007C2916 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150E5E120ADB43C007C2916 /* AppActions.swift */; };
+		A150E64920ADB907007C2916 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E63C20ADB8F9007C2916 /* SipHash.framework */; };
+		A150E64A20ADB907007C2916 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A150E63C20ADB8F9007C2916 /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A150E64E20ADBC58007C2916 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150E64D20ADBC58007C2916 /* Customer.swift */; };
 		A15D00132086DA6100271B9D /* BarbershopAppointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00122086DA6100271B9D /* BarbershopAppointments.swift */; };
 		A15D00152086DF6400271B9D /* BarbershopAppointmentsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00142086DF6400271B9D /* BarbershopAppointmentsTest.swift */; };
 		A15D00182086E3C800271B9D /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00162086E3C800271B9D /* AppointmentCell.swift */; };
 		A15D00192086E3C800271B9D /* AppointmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15D00172086E3C800271B9D /* AppointmentCell.xib */; };
 		A15D001D2086F04200271B9D /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D001C2086F04200271B9D /* AppUtilities.swift */; };
+		A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18F811220AE6143002AF101 /* MapKit.framework */; };
+		A18F811C20AE663D002AF101 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */; };
+		A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */; };
+		A1BC34D620ADDE4A00C0273E /* AppointmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */; };
 		A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C77DC82086380400006DD9 /* Assets.xcassets */; };
 		A1C77DCC2086380400006DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C77DCA2086380400006DD9 /* LaunchScreen.storyboard */; };
 		A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE2208638A600006DD9 /* AppCoordinator.swift */; };
@@ -35,10 +45,9 @@
 		A1C77E102086395200006DD9 /* barbeiro03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0B2086395100006DD9 /* barbeiro03.jpg */; };
 		A1C77E112086395200006DD9 /* brotherhood.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0C2086395200006DD9 /* brotherhood.png */; };
 		A1C77E122086395200006DD9 /* barbeiro04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0D2086395200006DD9 /* barbeiro04.jpg */; };
-		A1C77E152086397900006DD9 /* PlazazCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C77E142086397900006DD9 /* PlazazCore.framework */; };
 		A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */; };
 		A1C77E1A20863CD200006DD9 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1920863CD100006DD9 /* AppImage.png */; };
-		A1C77E1C20863D2100006DD9 /* MainCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1B20863D2100006DD9 /* MainCollection.swift */; };
+		A1C77E1C20863D2100006DD9 /* BarbershopCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */; };
 		A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */; };
 		A1C77E202086474E00006DD9 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1F2086474E00006DD9 /* ProfileVC.swift */; };
 		A1C77E5620866B5600006DD9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5520866B5600006DD9 /* ProfileView.swift */; };
@@ -50,6 +59,83 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A150E5D720ADB28A007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1C21BFF208537C20046BDD1;
+			remoteInfo = PlazazCore;
+		};
+		A150E5D920ADB28A007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1C21C08208537C20046BDD1;
+			remoteInfo = PlazazCoreTests;
+		};
+		A150E5DE20ADB342007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A1C21BFE208537C20046BDD1;
+			remoteInfo = PlazazCore;
+		};
+		A150E63B20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55AB21C8F80020050DDA9;
+			remoteInfo = iOS;
+		};
+		A150E63D20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55AD41C8F88F20050DDA9;
+			remoteInfo = macOS;
+		};
+		A150E63F20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55AF11C8F8BE00050DDA9;
+			remoteInfo = watchOS;
+		};
+		A150E64120ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55AFE1C8F8CBB0050DDA9;
+			remoteInfo = tvOS;
+		};
+		A150E64320ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55ABC1C8F80020050DDA9;
+			remoteInfo = "iOS Tests";
+		};
+		A150E64520ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55ADD1C8F88F20050DDA9;
+			remoteInfo = "macOS Tests";
+		};
+		A150E64720ADB8F9007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BBB55B071C8F8CBB0050DDA9;
+			remoteInfo = "tvOS Tests";
+		};
+		A150E64B20ADB907007C2916 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BBB55AB11C8F80020050DDA9;
+			remoteInfo = iOS;
+		};
 		A1C77DD32086380500006DD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1C77DB62086380200006DD9 /* Project object */;
@@ -59,12 +145,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A150E5E020ADB342007C2916 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A150E5DD20ADB342007C2916 /* PlazazCore.framework in Embed Frameworks */,
+				A150E64A20ADB907007C2916 /* SipHash.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlazazCore.xcodeproj; path = ../../../Swift/PlazazCore/PlazazCore.xcodeproj; sourceTree = "<group>"; };
+		A150E5E120ADB43C007C2916 /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
+		A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SipHash.xcodeproj; path = ../../../Swift/CustomControls/SipHash/SipHash.xcodeproj; sourceTree = "<group>"; };
+		A150E64D20ADBC58007C2916 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		A15D00122086DA6100271B9D /* BarbershopAppointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopAppointments.swift; sourceTree = "<group>"; };
 		A15D00142086DF6400271B9D /* BarbershopAppointmentsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopAppointmentsTest.swift; sourceTree = "<group>"; };
 		A15D00162086E3C800271B9D /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		A15D00172086E3C800271B9D /* AppointmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentCell.xib; sourceTree = "<group>"; };
 		A15D001C2086F04200271B9D /* AppUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUtilities.swift; path = ../../../../../Swift/Commom/AppExtensions/AppUtilities.swift; sourceTree = "<group>"; };
+		A18F811220AE6143002AF101 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
+		A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKRegionForAnnotations.swift; sourceTree = "<group>"; };
+		A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentType.swift; sourceTree = "<group>"; };
 		A1C77DBE2086380200006DD9 /* Barbicha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barbicha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77DC82086380400006DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1C77DCB2086380400006DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,7 +204,7 @@
 		A1C77E142086397900006DD9 /* PlazazCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PlazazCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C77E1920863CD100006DD9 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
-		A1C77E1B20863D2100006DD9 /* MainCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollection.swift; sourceTree = "<group>"; };
+		A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopCollection.swift; sourceTree = "<group>"; };
 		A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeariaBeto.jpg; sourceTree = "<group>"; };
 		A1C77E1F2086474E00006DD9 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		A1C77E5520866B5600006DD9 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = ../../../../../Swift/CustomControls/ProfileView/ProfileView/ProfileView.swift; sourceTree = "<group>"; };
@@ -111,7 +220,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C77E152086397900006DD9 /* PlazazCore.framework in Frameworks */,
+				A150E5DB20ADB29A007C2916 /* PlazazCore.framework in Frameworks */,
+				A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */,
+				A150E64920ADB907007C2916 /* SipHash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,9 +236,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A150E5D320ADB28A007C2916 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A150E5D820ADB28A007C2916 /* PlazazCore.framework */,
+				A150E5DA20ADB28A007C2916 /* PlazazCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A150E63220ADB8F9007C2916 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A150E63C20ADB8F9007C2916 /* SipHash.framework */,
+				A150E63E20ADB8F9007C2916 /* SipHash.framework */,
+				A150E64020ADB8F9007C2916 /* SipHash.framework */,
+				A150E64220ADB8F9007C2916 /* SipHash.framework */,
+				A150E64420ADB8F9007C2916 /* SipHash-Test.xctest */,
+				A150E64620ADB8F9007C2916 /* SipHash-Test.xctest */,
+				A150E64820ADB8F9007C2916 /* SipHash-Test.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A18F811D20AE6909002AF101 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		A1C77DB52086380200006DD9 = {
 			isa = PBXGroup;
 			children = (
+				A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */,
+				A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */,
 				A1C77DC02086380200006DD9 /* Barbicha */,
 				A1C77DD52086380500006DD9 /* BarbichaTests */,
 				A1C77DBF2086380200006DD9 /* Products */,
@@ -147,6 +291,7 @@
 		A1C77DC02086380200006DD9 /* Barbicha */ = {
 			isa = PBXGroup;
 			children = (
+				A18F811D20AE6909002AF101 /* Commons */,
 				A1C77E16208639A100006DD9 /* Extensions */,
 				A1C77DEF208638E200006DD9 /* Protocols */,
 				A1C77DE1208638A600006DD9 /* App */,
@@ -175,6 +320,7 @@
 			children = (
 				A1C77DE5208638A600006DD9 /* AppDelegate.swift */,
 				A1C77DE2208638A600006DD9 /* AppCoordinator.swift */,
+				A150E5E120ADB43C007C2916 /* AppActions.swift */,
 				A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */,
 				A15D001C2086F04200271B9D /* AppUtilities.swift */,
 				A1C77DE4208638A600006DD9 /* AppInstrospection.swift */,
@@ -186,11 +332,13 @@
 		A1C77DEA208638CA00006DD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A1C77E1B20863D2100006DD9 /* MainCollection.swift */,
+				A150E64D20ADBC58007C2916 /* Customer.swift */,
+				A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */,
 				A1C77DEB208638CA00006DD9 /* Barbershop.swift */,
 				A15D00122086DA6100271B9D /* BarbershopAppointments.swift */,
 				A1C77DEC208638CA00006DD9 /* Barber.swift */,
 				A1D84C5F2086CDA300276FE0 /* Appointment.swift */,
+				A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +361,7 @@
 				A1C77E1F2086474E00006DD9 /* ProfileVC.swift */,
 				A1C77DFA208638EB00006DD9 /* GalleryVC.swift */,
 				A1C77DF7208638EB00006DD9 /* LocationVC.swift */,
+				A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -248,6 +397,7 @@
 		A1C77E132086397900006DD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A18F811220AE6143002AF101 /* MapKit.framework */,
 				A1C77E142086397900006DD9 /* PlazazCore.framework */,
 			);
 			name = Frameworks;
@@ -281,10 +431,13 @@
 				A1C77DBA2086380200006DD9 /* Sources */,
 				A1C77DBB2086380200006DD9 /* Frameworks */,
 				A1C77DBC2086380200006DD9 /* Resources */,
+				A150E5E020ADB342007C2916 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A150E5DF20ADB342007C2916 /* PBXTargetDependency */,
+				A150E64C20ADB907007C2916 /* PBXTargetDependency */,
 			);
 			name = Barbicha;
 			productName = Barbicha;
@@ -321,6 +474,11 @@
 				TargetAttributes = {
 					A1C77DBD2086380200006DD9 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A1C77DD12086380500006DD9 = {
 						CreatedOnToolsVersion = 9.3;
@@ -340,6 +498,16 @@
 			mainGroup = A1C77DB52086380200006DD9;
 			productRefGroup = A1C77DBF2086380200006DD9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A150E5D320ADB28A007C2916 /* Products */;
+					ProjectRef = A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */;
+				},
+				{
+					ProductGroup = A150E63220ADB8F9007C2916 /* Products */;
+					ProjectRef = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A1C77DBD2086380200006DD9 /* Barbicha */,
@@ -347,6 +515,72 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A150E5D820ADB28A007C2916 /* PlazazCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PlazazCore.framework;
+			remoteRef = A150E5D720ADB28A007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E5DA20ADB28A007C2916 /* PlazazCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PlazazCoreTests.xctest;
+			remoteRef = A150E5D920ADB28A007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E63C20ADB8F9007C2916 /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = A150E63B20ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E63E20ADB8F9007C2916 /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = A150E63D20ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E64020ADB8F9007C2916 /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = A150E63F20ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E64220ADB8F9007C2916 /* SipHash.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SipHash.framework;
+			remoteRef = A150E64120ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E64420ADB8F9007C2916 /* SipHash-Test.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SipHash-Test.xctest";
+			remoteRef = A150E64320ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E64620ADB8F9007C2916 /* SipHash-Test.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SipHash-Test.xctest";
+			remoteRef = A150E64520ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A150E64820ADB8F9007C2916 /* SipHash-Test.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SipHash-Test.xctest";
+			remoteRef = A150E64720ADB8F9007C2916 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A1C77DBC2086380200006DD9 /* Resources */ = {
@@ -382,26 +616,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C77E1C20863D2100006DD9 /* MainCollection.swift in Sources */,
+				A1C77E1C20863D2100006DD9 /* BarbershopCollection.swift in Sources */,
 				A15D00132086DA6100271B9D /* BarbershopAppointments.swift in Sources */,
 				A1C77E58208678F700006DD9 /* ProfilePresentationController.swift in Sources */,
 				A1C77DFC208638EB00006DD9 /* CollectionItemVC.swift in Sources */,
 				A1C77DFE208638EB00006DD9 /* GalleryVC.swift in Sources */,
 				A1C77DF5208638E300006DD9 /* Exposable.swift in Sources */,
 				A1C77DE9208638A600006DD9 /* AppDelegate.swift in Sources */,
+				A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */,
 				A15D00182086E3C800271B9D /* AppointmentCell.swift in Sources */,
 				A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */,
 				A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */,
 				A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */,
+				A18F811C20AE663D002AF101 /* LocationManagerDelegate.swift in Sources */,
 				A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */,
 				A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */,
 				A1C77DFB208638EB00006DD9 /* LocationVC.swift in Sources */,
 				A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */,
+				A150E64E20ADBC58007C2916 /* Customer.swift in Sources */,
 				A1C77E5620866B5600006DD9 /* ProfileView.swift in Sources */,
 				A1D84C602086CDA300276FE0 /* Appointment.swift in Sources */,
 				A1C77DEE208638CA00006DD9 /* Barber.swift in Sources */,
 				A15D001D2086F04200271B9D /* AppUtilities.swift in Sources */,
+				A1BC34D620ADDE4A00C0273E /* AppointmentType.swift in Sources */,
 				A1C77DF3208638E300006DD9 /* ExposableAsDetails.swift in Sources */,
+				A150E5E220ADB43C007C2916 /* AppActions.swift in Sources */,
 				A1C77DE7208638A600006DD9 /* MockData.swift in Sources */,
 				A1C77E5B20867B3500006DD9 /* ProfileTransitioner.swift in Sources */,
 				A1C77E202086474E00006DD9 /* ProfileVC.swift in Sources */,
@@ -422,6 +661,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A150E5DF20ADB342007C2916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlazazCore;
+			targetProxy = A150E5DE20ADB342007C2916 /* PBXContainerItemProxy */;
+		};
+		A150E64C20ADB907007C2916 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOS;
+			targetProxy = A150E64B20ADB907007C2916 /* PBXContainerItemProxy */;
+		};
 		A1C77DD42086380500006DD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1C77DBD2086380200006DD9 /* Barbicha */;
@@ -500,7 +749,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -554,7 +803,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -566,6 +815,7 @@
 		A1C77DDC2086380500006DD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YB9C5DSP3;
@@ -584,6 +834,7 @@
 		A1C77DDD2086380500006DD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YB9C5DSP3;

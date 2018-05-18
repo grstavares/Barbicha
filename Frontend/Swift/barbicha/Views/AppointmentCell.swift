@@ -39,9 +39,9 @@ class AppointmentCell: UITableViewCell {
         self.mainLabel.text = dateString
 //        self.secondaryLabel.text = item.customerName
         self.secondaryLabel.text = "\(item.startDate)"
-        if item.serviceType != .empty && item.serviceType != .unavailable {self.reference = item}
+        if item.serviceType != AppointmentType.empty && item.serviceType != AppointmentType.unavailable {self.reference = item}
         
-        let backGrd = item.serviceType == .unavailable ? UIColor.init(patternImage: UIImage(named: "cellPattern")!).withAlphaComponent(0.5) : item.serviceType != .empty ? AppColorPallete.shared.selectionColor : UIColor.clear
+        let backGrd = item.serviceType == AppointmentType.unavailable ? UIColor.init(patternImage: UIImage(named: "cellPattern")!).withAlphaComponent(0.5) : item.serviceType != .empty ? AppColorPallete.shared.selectionColor : UIColor.clear
         self.content.layer.backgroundColor = backGrd.cgColor
         
     }

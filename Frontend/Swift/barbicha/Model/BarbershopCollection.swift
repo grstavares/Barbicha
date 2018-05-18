@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct MainCollection: ExposableAsCollection {
+struct BarbershopCollection: ExposableAsCollection {
     
     var name: String
     var pitchLine: String?

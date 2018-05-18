@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import PlazazCore
+
 extension Barbershop {
     
     public func dayStart(for date: Date) -> Date {
@@ -51,32 +53,6 @@ extension Barbershop {
     
     public func slotTime(for date: Date) -> TimeInterval {return TimeInterval(30 * 60)}
     
-    public func appointments(for date: Date, with barberId: String?) -> [Appointment] {
-        
-        var appointmentList: [Appointment] = []
-        
-        let startTime = self.startTime(for: date)
-        let endTime = self.endTime(for: date)
-        let slot = self.slotTime(for: date)
-        
-        var dateWalk = self.dayStart(for: date)
-        let finalHour = self.dayEnd(for: date)
-        while dateWalk <  finalHour {
-            
-            var value: Appointment?
-            if dateWalk < startTime || dateWalk > endTime {
-                
-                value = Appointment.unavailable(for: dateWalk, interval: slot)
-            
-            } else { value = Appointment.empty(for: dateWalk, interval: slot)}
-            
-            if value != nil {appointmentList.append(value!)}
-            dateWalk.addTimeInterval(slot)
 
-        }
-        
-        return appointmentList
-        
-    }
-    
+
 }

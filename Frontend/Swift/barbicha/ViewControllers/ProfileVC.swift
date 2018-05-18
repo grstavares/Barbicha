@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import PlazazCore
 
 class ProfileVC: UIViewController {
 
     private var coordinator: AppCoordinator!
-    private var userData: UserData?
-
+    private var loggedUser: PlazazPerson?
+    private var modalSize: CGRect = CGRect.zero
+    private var originalConstraints: (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+    
+    @IBOutlet weak var modalView: UIView!
+    @IBOutlet weak var modalViewTopContraint: NSLayoutConstraint!
+    @IBOutlet weak var modalViewBottonContraint: NSLayoutConstraint!
+    @IBOutlet weak var modalViewLeadConstraint: NSLayoutConstraint!
+    @IBOutlet weak var modalViewTrailConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var profileImageView: ProfileView!
     
@@ -29,14 +38,14 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var buttonOk: UIButton!
 
-    static func instantiate(with userData: UserData?, using coordinator: AppCoordinator) -> ProfileVC? {
+    static func instantiate(with user: PlazazPerson?, using coordinator: AppCoordinator) -> ProfileVC? {
         
         let bundle = Bundle(for: self);
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         if let controller = storyboard.instantiateViewController(type: ProfileVC.self) {
             
             controller.coordinator = coordinator
-            controller.userData = userData
+            controller.loggedUser = user
             return controller
             
         } else {return nil}
@@ -44,46 +53,96 @@ class ProfileVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.configVC()
         self.configView()
     }
+    
+    func configVC() {
+        
+        [self.textName, self.textEmail, self.textPhone, self.textApelido].forEach { $0?.delegate = self }
+        
+        self.modalSize = self.modalView.bounds
+        self.originalConstraints = (self.modalViewTopContraint.constant, self.modalViewLeadConstraint.constant, self.modalViewBottonContraint.constant, self.modalViewTrailConstraint.constant )
 
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-        self.view.bounds.size = CGSize(width: UIScreen.main.bounds.size.width - 50, height: 420)
-        self.view.layer.cornerRadius = 10
-        
+        self.observeKeyboard()
+
     }
     
     func configView() {
-        
-        guard let data = self.userData else {return}
-        
-        self.textName.text = data.name
-        self.textApelido.text = data.apelido
-        self.textPhone.text = data.phone
-        self.textEmail.text = data.email
 
-        self.profileImageView.setImage(data.image)
+        self.modalView.clipsToBounds = true
+        self.modalView.layer.cornerRadius = 15
+        
+        self.textName.text = loggedUser?.name
+        self.textApelido.text = loggedUser?.alias
+        self.textPhone.text = loggedUser?.phone
+        self.textEmail.text = loggedUser?.email
+
+        if let data = loggedUser?.imageData, let image = UIImage(data: data) {
+            self.profileImageView.setImage(image)
+        } else {
+            let image = UIImage(named: "iconProfile")!
+            self.profileImageView.setImage(image)
+        }
+
         self.profileImageView.setBackgroundColor(UIColor.darkGray.withAlphaComponent(0.5))
         self.profileImageView.setBorderWidth(5)
-        
+
     }
     
     @IBAction func buttonCancelClicked(_ sender: UIButton) {self.presentingViewController?.dismiss(animated: true, completion: nil)}
     @IBAction func buttonOkClicked(_ sender: UIButton) {}
     
+    private func observeKeyboard() -> Void {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) -> Void {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+
+            UIView.animate(withDuration: 0.3) {
+                
+                self.profileImageView.alpha = 0
+                self.modalViewTopContraint.constant = 10
+                self.modalViewBottonContraint.constant = keyboardSize.height + 25
+                
+            }
+            
+        } else {debugPrint("No Keyboard Info")}
+
+    }
+    
+    @objc private func keyboardWillHide(notification: Notification) -> Void {
+        
+        let top = self.originalConstraints.0
+        let bot = self.originalConstraints.2
+        
+        UIView.animate(withDuration: 0.5) {
+            self.profileImageView.alpha = 1
+            self.modalViewTopContraint.constant = top
+            self.modalViewBottonContraint.constant = bot
+        }
+        
+    }
+    
 }
 
-struct UserData {
+extension ProfileVC: UITextFieldDelegate {
     
-    var uuid: String?
-    var name: String?
-    var apelido: String?
-    var phone: String?
-    var email: String?
-    var image: UIImage?
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {nextField.becomeFirstResponder()
+        } else {textField.resignFirstResponder()}
+        
+        return false
+        
+    }
     
 }
 

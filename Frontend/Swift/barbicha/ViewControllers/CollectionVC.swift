@@ -72,8 +72,8 @@ class CollectionVC: UIViewController {
     }
     
     @IBAction func buttonBackClicked(_ sender: UIButton) {self.dismiss(animated: true, completion: nil)}
-    @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile(sender))}
-    @IBAction func buttonLocationClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showLocation)}
+    @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile)}
+    @IBAction func buttonLocationClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showLocation(self.presentedCollection))}
     @IBAction func buttonGalleryClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showGallery)}
     
 }

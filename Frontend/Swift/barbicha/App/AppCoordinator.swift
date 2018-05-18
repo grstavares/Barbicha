@@ -11,15 +11,19 @@ import PlazazCore
 
 class AppCoordinator {
     
-    private var currentUser: PlazazUser?
-    
     static let shared: AppCoordinator = AppCoordinator()
-    private init() {}
     
-    public func authenticate(user: PlazazUser, password: String, completion: @escaping (Bool, Error) -> ()) -> Void {}
-    public func authenticate(user: PlazazUser, token: String, completion: @escaping (Bool, Error) -> ()) -> Void {}
-    public func deauthenticate(user: PlazazUser, completion: @escaping (Bool, Error) -> ()) -> Void {}
-    
+    private var currentUser: PlazazPerson?
+    public var loggedUser: PlazazPerson? {return self.currentUser}
+
+    private init() {
+        
+        if let userInfo = self.persistedUsernameAndPwd() {
+            _ = self.userLogin(username: userInfo.0, password: userInfo.1)
+        }
+        
+    }
+
     public func rootVC() -> UIViewController {
         
         let mock = self.mainCollection
@@ -27,17 +31,8 @@ class AppCoordinator {
         return rootVC!
         
     }
-    
-    public enum Action {
-        case showCollection(ExposableAsCollection)
-        case showBarbershop(Barbershop)
-        case showBarber(Barbershop, Barber)
-        case showLocation
-        case showGallery
-        case showProfile(AnyObject?)
-    }
-    
-    public func performAction(from: UIViewController, action: Action) -> Void {
+
+    public func performAction(from: UIViewController, action: AppAction) -> Void {
         
         
         switch action {
@@ -53,40 +48,62 @@ class AppCoordinator {
             let nextVC = CollectionItemVC.instantiate(with: shop, and: barber, using: self)
             from.present(nextVC!, animated: true, completion: nil)
             
-        case .showLocation:
-            let nextVC = LocationVC.instantiate(using: self)
+        case .showLocation(let shop):
+            let nextVC = LocationVC.instantiate(using: self, show: shop)
             from.present(nextVC!, animated: true, completion: nil)
             
         case .showGallery:
             let nextVC = GalleryVC.instantiate(using: self)
             from.present(nextVC!, animated: true, completion: nil)
 
-        case .showProfile( _):
+        case .showProfile:
             
-            let userData = currentUser == nil ? self.mockUserData : self.userDataFromUser(user: currentUser!)
-            let nextVC = ProfileVC.instantiate(with: userData, using: self)
+            let nextVC = ProfileVC.instantiate(with: self.loggedUser, using: self)
             
-            let transitionDelegate = ProfileTransitionerDelegate()
-            from.transitioningDelegate = transitionDelegate
-            nextVC?.transitioningDelegate = transitionDelegate
-            nextVC?.modalPresentationStyle = .custom
+//            let transitionDelegate = ProfileTransitionerDelegate()
+//            from.transitioningDelegate = transitionDelegate
+//            nextVC?.transitioningDelegate = transitionDelegate
+//            nextVC?.modalPresentationStyle = .custom
             
             from.present(nextVC!, animated: true, completion: nil)
 
+        case .makeAppointment(let shop, let barber, let date, let type, let cust):
+
+            shop.schedulle(for: date, type: type, with: barber, customer: cust) { (schedulleResult) in
+                
+                if schedulleResult {return} else {debugPrint("Failure!")}
+                
+            }
+        
+        case .loginUser(let username, let password):
+            
+            if !self.userLogin(username: username, password: password) {debugPrint("Login Failed!")}
+
+        default: return
+            
         }
         
     }
     
-    private func userDataFromUser(user: PlazazUser) -> UserData {
+    private func userLogin(username: String, password: String) -> Bool {
         
-        let uuid = user.uuid
-        let name = user.name
-        
-        let userData = UserData.init(uuid: uuid, name: name, apelido: "Apelido", phone: "+55 61", email: "@globo.com", image: nil)
-        return userData
-        
+        let mock = mockUser
+        if username == mock.email || username == mock.alias {
+            
+            if password == "12345" {
+                self.currentUser = mock
+                return true
+            } else {return false}
+            
+        } else {return false}
+
     }
     
+    private func persistedUsernameAndPwd() -> (String, String)? {
+        
+        return ("spam@spam.com", "12345")
+        
+    }
     
 }
 

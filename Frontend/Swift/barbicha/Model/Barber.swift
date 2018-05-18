@@ -8,38 +8,31 @@
 
 import Foundation
 import PlazazCore
+import SipHash
 
-public class Barber: PlazazPerson {
-    
-    public static func == (lhs: Barber, rhs: Barber) -> Bool {
-        return lhs.uuid == rhs.uuid
-    }
-    
-    public var hashValue: Int {return 121345}
-    
-    
-    public var _uuid: String
-    public var _name: String?
-    public var _imageUrl: URL?
-    public var _imageData: Data?
-    
-    public var uuid: String {return self._uuid}
-    public var name: String? { get {return self._name ?? ""} set {self._name = newValue} }
-    public var imageUrl: URL? { get {return self._imageUrl } set {self._imageUrl = newValue} }
-    public var imageData: Data? { get {return self._imageData} set {self._imageData = newValue} }
+class Barber: PlazazPerson {
+
+    public var uuid: String
+    public var name: String?
+    public var imageUrl: URL?
+    public var imageData: Data?
+
+    public var alias: String?
+    public var phone: String?
+    public var email: String?
     
     init(name: String, imageUrl: URL?) {
         
-        self._uuid = PlazazCoreHelpers.newUUID(for: Barber.self)
-        self._name = name
-        self._imageUrl = imageUrl
+        self.uuid = PlazazCoreHelpers.newUUID(for: Barber.self)
+        self.name = name
+        self.imageUrl = imageUrl
         
         if imageUrl != nil {
             
             AppDelegate.imageFromUrl(url: imageUrl!) { (data, error) in
                 
                 guard error == nil else {return}
-                self._imageData = data
+                self.imageData = data
                 self.informChange(type: .imageChanged, object: self)
                 
             }
@@ -52,12 +45,31 @@ public class Barber: PlazazPerson {
     
 }
 
-extension Barber: Equatable, Hashable {}
+extension Barber: CustomStringConvertible {
+    
+    var description: String {return "Barber: [\(self.uuid)] \(self.name ?? "NoName")"}
+    
+}
+
+extension Barber: SipHashable {
+    
+    public func appendHashes(to hasher: inout SipHasher) {
+        hasher.append(self.uuid)
+        hasher.append(self.name)
+        hasher.append(self.imageUrl)
+        hasher.append(self.imageData)
+    }
+    
+    public static func == (lhs: Barber, rhs: Barber) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+}
 
 extension Barber: ExposableAsDetails {
     
-    var image: Data? {return self._imageData}
-    var mainLabel: String {return self._name ?? ""}
+    var image: Data? {return self.imageData}
+    var mainLabel: String {return self.name ?? ""}
     var detail: String? {return nil}
     var moreDetail: String? {return nil}
 
