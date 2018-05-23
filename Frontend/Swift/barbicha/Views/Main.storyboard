@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CollectionVC-->
+        <!--BarbershopVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="CollectionVC" id="BYZ-38-t0r" customClass="CollectionVC" customModule="Barbicha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarbershopVC" id="BYZ-38-t0r" customClass="BarbershopVC" customModule="Barbicha" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--Collection ItemVC-->
+        <!--BarberVC-->
         <scene sceneID="pP2-PK-Sob">
             <objects>
-                <viewController storyboardIdentifier="CollectionItemVC" id="d90-oG-slM" customClass="CollectionItemVC" customModule="Barbicha" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarberVC" id="d90-oG-slM" customClass="BarberVC" customModule="Barbicha" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v2c-zh-oOR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,9 +183,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vx-X8-nqW" customClass="ProfileView" customModule="Barbicha" customModuleProvider="target">
                                 <rect key="frame" x="10" y="70" width="129.5" height="129.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Vx-X8-nqW" secondAttribute="height" multiplier="1:1" id="gHj-LK-8G3"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Ru9-u2-f3h" appends="YES" id="B5X-za-YZ9"/>
+                                </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="p0K-my-QPh" userLabel="labels">
                                 <rect key="frame" x="149.5" y="90" width="215.5" height="59.5"/>
@@ -348,6 +352,7 @@
                         <outlet property="detailLabel" destination="AUA-E7-5xm" id="9VL-f6-K8d"/>
                         <outlet property="mainLabel" destination="9E0-PB-9Mg" id="gIE-yS-vjy"/>
                         <outlet property="profileView" destination="6Vx-X8-nqW" id="U6e-M7-Or1"/>
+                        <outlet property="profileViewTapRecognizer" destination="Ru9-u2-f3h" id="7GK-ph-Ccp"/>
                         <outlet property="table" destination="sbr-hI-07b" id="wge-9v-qee"/>
                     </connections>
                 </viewController>
@@ -419,6 +424,11 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="IWI-eu-7uP"/>
                 </view>
+                <tapGestureRecognizer id="Ru9-u2-f3h">
+                    <connections>
+                        <action selector="profileViewTapped:" destination="d90-oG-slM" id="1zV-HH-S7s"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="808.79999999999995" y="133.5832083958021"/>
         </scene>
@@ -745,9 +755,34 @@
             </objects>
             <point key="canvasLocation" x="810" y="814"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Rbf-9i-itt">
+            <objects>
+                <viewController storyboardIdentifier="CriticalErrorVC" id="qDe-pF-Gfn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KCm-iS-YaC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="criticalError" translatesAutoresizingMaskIntoConstraints="NO" id="k0c-Pn-X7i">
+                                <rect key="frame" x="-16" y="169" width="407" height="329"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="k0c-Pn-X7i" firstAttribute="centerX" secondItem="KCm-iS-YaC" secondAttribute="centerX" id="jdB-GR-sF7"/>
+                            <constraint firstItem="k0c-Pn-X7i" firstAttribute="centerY" secondItem="KCm-iS-YaC" secondAttribute="centerY" id="nOC-C6-WTW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jOS-Ct-zv8"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cln-cw-3qF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472.8" y="813.64317841079469"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="300" height="300"/>
+        <image name="criticalError" width="407" height="329"/>
         <image name="iconBack" width="25" height="25"/>
         <image name="iconGallery" width="25" height="25"/>
         <image name="iconLocation" width="50" height="50"/>

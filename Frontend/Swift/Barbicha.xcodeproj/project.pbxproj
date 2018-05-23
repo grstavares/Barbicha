@@ -7,25 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F45E46AFAA379CD787A57F1 /* Pods_BarbichaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D43B34E24CD6E6C171795C8 /* Pods_BarbichaTests.framework */; };
+		81F8979AF9B2C0F3EC46ED67 /* Pods_Barbicha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578B0269DF825DB62F2DCC83 /* Pods_Barbicha.framework */; };
+		A14EB98A20B45A490083F8B1 /* BarbershopProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14EB98920B45A490083F8B1 /* BarbershopProvider.swift */; };
 		A150E5DB20ADB29A007C2916 /* PlazazCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E5D820ADB28A007C2916 /* PlazazCore.framework */; };
 		A150E5DD20ADB342007C2916 /* PlazazCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A150E5D820ADB28A007C2916 /* PlazazCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A150E5E220ADB43C007C2916 /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150E5E120ADB43C007C2916 /* AppActions.swift */; };
-		A150E64920ADB907007C2916 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150E63C20ADB8F9007C2916 /* SipHash.framework */; };
-		A150E64A20ADB907007C2916 /* SipHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A150E63C20ADB8F9007C2916 /* SipHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A150E64E20ADBC58007C2916 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A150E64D20ADBC58007C2916 /* Customer.swift */; };
 		A15D00132086DA6100271B9D /* BarbershopAppointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00122086DA6100271B9D /* BarbershopAppointments.swift */; };
 		A15D00152086DF6400271B9D /* BarbershopAppointmentsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00142086DF6400271B9D /* BarbershopAppointmentsTest.swift */; };
 		A15D00182086E3C800271B9D /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D00162086E3C800271B9D /* AppointmentCell.swift */; };
 		A15D00192086E3C800271B9D /* AppointmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15D00172086E3C800271B9D /* AppointmentCell.xib */; };
 		A15D001D2086F04200271B9D /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15D001C2086F04200271B9D /* AppUtilities.swift */; };
+		A1615D6A20B361D8008E0A26 /* BarbershopEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D6920B361D8008E0A26 /* BarbershopEvents.swift */; };
+		A1615D6E20B3693C008E0A26 /* UIViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D6D20B3693C008E0A26 /* UIViewControllerNotifications.swift */; };
+		A1615D7020B36C8F008E0A26 /* ExposableAsAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D6F20B36C8F008E0A26 /* ExposableAsAppointment.swift */; };
+		A1615D7320B38465008E0A26 /* UserPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D7220B38465008E0A26 /* UserPool.swift */; };
 		A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18F811220AE6143002AF101 /* MapKit.framework */; };
-		A18F811C20AE663D002AF101 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */; };
 		A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */; };
+		A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */; };
+		A1B2E9A720B5A7FC0033CEF6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2E9A620B5A7FC0033CEF6 /* DataProvider.swift */; };
+		A1B2E9A920B5A8D10033CEF6 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2E9A820B5A8D10033CEF6 /* FirebaseProvider.swift */; };
 		A1BC34D620ADDE4A00C0273E /* AppointmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */; };
 		A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C77DC82086380400006DD9 /* Assets.xcassets */; };
-		A1C77DCC2086380400006DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C77DCA2086380400006DD9 /* LaunchScreen.storyboard */; };
 		A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE2208638A600006DD9 /* AppCoordinator.swift */; };
-		A1C77DE7208638A600006DD9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE3208638A600006DD9 /* MockData.swift */; };
 		A1C77DE8208638A600006DD9 /* AppInstrospection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE4208638A600006DD9 /* AppInstrospection.swift */; };
 		A1C77DE9208638A600006DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE5208638A600006DD9 /* AppDelegate.swift */; };
 		A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DEB208638CA00006DD9 /* Barbershop.swift */; };
@@ -34,8 +39,8 @@
 		A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF1208638E200006DD9 /* ExposableAsCollection.swift */; };
 		A1C77DF5208638E300006DD9 /* Exposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF2208638E200006DD9 /* Exposable.swift */; };
 		A1C77DFB208638EB00006DD9 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF7208638EB00006DD9 /* LocationVC.swift */; };
-		A1C77DFC208638EB00006DD9 /* CollectionItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF8208638EB00006DD9 /* CollectionItemVC.swift */; };
-		A1C77DFD208638EB00006DD9 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF9208638EB00006DD9 /* CollectionVC.swift */; };
+		A1C77DFC208638EB00006DD9 /* BarberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF8208638EB00006DD9 /* BarberVC.swift */; };
+		A1C77DFD208638EB00006DD9 /* BarbershopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DF9208638EB00006DD9 /* BarbershopVC.swift */; };
 		A1C77DFE208638EB00006DD9 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DFA208638EB00006DD9 /* GalleryVC.swift */; };
 		A1C77E052086392000006DD9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E002086391F00006DD9 /* CollectionCell.xib */; };
 		A1C77E062086392000006DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E022086392000006DD9 /* Main.storyboard */; };
@@ -47,7 +52,6 @@
 		A1C77E122086395200006DD9 /* barbeiro04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0D2086395200006DD9 /* barbeiro04.jpg */; };
 		A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */; };
 		A1C77E1A20863CD200006DD9 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1920863CD100006DD9 /* AppImage.png */; };
-		A1C77E1C20863D2100006DD9 /* BarbershopCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */; };
 		A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */; };
 		A1C77E202086474E00006DD9 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1F2086474E00006DD9 /* ProfileVC.swift */; };
 		A1C77E5620866B5600006DD9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5520866B5600006DD9 /* ProfileView.swift */; };
@@ -55,6 +59,9 @@
 		A1C77E5B20867B3500006DD9 /* ProfileTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */; };
 		A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */; };
 		A1D84C602086CDA300276FE0 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D84C5F2086CDA300276FE0 /* Appointment.swift */; };
+		A1DD567120B5B67800E04504 /* barbershop.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1DD567020B5B67800E04504 /* barbershop.plist */; };
+		A1DD567420B5B8C000E04504 /* barbershop.json in Resources */ = {isa = PBXBuildFile; fileRef = A1DD567320B5B8C000E04504 /* barbershop.json */; };
+		A1DD567620B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DD567520B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png */; };
 		A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,62 +87,6 @@
 			remoteGlobalIDString = A1C21BFE208537C20046BDD1;
 			remoteInfo = PlazazCore;
 		};
-		A150E63B20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55AB21C8F80020050DDA9;
-			remoteInfo = iOS;
-		};
-		A150E63D20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55AD41C8F88F20050DDA9;
-			remoteInfo = macOS;
-		};
-		A150E63F20ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55AF11C8F8BE00050DDA9;
-			remoteInfo = watchOS;
-		};
-		A150E64120ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55AFE1C8F8CBB0050DDA9;
-			remoteInfo = tvOS;
-		};
-		A150E64320ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55ABC1C8F80020050DDA9;
-			remoteInfo = "iOS Tests";
-		};
-		A150E64520ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55ADD1C8F88F20050DDA9;
-			remoteInfo = "macOS Tests";
-		};
-		A150E64720ADB8F9007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BBB55B071C8F8CBB0050DDA9;
-			remoteInfo = "tvOS Tests";
-		};
-		A150E64B20ADB907007C2916 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = BBB55AB11C8F80020050DDA9;
-			remoteInfo = iOS;
-		};
 		A1C77DD32086380500006DD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1C77DB62086380200006DD9 /* Project object */;
@@ -153,7 +104,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A150E5DD20ADB342007C2916 /* PlazazCore.framework in Embed Frameworks */,
-				A150E64A20ADB907007C2916 /* SipHash.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,27 +111,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		55F695DBFD264AFCFA4A7874 /* Pods-BarbichaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbichaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BarbichaTests/Pods-BarbichaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		578B0269DF825DB62F2DCC83 /* Pods_Barbicha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Barbicha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC9A3E45E49EDCD0A779C6C /* Pods-Barbicha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barbicha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Barbicha/Pods-Barbicha.debug.xcconfig"; sourceTree = "<group>"; };
+		7CA58DDFE7C54BF0256AB203 /* Pods-Barbicha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barbicha.release.xcconfig"; path = "Pods/Target Support Files/Pods-Barbicha/Pods-Barbicha.release.xcconfig"; sourceTree = "<group>"; };
+		9D43B34E24CD6E6C171795C8 /* Pods_BarbichaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarbichaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A14EB98920B45A490083F8B1 /* BarbershopProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopProvider.swift; sourceTree = "<group>"; };
 		A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlazazCore.xcodeproj; path = ../../../Swift/PlazazCore/PlazazCore.xcodeproj; sourceTree = "<group>"; };
 		A150E5E120ADB43C007C2916 /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
-		A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SipHash.xcodeproj; path = ../../../Swift/CustomControls/SipHash/SipHash.xcodeproj; sourceTree = "<group>"; };
 		A150E64D20ADBC58007C2916 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		A15D00122086DA6100271B9D /* BarbershopAppointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopAppointments.swift; sourceTree = "<group>"; };
 		A15D00142086DF6400271B9D /* BarbershopAppointmentsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopAppointmentsTest.swift; sourceTree = "<group>"; };
 		A15D00162086E3C800271B9D /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		A15D00172086E3C800271B9D /* AppointmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentCell.xib; sourceTree = "<group>"; };
 		A15D001C2086F04200271B9D /* AppUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUtilities.swift; path = ../../../../../Swift/Commom/AppExtensions/AppUtilities.swift; sourceTree = "<group>"; };
+		A1615D6920B361D8008E0A26 /* BarbershopEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopEvents.swift; sourceTree = "<group>"; };
+		A1615D6D20B3693C008E0A26 /* UIViewControllerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerNotifications.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIViewControllerNotifications.swift; sourceTree = "<group>"; };
+		A1615D6F20B36C8F008E0A26 /* ExposableAsAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposableAsAppointment.swift; sourceTree = "<group>"; };
+		A1615D7220B38465008E0A26 /* UserPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPool.swift; sourceTree = "<group>"; };
 		A18F811220AE6143002AF101 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 		A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKRegionForAnnotations.swift; sourceTree = "<group>"; };
+		A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1B2E9A620B5A7FC0033CEF6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		A1B2E9A820B5A8D10033CEF6 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentType.swift; sourceTree = "<group>"; };
 		A1C77DBE2086380200006DD9 /* Barbicha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barbicha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77DC82086380400006DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A1C77DCB2086380400006DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1C77DCD2086380400006DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1C77DD22086380500006DD9 /* BarbichaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarbichaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77DD82086380500006DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1C77DE2208638A600006DD9 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		A1C77DE3208638A600006DD9 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		A1C77DE4208638A600006DD9 /* AppInstrospection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInstrospection.swift; sourceTree = "<group>"; };
 		A1C77DE5208638A600006DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C77DEB208638CA00006DD9 /* Barbershop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barbershop.swift; sourceTree = "<group>"; };
@@ -190,8 +149,8 @@
 		A1C77DF1208638E200006DD9 /* ExposableAsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExposableAsCollection.swift; sourceTree = "<group>"; };
 		A1C77DF2208638E200006DD9 /* Exposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exposable.swift; sourceTree = "<group>"; };
 		A1C77DF7208638EB00006DD9 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
-		A1C77DF8208638EB00006DD9 /* CollectionItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionItemVC.swift; sourceTree = "<group>"; };
-		A1C77DF9208638EB00006DD9 /* CollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
+		A1C77DF8208638EB00006DD9 /* BarberVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarberVC.swift; sourceTree = "<group>"; };
+		A1C77DF9208638EB00006DD9 /* BarbershopVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarbershopVC.swift; sourceTree = "<group>"; };
 		A1C77DFA208638EB00006DD9 /* GalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
 		A1C77E002086391F00006DD9 /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		A1C77E032086392000006DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -204,7 +163,6 @@
 		A1C77E142086397900006DD9 /* PlazazCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PlazazCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C77E1920863CD100006DD9 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
-		A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopCollection.swift; sourceTree = "<group>"; };
 		A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeariaBeto.jpg; sourceTree = "<group>"; };
 		A1C77E1F2086474E00006DD9 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		A1C77E5520866B5600006DD9 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = ../../../../../Swift/CustomControls/ProfileView/ProfileView/ProfileView.swift; sourceTree = "<group>"; };
@@ -212,7 +170,11 @@
 		A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitioner.swift; sourceTree = "<group>"; };
 		A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitionerDelegate.swift; sourceTree = "<group>"; };
 		A1D84C5F2086CDA300276FE0 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		A1DD567020B5B67800E04504 /* barbershop.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = barbershop.plist; sourceTree = "<group>"; };
+		A1DD567320B5B8C000E04504 /* barbershop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = barbershop.json; sourceTree = "<group>"; };
+		A1DD567520B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "0BC576BD-D174-4F40-8E21-5962A403BCA1.png"; sourceTree = "<group>"; };
 		A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppColorPallete.swift; path = ../../../../../Swift/Commom/AppExtensions/AppColorPallete.swift; sourceTree = "<group>"; };
+		E752D0E5A3B71C372D3F9D62 /* Pods-BarbichaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarbichaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BarbichaTests/Pods-BarbichaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,7 +184,7 @@
 			files = (
 				A150E5DB20ADB29A007C2916 /* PlazazCore.framework in Frameworks */,
 				A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */,
-				A150E64920ADB907007C2916 /* SipHash.framework in Frameworks */,
+				81F8979AF9B2C0F3EC46ED67 /* Pods_Barbicha.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,12 +192,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F45E46AFAA379CD787A57F1 /* Pods_BarbichaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A37DF2A857C890AE1C48A91 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5FC9A3E45E49EDCD0A779C6C /* Pods-Barbicha.debug.xcconfig */,
+				7CA58DDFE7C54BF0256AB203 /* Pods-Barbicha.release.xcconfig */,
+				55F695DBFD264AFCFA4A7874 /* Pods-BarbichaTests.debug.xcconfig */,
+				E752D0E5A3B71C372D3F9D62 /* Pods-BarbichaTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A150E5D320ADB28A007C2916 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,23 +219,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A150E63220ADB8F9007C2916 /* Products */ = {
+		A1615D7120B38445008E0A26 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				A150E63C20ADB8F9007C2916 /* SipHash.framework */,
-				A150E63E20ADB8F9007C2916 /* SipHash.framework */,
-				A150E64020ADB8F9007C2916 /* SipHash.framework */,
-				A150E64220ADB8F9007C2916 /* SipHash.framework */,
-				A150E64420ADB8F9007C2916 /* SipHash-Test.xctest */,
-				A150E64620ADB8F9007C2916 /* SipHash-Test.xctest */,
-				A150E64820ADB8F9007C2916 /* SipHash-Test.xctest */,
+				A1615D7220B38465008E0A26 /* UserPool.swift */,
+				A14EB98920B45A490083F8B1 /* BarbershopProvider.swift */,
+				A1B2E9A820B5A8D10033CEF6 /* FirebaseProvider.swift */,
 			);
-			name = Products;
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		A18F811D20AE6909002AF101 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				A1615D6D20B3693C008E0A26 /* UIViewControllerNotifications.swift */,
 				A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */,
 			);
 			path = Commons;
@@ -271,11 +242,11 @@
 			isa = PBXGroup;
 			children = (
 				A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */,
-				A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */,
 				A1C77DC02086380200006DD9 /* Barbicha */,
 				A1C77DD52086380500006DD9 /* BarbichaTests */,
 				A1C77DBF2086380200006DD9 /* Products */,
 				A1C77E132086397900006DD9 /* Frameworks */,
+				3A37DF2A857C890AE1C48A91 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -295,12 +266,14 @@
 				A1C77E16208639A100006DD9 /* Extensions */,
 				A1C77DEF208638E200006DD9 /* Protocols */,
 				A1C77DE1208638A600006DD9 /* App */,
+				A1615D7120B38445008E0A26 /* Providers */,
 				A1C77DEA208638CA00006DD9 /* Model */,
 				A1C77DF6208638EB00006DD9 /* ViewControllers */,
 				A1C77E592086790300006DD9 /* Transitions */,
 				A1C77DFF2086390600006DD9 /* Views */,
 				A1C77E082086394200006DD9 /* Resources */,
 				A1C77DC82086380400006DD9 /* Assets.xcassets */,
+				A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */,
 				A1C77DCD2086380400006DD9 /* Info.plist */,
 			);
 			path = Barbicha;
@@ -324,7 +297,6 @@
 				A1FC88712087B8F7004F20B3 /* AppColorPallete.swift */,
 				A15D001C2086F04200271B9D /* AppUtilities.swift */,
 				A1C77DE4208638A600006DD9 /* AppInstrospection.swift */,
-				A1C77DE3208638A600006DD9 /* MockData.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -333,9 +305,9 @@
 			isa = PBXGroup;
 			children = (
 				A150E64D20ADBC58007C2916 /* Customer.swift */,
-				A1C77E1B20863D2100006DD9 /* BarbershopCollection.swift */,
 				A1C77DEB208638CA00006DD9 /* Barbershop.swift */,
 				A15D00122086DA6100271B9D /* BarbershopAppointments.swift */,
+				A1615D6920B361D8008E0A26 /* BarbershopEvents.swift */,
 				A1C77DEC208638CA00006DD9 /* Barber.swift */,
 				A1D84C5F2086CDA300276FE0 /* Appointment.swift */,
 				A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */,
@@ -348,7 +320,9 @@
 			children = (
 				A1C77DF0208638E200006DD9 /* ExposableAsDetails.swift */,
 				A1C77DF1208638E200006DD9 /* ExposableAsCollection.swift */,
+				A1615D6F20B36C8F008E0A26 /* ExposableAsAppointment.swift */,
 				A1C77DF2208638E200006DD9 /* Exposable.swift */,
+				A1B2E9A620B5A7FC0033CEF6 /* DataProvider.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -356,12 +330,11 @@
 		A1C77DF6208638EB00006DD9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A1C77DF9208638EB00006DD9 /* CollectionVC.swift */,
-				A1C77DF8208638EB00006DD9 /* CollectionItemVC.swift */,
+				A1C77DF9208638EB00006DD9 /* BarbershopVC.swift */,
+				A1C77DF8208638EB00006DD9 /* BarberVC.swift */,
 				A1C77E1F2086474E00006DD9 /* ProfileVC.swift */,
 				A1C77DFA208638EB00006DD9 /* GalleryVC.swift */,
 				A1C77DF7208638EB00006DD9 /* LocationVC.swift */,
-				A18F811B20AE663D002AF101 /* LocationManagerDelegate.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -369,7 +342,6 @@
 		A1C77DFF2086390600006DD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A1C77DCA2086380400006DD9 /* LaunchScreen.storyboard */,
 				A1C77E022086392000006DD9 /* Main.storyboard */,
 				A1C77E5520866B5600006DD9 /* ProfileView.swift */,
 				A1C77E042086392000006DD9 /* CollectionCell.swift */,
@@ -383,6 +355,7 @@
 		A1C77E082086394200006DD9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A1DD567520B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png */,
 				A1C77E1920863CD100006DD9 /* AppImage.png */,
 				A1C77E092086395100006DD9 /* barbeiro01.jpg */,
 				A1C77E0A2086395100006DD9 /* barbeiro02.jpg */,
@@ -390,6 +363,8 @@
 				A1C77E0D2086395200006DD9 /* barbeiro04.jpg */,
 				A1C77E0C2086395200006DD9 /* brotherhood.png */,
 				A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */,
+				A1DD567020B5B67800E04504 /* barbershop.plist */,
+				A1DD567320B5B8C000E04504 /* barbershop.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -399,6 +374,8 @@
 			children = (
 				A18F811220AE6143002AF101 /* MapKit.framework */,
 				A1C77E142086397900006DD9 /* PlazazCore.framework */,
+				578B0269DF825DB62F2DCC83 /* Pods_Barbicha.framework */,
+				9D43B34E24CD6E6C171795C8 /* Pods_BarbichaTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -428,16 +405,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1C77DDB2086380500006DD9 /* Build configuration list for PBXNativeTarget "Barbicha" */;
 			buildPhases = (
+				7904CAE738781EA5314DF89F /* [CP] Check Pods Manifest.lock */,
 				A1C77DBA2086380200006DD9 /* Sources */,
 				A1C77DBB2086380200006DD9 /* Frameworks */,
 				A1C77DBC2086380200006DD9 /* Resources */,
 				A150E5E020ADB342007C2916 /* Embed Frameworks */,
+				1B4EEE3357D7C9A6D1E632AE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A150E5DF20ADB342007C2916 /* PBXTargetDependency */,
-				A150E64C20ADB907007C2916 /* PBXTargetDependency */,
 			);
 			name = Barbicha;
 			productName = Barbicha;
@@ -448,6 +426,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1C77DDE2086380500006DD9 /* Build configuration list for PBXNativeTarget "BarbichaTests" */;
 			buildPhases = (
+				109326C95A39ACFCA6ACB821 /* [CP] Check Pods Manifest.lock */,
 				A1C77DCE2086380500006DD9 /* Sources */,
 				A1C77DCF2086380500006DD9 /* Frameworks */,
 				A1C77DD02086380500006DD9 /* Resources */,
@@ -503,10 +482,6 @@
 					ProductGroup = A150E5D320ADB28A007C2916 /* Products */;
 					ProjectRef = A150E5D220ADB28A007C2916 /* PlazazCore.xcodeproj */;
 				},
-				{
-					ProductGroup = A150E63220ADB8F9007C2916 /* Products */;
-					ProjectRef = A150E63120ADB8F9007C2916 /* SipHash.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -531,55 +506,6 @@
 			remoteRef = A150E5D920ADB28A007C2916 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A150E63C20ADB8F9007C2916 /* SipHash.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SipHash.framework;
-			remoteRef = A150E63B20ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E63E20ADB8F9007C2916 /* SipHash.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SipHash.framework;
-			remoteRef = A150E63D20ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E64020ADB8F9007C2916 /* SipHash.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SipHash.framework;
-			remoteRef = A150E63F20ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E64220ADB8F9007C2916 /* SipHash.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SipHash.framework;
-			remoteRef = A150E64120ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E64420ADB8F9007C2916 /* SipHash-Test.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SipHash-Test.xctest";
-			remoteRef = A150E64320ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E64620ADB8F9007C2916 /* SipHash-Test.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SipHash-Test.xctest";
-			remoteRef = A150E64520ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A150E64820ADB8F9007C2916 /* SipHash-Test.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SipHash-Test.xctest";
-			remoteRef = A150E64720ADB8F9007C2916 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -588,13 +514,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1C77E052086392000006DD9 /* CollectionCell.xib in Resources */,
+				A1DD567420B5B8C000E04504 /* barbershop.json in Resources */,
 				A1C77E1A20863CD200006DD9 /* AppImage.png in Resources */,
 				A1C77E0F2086395200006DD9 /* barbeiro02.jpg in Resources */,
+				A1DD567620B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png in Resources */,
 				A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */,
 				A1C77E122086395200006DD9 /* barbeiro04.jpg in Resources */,
+				A1DD567120B5B67800E04504 /* barbershop.plist in Resources */,
+				A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */,
 				A1C77E112086395200006DD9 /* brotherhood.png in Resources */,
 				A1C77E0E2086395200006DD9 /* barbeiro01.jpg in Resources */,
-				A1C77DCC2086380400006DD9 /* LaunchScreen.storyboard in Resources */,
 				A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */,
 				A1C77E062086392000006DD9 /* Main.storyboard in Resources */,
 				A1C77E102086395200006DD9 /* barbeiro03.jpg in Resources */,
@@ -611,16 +540,97 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		109326C95A39ACFCA6ACB821 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BarbichaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B4EEE3357D7C9A6D1E632AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Barbicha/Pods-Barbicha-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableFirebase/CodableFirebase.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableFirebase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Barbicha/Pods-Barbicha-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7904CAE738781EA5314DF89F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Barbicha-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A1C77DBA2086380200006DD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C77E1C20863D2100006DD9 /* BarbershopCollection.swift in Sources */,
+				A1B2E9A920B5A8D10033CEF6 /* FirebaseProvider.swift in Sources */,
 				A15D00132086DA6100271B9D /* BarbershopAppointments.swift in Sources */,
+				A14EB98A20B45A490083F8B1 /* BarbershopProvider.swift in Sources */,
 				A1C77E58208678F700006DD9 /* ProfilePresentationController.swift in Sources */,
-				A1C77DFC208638EB00006DD9 /* CollectionItemVC.swift in Sources */,
+				A1C77DFC208638EB00006DD9 /* BarberVC.swift in Sources */,
 				A1C77DFE208638EB00006DD9 /* GalleryVC.swift in Sources */,
+				A1B2E9A720B5A7FC0033CEF6 /* DataProvider.swift in Sources */,
 				A1C77DF5208638E300006DD9 /* Exposable.swift in Sources */,
 				A1C77DE9208638A600006DD9 /* AppDelegate.swift in Sources */,
 				A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */,
@@ -628,8 +638,9 @@
 				A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */,
 				A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */,
 				A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */,
-				A18F811C20AE663D002AF101 /* LocationManagerDelegate.swift in Sources */,
 				A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */,
+				A1615D6A20B361D8008E0A26 /* BarbershopEvents.swift in Sources */,
+				A1615D6E20B3693C008E0A26 /* UIViewControllerNotifications.swift in Sources */,
 				A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */,
 				A1C77DFB208638EB00006DD9 /* LocationVC.swift in Sources */,
 				A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */,
@@ -641,12 +652,13 @@
 				A1BC34D620ADDE4A00C0273E /* AppointmentType.swift in Sources */,
 				A1C77DF3208638E300006DD9 /* ExposableAsDetails.swift in Sources */,
 				A150E5E220ADB43C007C2916 /* AppActions.swift in Sources */,
-				A1C77DE7208638A600006DD9 /* MockData.swift in Sources */,
+				A1615D7320B38465008E0A26 /* UserPool.swift in Sources */,
 				A1C77E5B20867B3500006DD9 /* ProfileTransitioner.swift in Sources */,
 				A1C77E202086474E00006DD9 /* ProfileVC.swift in Sources */,
 				A1C77E072086392000006DD9 /* CollectionCell.swift in Sources */,
-				A1C77DFD208638EB00006DD9 /* CollectionVC.swift in Sources */,
+				A1C77DFD208638EB00006DD9 /* BarbershopVC.swift in Sources */,
 				A1C77DE8208638A600006DD9 /* AppInstrospection.swift in Sources */,
+				A1615D7020B36C8F008E0A26 /* ExposableAsAppointment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,11 +678,6 @@
 			name = PlazazCore;
 			targetProxy = A150E5DE20ADB342007C2916 /* PBXContainerItemProxy */;
 		};
-		A150E64C20ADB907007C2916 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iOS;
-			targetProxy = A150E64B20ADB907007C2916 /* PBXContainerItemProxy */;
-		};
 		A1C77DD42086380500006DD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1C77DBD2086380200006DD9 /* Barbicha */;
@@ -679,14 +686,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A1C77DCA2086380400006DD9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1C77DCB2086380400006DD9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		A1C77E022086392000006DD9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -814,12 +813,14 @@
 		};
 		A1C77DDC2086380500006DD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FC9A3E45E49EDCD0A779C6C /* Pods-Barbicha.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YB9C5DSP3;
 				INFOPLIST_FILE = Barbicha/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -827,18 +828,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.plazaz.barbicha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		A1C77DDD2086380500006DD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CA58DDFE7C54BF0256AB203 /* Pods-Barbicha.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7YB9C5DSP3;
 				INFOPLIST_FILE = Barbicha/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -846,12 +849,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.plazaz.barbicha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		A1C77DDF2086380500006DD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55F695DBFD264AFCFA4A7874 /* Pods-BarbichaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -875,6 +879,7 @@
 		};
 		A1C77DE02086380500006DD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E752D0E5A3B71C372D3F9D62 /* Pods-BarbichaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

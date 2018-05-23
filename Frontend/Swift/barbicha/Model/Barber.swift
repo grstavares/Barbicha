@@ -10,7 +10,7 @@ import Foundation
 import PlazazCore
 import SipHash
 
-class Barber: PlazazPerson {
+class Barber: PlazazPerson, Codable {
 
     public var uuid: String
     public var name: String?
@@ -45,9 +45,17 @@ class Barber: PlazazPerson {
     
 }
 
+extension Barber: PlazazUser {
+    
+    var person: PlazazPerson? {return self}
+
+}
+
 extension Barber: CustomStringConvertible {
     
-    var description: String {return "Barber: [\(self.uuid)] \(self.name ?? "NoName")"}
+    var description: String {
+        return "Barber [\(self.uuid): \(self.name ?? "NoName") {alias: \(self.alias ?? "NoAlias"), phone: \(self.phone ?? "NpPhone"), email: \(self.email ?? "NoEmail"), imageURL: \(self.imageUrl?.description ?? "NoUrl")}]"
+    }
     
 }
 

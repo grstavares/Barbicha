@@ -8,19 +8,32 @@
 
 import Foundation
 import PlazazCore
+import FirebaseFirestore
 import SipHash
 
-class Barbershop: PlazazOrganization {
+class Barbershop: PlazazOrganization, Codable {
 
-    public var uuid: String
+    public private (set) var uuid: String
     public var name: String?
     public var imageUrl: URL?
     public var imageData: Data?
-    public var serviceTypes: [AppointmentType]
-    public var barbers: [Barber]
-    public var location: (Double, Double)?
-
+    private var latitude: Double?
+    private var longitude: Double?
+    public private (set) var serviceTypes: [AppointmentType]
+    public private (set) var barbers: [Barber]
     private var appointments: [Appointment]
+    
+    public var location: (Double, Double)? {
+        
+        get {return (self.latitude == nil || self.longitude == nil ? nil : (self.latitude!, self.longitude!))}
+        
+        set {
+            
+            if newValue == nil {self.latitude = nil; self.longitude = nil
+            } else {self.latitude = newValue!.0; self.longitude = newValue!.1}
+            
+        }
+    }
     
     init(name: String, imageUrl: URL?, services: [AppointmentType]) {
         
@@ -37,7 +50,7 @@ class Barbershop: PlazazOrganization {
                 
                 guard error == nil else {return}
                 self.imageData = data
-                self.informChange(type: .imageChanged, object: self)
+                self.signalChange(event: .imageUpdated)
                 
             }
             
@@ -45,10 +58,28 @@ class Barbershop: PlazazOrganization {
         
     }
 
+    init(firestoreDocument: DocumentSnapshot) {
+        
+        let data = firestoreDocument.data()
+        let latitude = data["latitude"] as? Double ?? 0
+        let longitude = data["longitude"] as? Double ?? 0
+        
+        self.uuid = firestoreDocument.documentID
+        self.name = data["name"] as? String ?? "NoName"
+        self.imageUrl = data["imageURL"] as? URL
+        self.imageData = nil
+        self.latitude = latitude
+        self.longitude = longitude
+        self.serviceTypes = []
+        self.barbers = []
+        self.appointments = []
+
+    }
+    
     public func addBarber(_ barber: Barber) -> Void {
     
         self.barbers.append(barber)
-        self.informChange(type: .itemAdded, object: self)
+        self.signalChange(event: .barberAdded)
         
     }
     
@@ -63,7 +94,7 @@ class Barbershop: PlazazOrganization {
         
         if let found = toBeRemoved {
             self.barbers.remove(at: found)
-            self.informChange(type: .itemRemoved, object: self)
+            self.signalChange(event: .barberRemoved)
         }
 
     }
@@ -108,8 +139,9 @@ class Barbershop: PlazazOrganization {
             let existent = allAppointments[i]
             if existent == empty {
                 
-                let newAppointment = Appointment(time: empty.startDate, interval: type.time, type: type, barberId: barber.uuid, customerId: customer.uuid, customerName: customer.name)
+                let newAppointment = Appointment(time: empty.startDate, interval: type.time, type: type, status: .requested, barberId: barber.uuid, customerId: customer.uuid, customerName: customer.name)
                 self.appointments.append(newAppointment)
+                self.signalChange(event: .appointmentSchedulled)
                 handler(true)
                 return}}
         
@@ -117,13 +149,38 @@ class Barbershop: PlazazOrganization {
         
     }
     
-    public func confirm(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
+    public func confirm(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
+        
+        self.signalChange(event: .appointmentConfirmed)
+        
+    }
     
-    public func cancel(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
+    public func cancel(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
+        
+        self.signalChange(event: .appointmentCanceled)
+        
+    }
     
-    public func move(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
+    public func move(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
+        
+        self.signalChange(event: .appointmentChanged)
+        
+    }
     
-    private func informChange(type: CollectionObservableEvent, object: Barbershop) -> Void {}
+}
+
+extension Barbershop: CustomStringConvertible {
+    
+    var description: String {
+        
+        let location = self.location != nil ? "(\(self.location!.0.description), \(self.location!.1.description)" : "(0,0)"
+        var desc: String = "Barbershop: [\n"
+        desc.append("\(self.uuid)] \(self.name ?? "NoName"), Location: (\(location)")
+        self.serviceTypes.forEach {desc.append("     \($0.description)")}
+        self.barbers.forEach {desc.append("     \($0.description)")}
+        return desc
+        
+    }
     
 }
 

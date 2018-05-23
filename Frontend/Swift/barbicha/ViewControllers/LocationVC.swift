@@ -11,14 +11,14 @@ import MapKit
 
 class LocationVC: UIViewController {
 
-    static func instantiate(using coordinator: AppCoordinator, show collection: ExposableAsCollection) -> LocationVC? {
+    static func instantiate(using coordinator: AppCoordinator, show barbershop: Barbershop) -> LocationVC? {
         
         let bundle = Bundle(for: self);
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         if let controller = storyboard.instantiateViewController(type: LocationVC.self) {
             
             controller.coordinator = coordinator
-            controller.collection = collection
+            controller.barbershop = barbershop
             return controller
             
         } else {return nil}
@@ -27,7 +27,7 @@ class LocationVC: UIViewController {
     
     private var locationManager = CLLocationManager()
     private var coordinator: AppCoordinator!
-    private var collection: ExposableAsCollection!
+    private var barbershop: Barbershop!
     private var mapItens: [MKMapItem] = []
     
     @IBOutlet weak var mapView: MKMapView!
@@ -60,23 +60,23 @@ class LocationVC: UIViewController {
     
     private func showCollectionInMap() -> Void {
 
-        let values = self.collection is Barbershop ? [self.collection as! Barbershop] : self.collection.itens.map({ $0 as! Barbershop })
+        let values = [self.barbershop]
         
         var annotations: [MKPointAnnotation] = []
         values.forEach {
 
-            if let location = $0.location {
+            if let location = $0?.location {
                 
                 let clLocation = CLLocation(latitude: location.0, longitude: location.1)
                 
                 let placeMk = MKPlacemark(coordinate: clLocation.coordinate)
                 let mapItem = MKMapItem(placemark: placeMk)
-                mapItem.name = $0.name
+                mapItem.name = $0?.name
                 
                 self.mapItens.append(mapItem)
                 
                 let shopAnnotation = MKPointAnnotation()
-                shopAnnotation.title = $0.name
+                shopAnnotation.title = $0?.name
                 shopAnnotation.coordinate = clLocation.coordinate
                 
                 annotations.append(shopAnnotation)

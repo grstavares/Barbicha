@@ -1,0 +1,10 @@
+{
+    "uuid": "0BC576BD-D174-4F40-8E21-5962A403BCA1",
+    "name": "Brotherhood",
+    "barbers": [{"uuid": "04C86E47-65BE-4FE3-9597-BD224E5DC9E9", "name": "Jonas Rex"},
+                {"uuid": "7A802D59-1098-4AD6-8E9E-7DC48092ED33", "name": "Douglas Rex"}],
+    "serviceTypes": [{"index": 0, "label": "Barba", "minutes":  30},
+                     {"index": 1, "label": "Cabelo", "minutes":  30},
+                     {"index": 2, "label": "Barba&Cabelo", "minutes":  30}],
+    "appointments":[]
+}

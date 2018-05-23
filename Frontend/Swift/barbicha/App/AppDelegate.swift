@@ -7,18 +7,31 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     public var window: UIWindow?
-    public var coordinator: AppCoordinator = AppCoordinator.shared
+    public var coordinator: AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseApp.configure()
+
+        var initialVC: UIViewController!
+        if let barbershop = self.initialBarbershop() {
+            
+            debugPrint(barbershop)
+            self.coordinator = AppCoordinator(with: barbershop)
+            initialVC = coordinator.rootVC()
+        
+        } else { initialVC = self.criticalErrorVC() }
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = coordinator.rootVC()
+        self.window?.rootViewController = initialVC
         self.window?.makeKeyAndVisible()
+
         return true
         
     }
@@ -44,7 +57,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func initialBarbershop() -> Barbershop? {
+        
+        let bundle = Bundle.main
+        guard let json = bundle.url(forResource: "barbershop", withExtension: "json") else {debugPrint("File Not Found");return nil}
+        
+        let decoder = JSONDecoder()
+        guard let data = try? Data.init(contentsOf: json) else {debugPrint("File has no Data");return  nil}
+        guard let parsed = try? decoder.decode(Barbershop.self, from: data) else {debugPrint("File could not be parsed in dcit");return nil}
+        
+        return parsed
+        
+    }
 
+    func criticalErrorVC() -> UIViewController {
+        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = sb.instantiateViewController(withIdentifier: "CriticalErrorVC")
+        return vc
+    }
 
 }
 

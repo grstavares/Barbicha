@@ -10,7 +10,7 @@ import UIKit
 
 class AppointmentCell: UITableViewCell {
 
-    private var reference: Appointment?
+    private var reference: ExposableAsAppointment?
     private var dateTime: Date!
     
     @IBOutlet weak var content: UIView!
@@ -28,7 +28,7 @@ class AppointmentCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configure(item: Appointment) -> Void {
+    func configure(item: ExposableAsAppointment) -> Void {
         
         self.dateTime = item.startDate
         
@@ -37,14 +37,25 @@ class AppointmentCell: UITableViewCell {
         let dateString: String = "\(start) - \(end)"
         
         self.mainLabel.text = dateString
-//        self.secondaryLabel.text = item.customerName
+        self.secondaryLabel.text = item.detail
         self.secondaryLabel.text = "\(item.startDate)"
         if item.serviceType != AppointmentType.empty && item.serviceType != AppointmentType.unavailable {self.reference = item}
         
-        let backGrd = item.serviceType == AppointmentType.unavailable ? UIColor.init(patternImage: UIImage(named: "cellPattern")!).withAlphaComponent(0.5) : item.serviceType != .empty ? AppColorPallete.shared.selectionColor : UIColor.clear
+        let backGrd = self.getBackground(cell: item)
         self.content.layer.backgroundColor = backGrd.cgColor
         
     }
+    
+    private func getBackground(cell: ExposableAsAppointment) -> UIColor {
+        
+        switch cell.serviceType {
+        case .unavailable:return UIColor.init(patternImage: UIImage(named: "cellPattern")!).withAlphaComponent(0.5)
+        case .empty:return UIColor.clear
+        default : return AppColorPallete.shared.selectionColor
+        }
+        
+    }
+    
     
     public var referencedDateTime: Date {return self.dateTime}
     

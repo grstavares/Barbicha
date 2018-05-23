@@ -10,7 +10,7 @@ import Foundation
 import PlazazCore
 import SipHash
 
-public class Customer: PlazazPerson {
+public class Customer: PlazazPerson, Codable {
 
     public var uuid: String
     public var name: String?
@@ -22,15 +22,32 @@ public class Customer: PlazazPerson {
     public var phone: String?
     public var email: String?
     
-    public init(name: String, phone: String?, email: String?) {
+    public init(name: String, alias: String?, phone: String?, email: String?) {
         
         self.uuid = PlazazCoreHelpers.newUUID(for: Customer.self)
         self.name = name
+        self.alias = alias
         self.phone = phone
         self.email = email
         
     }
     
+}
+
+extension Customer: PlazazUser {
+    
+    public var person: PlazazPerson? {return self}
+    
+}
+
+extension Customer: CustomStringConvertible {
+    
+    public var description: String {
+        
+        return "Customer [\(self.uuid): \(self.name ?? "NoName") {alias: \(self.alias ?? "NoAlias"), phone: \(self.phone ?? "NpPhone"), email: \(self.email ?? "NoEmail"), imageURL: \(self.imageUrl?.description ?? "NoUrl")}]"
+        
+    }
+
 }
 
 extension Customer: SipHashable {

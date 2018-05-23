@@ -1,0 +1,6 @@
+framework module Pods_Barbicha {
+  umbrella header "Pods-Barbicha-umbrella.h"
+
+  export *
+  module * { export * }
+}

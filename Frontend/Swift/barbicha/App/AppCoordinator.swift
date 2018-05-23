@@ -10,42 +10,46 @@ import Foundation
 import PlazazCore
 
 class AppCoordinator {
-    
-    static let shared: AppCoordinator = AppCoordinator()
-    
-    private var currentUser: PlazazPerson?
-    public var loggedUser: PlazazPerson? {return self.currentUser}
 
-    private init() {
+    private var currentUser: PlazazUser?
+    private var barbershop: Barbershop!
+    
+    private var userPool: UserProvider?
+    private var dataProvider: DataProvider?
+    
+    public var loggedUser: PlazazUser? {return self.currentUser}
+
+    public init(with shop: Barbershop) {
         
-        if let userInfo = self.persistedUsernameAndPwd() {
-            _ = self.userLogin(username: userInfo.0, password: userInfo.1)
-        }
-        
+        self.barbershop = shop
+        self.userPool = UserPool.shared
+        self.dataProvider = FirebaseProvider(with: shop)
+
     }
 
     public func rootVC() -> UIViewController {
         
-        let mock = self.mainCollection
-        let rootVC = CollectionVC.instantiate(with: mock, using: self, canNavigateBack: false)
+        let rootVC = BarbershopVC.instantiate(self.barbershop, using: self)
         return rootVC!
         
     }
 
+    public func customerInfo(uuid: String) -> PlazazPerson? {
+        
+        return self.dataProvider?.getPerson(uuid: uuid)
+        
+    }
+    
     public func performAction(from: UIViewController, action: AppAction) -> Void {
         
-        
         switch action {
-        case .showCollection(let collection):
-            let nextVC = CollectionVC.instantiate(with: collection, using: self, canNavigateBack: true)
-            from.present(nextVC!, animated: true, completion: nil)
-            
+
         case .showBarbershop(let shop):
-            let nextVC = CollectionVC.instantiate(with: shop, using: self, canNavigateBack: true)
+            let nextVC = BarbershopVC.instantiate(shop, using: self)
             from.present(nextVC!, animated: true, completion: nil)
 
         case .showBarber(let shop, let barber):
-            let nextVC = CollectionItemVC.instantiate(with: shop, and: barber, using: self)
+            let nextVC = BarberVC.instantiate(with: shop, and: barber, using: self)
             from.present(nextVC!, animated: true, completion: nil)
             
         case .showLocation(let shop):
@@ -58,7 +62,7 @@ class AppCoordinator {
 
         case .showProfile:
             
-            let nextVC = ProfileVC.instantiate(with: self.loggedUser, using: self)
+            let nextVC = ProfileVC.instantiate(with: self.loggedUser?.person, using: self)
             
 //            let transitionDelegate = ProfileTransitionerDelegate()
 //            from.transitioningDelegate = transitionDelegate
@@ -67,41 +71,60 @@ class AppCoordinator {
             
             from.present(nextVC!, animated: true, completion: nil)
 
-        case .makeAppointment(let shop, let barber, let date, let type, let cust):
+        case .requestAppointment(let shop, let barber, let date, let type, let cust):
 
             shop.schedulle(for: date, type: type, with: barber, customer: cust) { (schedulleResult) in
                 
                 if schedulleResult {return} else {debugPrint("Failure!")}
                 
             }
-        
+            
+        case .registerUser(let user, let pwd):
+            
+            self.userPool?.registerNewUser(user, password: pwd, completion: { (success, returnedUser, error) in
+                
+                guard error == nil else {
+                    debugPrint("Error!")
+                    return
+                }
+                
+                guard returnedUser != nil else {
+                    debugPrint("Error!")
+                    return
+                }
+                
+                guard success else {
+                    debugPrint("Error!")
+                    return
+                }
+
+            })
+            
         case .loginUser(let username, let password):
             
-            if !self.userLogin(username: username, password: password) {debugPrint("Login Failed!")}
+            self.userLogin(username: username, password: password)
 
-        default: return
+        default:
+            debugPrint("\(action) not implemented!")
             
         }
         
     }
     
-    private func userLogin(username: String, password: String) -> Bool {
+    private func userLogin(username: String, password: String) -> Void {
         
-        let mock = mockUser
-        if username == mock.email || username == mock.alias {
+        self.userPool?.authenticate(username: username, password: password, completion: { (success, user, error) in
             
-            if password == "12345" {
-                self.currentUser = mock
-                return true
-            } else {return false}
+            if success && user != nil {self.currentUser = user
+            } else {debugPrint("Login Failed!")}
             
-        } else {return false}
-
+        })
+        
     }
     
     private func persistedUsernameAndPwd() -> (String, String)? {
         
-        return ("spam@spam.com", "12345")
+        return ("GusTavares", "12345")
         
     }
     
