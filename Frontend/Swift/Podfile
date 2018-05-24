@@ -8,6 +8,7 @@ target 'Barbicha' do
   # Pods for Barbicha
   pod 'Firebase/Core'  
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'CodableFirebase', :git => 'https://github.com/alickbass/CodableFirebase.git'
   pod 'SipHash', '~> 1.2'
 

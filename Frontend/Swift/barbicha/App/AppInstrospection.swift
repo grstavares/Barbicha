@@ -21,18 +21,26 @@ extension AppDelegate {
 	}
 
     static func imageFromUrl(url: URL, completion: @escaping (Data?, Error?) -> ()) -> Void {
-        
-//        DispatchQueue.main.async {
-        
-            do {
-                
-                let returned = try Data(contentsOf: url)
-                completion(returned, nil)
-                
-            } catch {completion(nil, error)}
+
+        let downloadImage = URLSession.shared.dataTask(with: url) {(data, response, error) in
             
-//        }
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard data != nil else {
+                completion(nil, nil)
+                return
+
+            }
+
+            completion(data, nil)
+
+        }
         
+        downloadImage.resume()
+
     }
     
 }

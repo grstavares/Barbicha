@@ -12,9 +12,9 @@ class CollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
-    private var reference: Exposable?
+    private var reference: Barber?
     
-    public var objectRef: Exposable? {return self.reference}
+    public var objectRef: Barber? {return self.reference}
     
     override func awakeFromNib() {
         
@@ -24,13 +24,16 @@ class CollectionCell: UICollectionViewCell {
         
     }
     
-    func configure(item: Exposable) -> Void {
+    func configure(item: Barber) -> Void {
+        
+        self.cellImage.image = nil
+        self.cellLabel.text = nil
         
         var uiImage: UIImage? = nil
-        if let data = item.cellImage {uiImage = UIImage(data: data)}
+        if let data = item.imageData {uiImage = UIImage(data: data)} else {uiImage = UIImage(named: "placeholderPerson")}
         
         self.cellImage.image = uiImage
-        self.cellLabel.text = item.cellLabel
+        self.cellLabel.text = item.name
         self.reference = item
         
     }

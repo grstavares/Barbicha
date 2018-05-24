@@ -19,4 +19,6 @@ protocol DataProvider {
     
     func saveAppointment(_ object: Appointment, completion: @escaping (Bool, Error?) -> Void) -> Void
     
+    func releaseResources() -> Void
+    
 }

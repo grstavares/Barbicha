@@ -9,34 +9,19 @@
 import Foundation
 import PlazazCore
 import FirebaseFirestore
+import CodableFirebase
 
 class FirebaseProvider: DataProvider {
 
-    private var firestore: Firestore!
+    private var firestore: Firestore?
+    private var listener: ListenerRegistration?
     private var barbershop: Barbershop
     
     init(with barbershop: Barbershop) {
 
-        self.firestore = Firestore.firestore()
-        self.barbershop = barbershop
         
-        self.firestore.collection("barbershops").getDocuments { (snapshot, error) in
-            
-            guard error == nil else {
-                debugPrint(error ?? "NoError")
-                return
-            }
-
-            debugPrint("Documentos found on snapshot -> \(snapshot?.count ?? 0)")
-            var barbershops: [Barbershop] = []
-            
-            if let documents = snapshot?.documents {
-                barbershops = documents.compactMap({ Barbershop(firestoreDocument: $0) })
-            }
-
-            barbershops.forEach({ debugPrint("in Firebase \($0.description)") })
-            
-        }
+        self.barbershop = barbershop
+        self.refresh()
 
     }
 
@@ -53,5 +38,64 @@ class FirebaseProvider: DataProvider {
     func savePerson(_ object: Barbershop, completion: @escaping (Bool, Error?) -> Void) {}
     
     func saveAppointment(_ object: Appointment, completion: @escaping (Bool, Error?) -> Void) {}
-
+    
+    func refresh() -> Void {
+        
+        let firestore = Firestore.firestore()
+        self.firestore = firestore
+        
+        let path: String = "barbershops/" +  barbershop.uuid
+        let fireReference = firestore.document(path)
+        fireReference.getDocument { (snapshot, error) in
+            
+            guard let doc = snapshot, doc.exists else { return }
+            var dict = doc.data()
+            dict["uuid"] = self.barbershop.uuid
+            self.barbershop.updateFromCloud(dict: dict)
+            
+        }
+        
+        let decoder = FirestoreDecoder()
+        
+        let barbersPath = path.appending("/barbers")
+        firestore.collection(barbersPath).getDocuments { (snapshot, error) in
+            
+            guard let col = snapshot, !col.isEmpty else {return}
+            let itens: [Barber] = col.documents.compactMap({
+                
+                var dict = $0.data()
+                dict["uuid"] = $0.documentID
+                return try? decoder.decode(Barber.self, from: dict)
+                
+            })
+            
+            self.barbershop.updateBarbersFromCloud(barbers: itens)
+            
+        }
+        
+        let servicesPath = path.appending("/serviceTypes")
+        firestore.collection(servicesPath).getDocuments { (snapshot, error) in
+            
+            guard let col = snapshot, !col.isEmpty else {return}
+            let itens = col.documents.compactMap({ try? decoder.decode(AppointmentType.self, from: $0.data())})
+            self.barbershop.updateServicesFromCloud(services: itens)
+            
+        }
+        
+        let appointmentsPath = path.appending("/appointments")
+        self.listener = firestore.collection(appointmentsPath).addSnapshotListener { (snapshot, error) in
+            
+            guard let col = snapshot, !col.isEmpty else {return}
+            let itens = col.documents.compactMap({ try? decoder.decode(Appointment.self, from: $0.data())})
+            self.barbershop.updateAppointmentsFromCloud(appointments: itens)
+            
+        }
+        
+    }
+    
+    func releaseResources() {
+        self.listener = nil
+        self.firestore = nil
+    }
+    
 }

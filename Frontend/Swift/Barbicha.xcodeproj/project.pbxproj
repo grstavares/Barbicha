@@ -23,6 +23,8 @@
 		A1615D6E20B3693C008E0A26 /* UIViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D6D20B3693C008E0A26 /* UIViewControllerNotifications.swift */; };
 		A1615D7020B36C8F008E0A26 /* ExposableAsAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D6F20B36C8F008E0A26 /* ExposableAsAppointment.swift */; };
 		A1615D7320B38465008E0A26 /* UserPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1615D7220B38465008E0A26 /* UserPool.swift */; };
+		A172DEE220B5EF9D0015C75D /* BarbershopExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172DEE120B5EF9D0015C75D /* BarbershopExtensions.swift */; };
+		A172DEE720B61F2D0015C75D /* BarberEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172DEE620B61F2D0015C75D /* BarberEvents.swift */; };
 		A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18F811220AE6143002AF101 /* MapKit.framework */; };
 		A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */; };
 		A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */; };
@@ -45,11 +47,11 @@
 		A1C77E052086392000006DD9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E002086391F00006DD9 /* CollectionCell.xib */; };
 		A1C77E062086392000006DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E022086392000006DD9 /* Main.storyboard */; };
 		A1C77E072086392000006DD9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E042086392000006DD9 /* CollectionCell.swift */; };
-		A1C77E0E2086395200006DD9 /* barbeiro01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E092086395100006DD9 /* barbeiro01.jpg */; };
+		A1C77E0E2086395200006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E092086395100006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg */; };
 		A1C77E0F2086395200006DD9 /* barbeiro02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0A2086395100006DD9 /* barbeiro02.jpg */; };
 		A1C77E102086395200006DD9 /* barbeiro03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0B2086395100006DD9 /* barbeiro03.jpg */; };
 		A1C77E112086395200006DD9 /* brotherhood.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0C2086395200006DD9 /* brotherhood.png */; };
-		A1C77E122086395200006DD9 /* barbeiro04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0D2086395200006DD9 /* barbeiro04.jpg */; };
+		A1C77E122086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0D2086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg */; };
 		A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */; };
 		A1C77E1A20863CD200006DD9 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1920863CD100006DD9 /* AppImage.png */; };
 		A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */; };
@@ -129,6 +131,8 @@
 		A1615D6D20B3693C008E0A26 /* UIViewControllerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerNotifications.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIViewControllerNotifications.swift; sourceTree = "<group>"; };
 		A1615D6F20B36C8F008E0A26 /* ExposableAsAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposableAsAppointment.swift; sourceTree = "<group>"; };
 		A1615D7220B38465008E0A26 /* UserPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPool.swift; sourceTree = "<group>"; };
+		A172DEE120B5EF9D0015C75D /* BarbershopExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarbershopExtensions.swift; sourceTree = "<group>"; };
+		A172DEE620B61F2D0015C75D /* BarberEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberEvents.swift; sourceTree = "<group>"; };
 		A18F811220AE6143002AF101 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKRegionForAnnotations.swift; sourceTree = "<group>"; };
 		A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -155,11 +159,11 @@
 		A1C77E002086391F00006DD9 /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		A1C77E032086392000006DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		A1C77E042086392000006DD9 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		A1C77E092086395100006DD9 /* barbeiro01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeiro01.jpg; sourceTree = "<group>"; };
+		A1C77E092086395100006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg"; sourceTree = "<group>"; };
 		A1C77E0A2086395100006DD9 /* barbeiro02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeiro02.jpg; sourceTree = "<group>"; };
 		A1C77E0B2086395100006DD9 /* barbeiro03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeiro03.jpg; sourceTree = "<group>"; };
 		A1C77E0C2086395200006DD9 /* brotherhood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brotherhood.png; sourceTree = "<group>"; };
-		A1C77E0D2086395200006DD9 /* barbeiro04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeiro04.jpg; sourceTree = "<group>"; };
+		A1C77E0D2086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg"; sourceTree = "<group>"; };
 		A1C77E142086397900006DD9 /* PlazazCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PlazazCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C77E1920863CD100006DD9 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
@@ -306,9 +310,11 @@
 			children = (
 				A150E64D20ADBC58007C2916 /* Customer.swift */,
 				A1C77DEB208638CA00006DD9 /* Barbershop.swift */,
+				A172DEE120B5EF9D0015C75D /* BarbershopExtensions.swift */,
 				A15D00122086DA6100271B9D /* BarbershopAppointments.swift */,
 				A1615D6920B361D8008E0A26 /* BarbershopEvents.swift */,
 				A1C77DEC208638CA00006DD9 /* Barber.swift */,
+				A172DEE620B61F2D0015C75D /* BarberEvents.swift */,
 				A1D84C5F2086CDA300276FE0 /* Appointment.swift */,
 				A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */,
 			);
@@ -357,10 +363,10 @@
 			children = (
 				A1DD567520B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png */,
 				A1C77E1920863CD100006DD9 /* AppImage.png */,
-				A1C77E092086395100006DD9 /* barbeiro01.jpg */,
+				A1C77E092086395100006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg */,
 				A1C77E0A2086395100006DD9 /* barbeiro02.jpg */,
 				A1C77E0B2086395100006DD9 /* barbeiro03.jpg */,
-				A1C77E0D2086395200006DD9 /* barbeiro04.jpg */,
+				A1C77E0D2086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg */,
 				A1C77E0C2086395200006DD9 /* brotherhood.png */,
 				A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */,
 				A1DD567020B5B67800E04504 /* barbershop.plist */,
@@ -519,11 +525,11 @@
 				A1C77E0F2086395200006DD9 /* barbeiro02.jpg in Resources */,
 				A1DD567620B5BA4900E04504 /* 0BC576BD-D174-4F40-8E21-5962A403BCA1.png in Resources */,
 				A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */,
-				A1C77E122086395200006DD9 /* barbeiro04.jpg in Resources */,
+				A1C77E122086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg in Resources */,
 				A1DD567120B5B67800E04504 /* barbershop.plist in Resources */,
 				A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */,
 				A1C77E112086395200006DD9 /* brotherhood.png in Resources */,
-				A1C77E0E2086395200006DD9 /* barbeiro01.jpg in Resources */,
+				A1C77E0E2086395200006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg in Resources */,
 				A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */,
 				A1C77E062086392000006DD9 /* Main.storyboard in Resources */,
 				A1C77E102086395200006DD9 /* barbeiro03.jpg in Resources */,
@@ -637,6 +643,7 @@
 				A15D00182086E3C800271B9D /* AppointmentCell.swift in Sources */,
 				A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */,
 				A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */,
+				A172DEE220B5EF9D0015C75D /* BarbershopExtensions.swift in Sources */,
 				A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */,
 				A1FC88722087B8F7004F20B3 /* AppColorPallete.swift in Sources */,
 				A1615D6A20B361D8008E0A26 /* BarbershopEvents.swift in Sources */,
@@ -658,6 +665,7 @@
 				A1C77E072086392000006DD9 /* CollectionCell.swift in Sources */,
 				A1C77DFD208638EB00006DD9 /* BarbershopVC.swift in Sources */,
 				A1C77DE8208638A600006DD9 /* AppInstrospection.swift in Sources */,
+				A172DEE720B61F2D0015C75D /* BarberEvents.swift in Sources */,
 				A1615D7020B36C8F008E0A26 /* ExposableAsAppointment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 import Foundation
 import PlazazCore
-import FirebaseFirestore
+//import FirebaseFirestore
 import SipHash
 
 class Barbershop: PlazazOrganization, Codable {
@@ -54,32 +54,87 @@ class Barbershop: PlazazOrganization, Codable {
                 
             }
             
-        }
+        } else {self.imageData = AppUtilities.shared.fallbackFromCache(name: uuid, extension: defaultImageFormat)}
         
     }
 
-    init(firestoreDocument: DocumentSnapshot) {
+    public func updateFromCloud(dict: Dictionary<String, Any>) -> Void {
         
-        let data = firestoreDocument.data()
-        let latitude = data["latitude"] as? Double ?? 0
-        let longitude = data["longitude"] as? Double ?? 0
+        let _name = dict["name"] as? String
+        let _imageUrl = dict["imageUrl"] as? String
+        let _latitude = dict["latitude"] as? Double
+        let _longitude = dict["longitude"] as? Double
         
-        self.uuid = firestoreDocument.documentID
-        self.name = data["name"] as? String ?? "NoName"
-        self.imageUrl = data["imageURL"] as? URL
-        self.imageData = nil
-        self.latitude = latitude
-        self.longitude = longitude
-        self.serviceTypes = []
-        self.barbers = []
-        self.appointments = []
+        var changed = false
+        if self.name != _name {self.name = _name; changed = true}
+        if self.latitude != _latitude {self.latitude = _latitude; changed = true}
+        if self.longitude != _longitude {self.longitude = _longitude; changed = true}
+        if self.imageUrl?.absoluteString != _imageUrl {
+            
+            let newUrl:URL? = _imageUrl == nil ? nil : URL(string: _imageUrl!)
+            self.imageUrl = newUrl
+            
+        }
+        
+        if changed {self.signalChange(event: .shopUpdated)}
+        
+    }
+    
+    public func updateBarbersFromCloud(barbers fromWeb: [Barber]) -> Void {
+
+        var changed: Bool = false
+        
+        let oldUUIDs:Set<String> = Set(self.barbers.compactMap { $0.uuid })
+        let newUUIDs:Set<String> = Set(fromWeb.compactMap { $0.uuid })
+        newUUIDs.forEach { debugPrint($0)}
+        
+        let toBeRemoved = oldUUIDs.subtracting(newUUIDs)
+        if toBeRemoved.count > 0 {changed = true}
+        
+        let toBeAdded = newUUIDs.subtracting(oldUUIDs)
+        if toBeAdded.count > 0 {changed = true}
+        
+        let toBeUpdated = oldUUIDs.intersection(newUUIDs)
+        
+        var updatedArray: [Barber] = []
+        for id in toBeUpdated {
+            
+            let old = self.barbers.filter({ id == $0.uuid }).first
+            let new = fromWeb.filter({ id == $0.uuid }).first
+            
+            if old != nil {
+                
+                if new != nil {
+                    if old != new {
+                        changed = true
+                        old?.updateValues(with: new!)}}
+                
+                updatedArray.append(old!)
+                
+            }
+
+        }
+        
+        let newArray = fromWeb.filter { toBeAdded.contains($0.uuid) }
+        
+        if changed {
+            self.barbers = newArray + updatedArray
+            self.signalChange(event: .barberListUpdated)
+        }
 
     }
     
+    public func updateServicesFromCloud(services: [AppointmentType]) -> Void {
+        debugPrint("Receveid \(services.count) itesn to be updated")
+    }
+    public func updateAppointmentsFromCloud(appointments: [Appointment]) -> Void {
+        debugPrint("Receveid \(appointments.count) itesn to be updated")
+    }
+
     public func addBarber(_ barber: Barber) -> Void {
     
         self.barbers.append(barber)
-        self.signalChange(event: .barberAdded)
+        self.signalChange(event: .barberListUpdated)
         
     }
     
@@ -94,7 +149,7 @@ class Barbershop: PlazazOrganization, Codable {
         
         if let found = toBeRemoved {
             self.barbers.remove(at: found)
-            self.signalChange(event: .barberRemoved)
+            self.signalChange(event: .barberListUpdated)
         }
 
     }
@@ -164,60 +219,6 @@ class Barbershop: PlazazOrganization, Codable {
     public func move(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
         
         self.signalChange(event: .appointmentChanged)
-        
-    }
-    
-}
-
-extension Barbershop: CustomStringConvertible {
-    
-    var description: String {
-        
-        let location = self.location != nil ? "(\(self.location!.0.description), \(self.location!.1.description)" : "(0,0)"
-        var desc: String = "Barbershop: [\n"
-        desc.append("\(self.uuid)] \(self.name ?? "NoName"), Location: (\(location)")
-        self.serviceTypes.forEach {desc.append("     \($0.description)")}
-        self.barbers.forEach {desc.append("     \($0.description)")}
-        return desc
-        
-    }
-    
-}
-
-extension Barbershop: SipHashable {
-    
-    public func appendHashes(to hasher: inout SipHasher) {
-        hasher.append(self.uuid)
-        hasher.append(self.name)
-        hasher.append(self.imageUrl)
-        for item in self.serviceTypes.sorted(by: {$0.index < $1.index}) {hasher.append(item)}
-        for item in self.barbers.sorted(by: {$0.uuid < $1.uuid}) {hasher.append(item)}
-    }
-    
-    public static func == (lhs: Barbershop, rhs: Barbershop) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-    
-}
-
-extension Barbershop: ExposableAsCollection {
-    
-    var image: Data? {return self.imageData}
-    var mainLabel: String {return self.name ?? "EmptyName"}
-    var detail: String? {return "Details"}
-    var moreDetail: String? {return "MoreDetails"}
-    var itens: [Exposable] {return self.barbers}
-    
-    var cellImage: Data? {return self.image}
-    var cellLabel: String? {return self.mainLabel}
-    var reference: Exposable {return self}
-
-    var observableEvents: [Notification.Name] {
-        
-        let collectionEvents = [CollectionObservableEvent.collectionCleared.name, CollectionObservableEvent.itemAdded.name, CollectionObservableEvent.itemRemoved.name, CollectionObservableEvent.itemChangedOrder.name]
-        let collectionItensEvents = [CollectionItemObservableEvent.itemRemoved.name, CollectionItemObservableEvent.itemUpdated.name]
-        return collectionEvents + collectionItensEvents
         
     }
     

@@ -10,6 +10,8 @@ import UIKit
 import PlazazCore
 
 class BarbershopProvider: DataProvider  {
+    func releaseResources() {return}
+    
 
     public static let shared = BarbershopProvider()
     
@@ -49,15 +51,12 @@ extension BarbershopProvider {
 
         let url1 = main.url(forResource: "barbeiro01", withExtension: "jpg")
         let barber1 = Barber(name: "Jonas Rex", imageUrl: url1)
-        self.mapPersons[barber1.uuid] = barber1
         
         let url2 = main.url(forResource: "barbeiro02", withExtension: "jpg")
         let barber2 = Barber(name: "Anderson", imageUrl: url2)
-        self.mapPersons[barber2.uuid] = barber2
         
         let url3 = main.url(forResource: "barbeiro04", withExtension: "jpg")
         let barber3 = Barber(name: "Douglas", imageUrl: url3)
-        self.mapPersons[barber3.uuid] = barber3
         
         let url4 = main.url(forResource: "brotherhood", withExtension: "png")
         let shop = Barbershop(name: "Brotherhood", imageUrl: url4, services: self.servicos)
@@ -68,13 +67,8 @@ extension BarbershopProvider {
         self.mapBarbershop[shop.uuid] = shop
         
         let barber4 = Barber(name: "Jonas Beto", imageUrl: url1)
-        self.mapPersons[barber4.uuid] = barber4
-        
         let barber5 = Barber(name: "AndersonBeto", imageUrl: url2)
-        self.mapPersons[barber5.uuid] = barber5
-        
         let barber6 = Barber(name: "DouglasBeto", imageUrl: url3)
-        self.mapPersons[barber6.uuid] = barber6
         
         let url5 = main.url(forResource: "barbeariaBeto", withExtension: "jpg")
         let shop2 = Barbershop(name: "Barbearia do Beto", imageUrl: url5, services: self.servicos)

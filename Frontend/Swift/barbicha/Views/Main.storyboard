@@ -94,25 +94,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmT-if-gPn">
-                                <rect key="frame" x="20" y="30" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="JW4-fy-9p6"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="QTB-ZK-OFM"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="h4I-32-48U"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="jh4-a7-IHl"/>
-                                    <constraint firstAttribute="width" constant="30" id="jjd-90-naL"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="q4o-yE-jnz"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="uUj-aB-ZZm"/>
-                                    <constraint firstAttribute="height" constant="30" id="vjB-bz-NyG"/>
-                                </constraints>
-                                <state key="normal" image="iconBack"/>
-                                <connections>
-                                    <action selector="buttonBackClicked:" destination="d90-oG-slM" eventType="touchUpInside" id="CBh-Au-3sR"/>
-                                    <action selector="buttonBackClicked:" destination="Wx4-fT-wfM" eventType="touchUpInside" id="Ctx-Nm-l59"/>
-                                    <action selector="buttonBackClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iCN-4t-9Jm"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGQ-u3-J6c">
                                 <rect key="frame" x="305" y="30" width="50" height="50"/>
                                 <constraints>
@@ -133,18 +114,16 @@
                             <constraint firstItem="HCn-nj-qPc" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.2" id="8oE-VN-sKO"/>
                             <constraint firstItem="1y1-Dk-9XT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9Oz-jD-ru2"/>
                             <constraint firstItem="HCn-nj-qPc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="BaW-Ra-sMc"/>
-                            <constraint firstItem="lmT-if-gPn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="JjQ-b4-SLk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wGQ-u3-J6c" secondAttribute="trailing" constant="20" id="KY9-5Q-7aQ"/>
                             <constraint firstItem="i9h-gq-1QV" firstAttribute="top" secondItem="YU7-km-RKe" secondAttribute="bottom" constant="10" id="NO0-Zw-582"/>
                             <constraint firstItem="RZj-yj-Eft" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="Q0K-jF-X8Y"/>
                             <constraint firstItem="i9h-gq-1QV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="QIM-bG-q9C"/>
                             <constraint firstItem="i9h-gq-1QV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="QqF-Rp-div"/>
                             <constraint firstItem="1y1-Dk-9XT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Vjv-vt-rVO"/>
-                            <constraint firstItem="HCn-nj-qPc" firstAttribute="top" secondItem="lmT-if-gPn" secondAttribute="bottom" constant="10" id="acG-Jq-tzX"/>
                             <constraint firstItem="i9h-gq-1QV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="eWz-Fa-nd5"/>
                             <constraint firstItem="YU7-km-RKe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gNJ-CM-hqC"/>
-                            <constraint firstItem="lmT-if-gPn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gS7-Oq-RZG"/>
                             <constraint firstItem="RZj-yj-Eft" firstAttribute="top" secondItem="wGQ-u3-J6c" secondAttribute="bottom" constant="10" id="koe-kW-wf4"/>
+                            <constraint firstItem="HCn-nj-qPc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="oG8-dS-tP4"/>
                             <constraint firstItem="wGQ-u3-J6c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="qn8-Oh-Zt5"/>
                             <constraint firstItem="YU7-km-RKe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="uBF-2u-MJ7"/>
                             <constraint firstItem="RZj-yj-Eft" firstAttribute="leading" secondItem="HCn-nj-qPc" secondAttribute="trailing" constant="10" id="ud8-8e-aTl"/>
@@ -153,7 +132,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonBack" destination="lmT-if-gPn" id="kSb-IS-rLK"/>
                         <outlet property="buttonGallery" destination="nNm-QD-BXD" id="dgJ-Ae-jZs"/>
                         <outlet property="buttonLocation" destination="ad6-5n-U2W" id="8Pp-dA-A8L"/>
                         <outlet property="buttonProfile" destination="wGQ-u3-J6c" id="yR1-2Z-ZmH"/>

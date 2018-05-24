@@ -59,13 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initialBarbershop() -> Barbershop? {
-        
-        let bundle = Bundle.main
-        guard let json = bundle.url(forResource: "barbershop", withExtension: "json") else {debugPrint("File Not Found");return nil}
+
+        guard let data = AppUtilities.shared.fallbackFromCache(name: "barbershop", extension: "json") else {debugPrint("File has no Data");return  nil}
         
         let decoder = JSONDecoder()
-        guard let data = try? Data.init(contentsOf: json) else {debugPrint("File has no Data");return  nil}
         guard let parsed = try? decoder.decode(Barbershop.self, from: data) else {debugPrint("File could not be parsed in dcit");return nil}
+        
+        parsed.imageData = AppUtilities.shared.fallbackFromCache(name: parsed.uuid, extension: defaultImageFormat)
+        parsed.barbers.forEach { $0.imageData = AppUtilities.shared.fallbackFromCache(name: $0.uuid, extension: "jpg")}
         
         return parsed
         
@@ -80,3 +81,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 let secondsInDay: Double = 1 * 24 * 60 * 60
+let defaultImageFormat: String = "png"

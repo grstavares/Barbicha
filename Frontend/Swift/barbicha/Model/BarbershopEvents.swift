@@ -13,9 +13,7 @@ extension Barbershop {
 
         case shopUpdated
         case imageUpdated
-        case barberAdded
-        case barberUpdated
-        case barberRemoved
+        case barberListUpdated
         case appointmentSchedulled
         case appointmentConfirmed
         case appointmentCanceled
@@ -24,8 +22,8 @@ extension Barbershop {
         var notificationName: Notification.Name { return Notification.Name(rawValue: self.rawValue) }
         
     }
-    
-//    public struct ObservableEvent: OptionSet, Hashable {
+
+    //    public struct ObservableEvent: OptionSet, Hashable {
 //
 //        let rawValue: Int
 //

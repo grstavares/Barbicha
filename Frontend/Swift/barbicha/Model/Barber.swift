@@ -10,51 +10,75 @@ import Foundation
 import PlazazCore
 import SipHash
 
-class Barber: PlazazPerson, Codable {
+class Barber: Codable {
 
     public var uuid: String
     public var name: String?
     public var imageUrl: URL?
     public var imageData: Data?
 
-    public var alias: String?
-    public var phone: String?
-    public var email: String?
-    
     init(name: String, imageUrl: URL?) {
         
-        self.uuid = PlazazCoreHelpers.newUUID(for: Barber.self)
+        let uuid = PlazazCoreHelpers.newUUID(for: Barber.self)
+        self.uuid = uuid
         self.name = name
         self.imageUrl = imageUrl
+        self.refreshImage()
         
-        if imageUrl != nil {
+    }
+
+    required init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let _uuid = try values.decode(String.self, forKey: .uuid)
+        let _name = try values.decode(String.self, forKey: .name)
+
+        self.uuid = _uuid
+        self.name = _name
+
+        if let _url = try values.decodeIfPresent(String.self, forKey: .imageUrl), let url = URL(string: _url) {
+            self.imageUrl = url
+            self.refreshImage()
+        }
+
+    }
+    
+    public func updateValues(with newValues: Barber) -> Void {
+        
+        var changed = false
+        if self.name != newValues.name {self.name = newValues.name; changed = true}
+        if self.imageUrl != newValues.imageUrl {
+            self.imageUrl = newValues.imageUrl;
+            self.refreshImage()
+        }
+        
+        if changed {self.signalChange(event: .barberUpdated)}
+        
+    }
+
+    private func refreshImage() -> Void {
+        
+        guard let url = self.imageUrl else {
+            self.imageData = AppUtilities.shared.fallbackFromCache(name: self.uuid, extension: defaultImageFormat)
+            return
+        }
+        
+        AppDelegate.imageFromUrl(url: url) { (data, error) in
             
-            AppDelegate.imageFromUrl(url: imageUrl!) { (data, error) in
-                
-                guard error == nil else {return}
-                self.imageData = data
-                self.informChange(type: .imageChanged, object: self)
-                
-            }
+            guard error == nil else {return}
+            self.imageData = data
+            self.signalChange(event: .barberImageUpdated)
             
         }
         
     }
     
-    private func informChange(type: CollectionItemObservableEvent, object: Barber) -> Void {}
-    
-}
-
-extension Barber: PlazazUser {
-    
-    var person: PlazazPerson? {return self}
-
 }
 
 extension Barber: CustomStringConvertible {
     
     var description: String {
-        return "Barber [\(self.uuid): \(self.name ?? "NoName") {alias: \(self.alias ?? "NoAlias"), phone: \(self.phone ?? "NpPhone"), email: \(self.email ?? "NoEmail"), imageURL: \(self.imageUrl?.description ?? "NoUrl")}]"
+        return "Barber [\(self.uuid): \(self.name ?? "NoName"), imageURL: \(self.imageUrl?.description ?? "NoUrl")}]"
     }
     
 }
@@ -65,7 +89,7 @@ extension Barber: SipHashable {
         hasher.append(self.uuid)
         hasher.append(self.name)
         hasher.append(self.imageUrl)
-        hasher.append(self.imageData)
+//        hasher.append(self.imageData)
     }
     
     public static func == (lhs: Barber, rhs: Barber) -> Bool {

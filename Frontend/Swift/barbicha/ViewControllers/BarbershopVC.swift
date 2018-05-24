@@ -19,7 +19,6 @@ class BarbershopVC: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var moreDetailLabel: UILabel!
     @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var buttonBack: UIButton!
     @IBOutlet weak var buttonProfile: UIButton!
     @IBOutlet weak var buttonLocation: UIButton!
     @IBOutlet weak var buttonGallery: UIButton!
@@ -64,13 +63,53 @@ class BarbershopVC: UIViewController {
         
         self.profileView.setBorderWidth(5)
         if let image = self.barbershop.image, let uiImage = UIImage(data: image) { self.profileView.setImage(uiImage)}
-
+        
+        let observers:[Barbershop.ObservableEvent] = [.shopUpdated, .imageUpdated, .barberListUpdated]
+        let observersBarber: [Barber.ObservableEvent] = [.barberUpdated, .barberImageUpdated]
+        self.registerObservers(observers: observers.map({ $0.notificationName }), selector: #selector(self.catchNotifications(notification:)))
+        self.registerObservers(observers: observersBarber.map({ $0.notificationName }), selector: #selector(self.catchNotifications(notification:)))
+        
     }
     
-    @IBAction func buttonBackClicked(_ sender: UIButton) {self.dismiss(animated: true, completion: nil)}
     @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile)}
     @IBAction func buttonLocationClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showLocation(self.barbershop))}
     @IBAction func buttonGalleryClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showGallery)}
+    
+    @objc private func catchNotifications(notification: Notification) -> Void {
+        
+        switch notification.name.rawValue {
+            
+        case Barbershop.ObservableEvent.shopUpdated.rawValue:
+            
+            self.mainLabel.text = self.barbershop.name
+            
+        case Barbershop.ObservableEvent.imageUpdated.rawValue:
+            
+            if let data = self.barbershop.imageData, let image = UIImage(data: data) {
+                self.profileView.setImage(image)
+            }
+
+        case Barbershop.ObservableEvent.barberListUpdated.rawValue:
+
+            DispatchQueue.main.async {
+                self.barbers = self.barbershop.barbers
+                self.collection.reloadData()
+                let indexes = self.collection.indexPathsForVisibleItems
+                self.collection.reloadItems(at: indexes)
+            }
+
+        case Barber.ObservableEvent.barberUpdated.rawValue, Barber.ObservableEvent.barberImageUpdated.rawValue:
+            
+            DispatchQueue.main.async {
+                let indexes = self.collection.indexPathsForVisibleItems
+                self.collection.reloadItems(at: indexes)
+            }
+            
+        default:
+            debugPrint(notification.name)
+        }
+        
+    }
     
 }
 

@@ -106,30 +106,7 @@ class BarberVC: UIViewController {
         
     }
     
-    @IBAction func profileViewTapped(_ sender: Any) {
-        
-        if let user = self.coordinator.loggedUser {
-            
-            if user.username == "GusTavares" {
-                
-                let action = AppAction.loginUser(self.barber.username, "12345")
-                self.coordinator.performAction(from: self, action: action)
-                
-            } else {
-                
-                let action = AppAction.loginUser("GusTavares", "12345")
-                self.coordinator.performAction(from: self, action: action)
-                
-            }
-            
-        }
-        
-        debugPrint("Changed!")
-        debugPrint(self.coordinator.loggedUser?.username ?? "NoUserNAME")
-        
-    }
-    
-    
+    @IBAction func profileViewTapped(_ sender: Any) { }
     @IBAction func buttonBackClicked(_ sender: UIButton) {self.dismiss(animated: true, completion: nil)}
     @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile)}
     @IBAction func buttonPreviousClicked(_ sender: UIButton) {self.setControllerDate(appendingDays: -1)}
@@ -237,9 +214,7 @@ class BarberVC: UIViewController {
         default:
             debugPrint(notification.name)
         }
-        
-        
-        
+
     }
     
 }
@@ -401,8 +376,8 @@ extension BarberVC: UITableViewDelegate {
             titles.append("Fazer Ligação")
             actions.append(AppAction.makeCall(customer))
             
-            titles.append("Mandar Mensagem")
-            actions.append(AppAction.sendMessage(self.barber, customer))
+//            titles.append("Mandar Mensagem")
+//            actions.append(AppAction.sendMessage(self.barber, customer))
             
         }
 
