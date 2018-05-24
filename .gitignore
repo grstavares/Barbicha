@@ -4,6 +4,7 @@
 
 #AppSecrets and Passwords
 AppSecrets*.*
+GoogleService-Info.plist
 
 #MacOS
 .DS_Store
