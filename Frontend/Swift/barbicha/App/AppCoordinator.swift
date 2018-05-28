@@ -6,25 +6,26 @@
 //  Copyright © 2018 Gustavo Tavares. All rights reserved.
 //
 
-import Foundation
-import PlazazCore
+import UIKit
 
 class AppCoordinator {
 
-    private var currentUser: PlazazUser?
+    private var currentUser: Person?
     private var barbershop: Barbershop!
     
-    private var userPool: UserProvider?
+    private var userPool: AuthProvider?
     private var dataProvider: DataProvider?
     
-    public var loggedUser: PlazazUser? {return self.currentUser}
+    public var loggedUser: Person? {return self.currentUser}
 
     public init(with shop: Barbershop) {
         
         self.barbershop = shop
-        self.userPool = UserPool.shared
-        self.dataProvider = FirebaseProvider(with: shop)
-
+        
+        let provider = FirestoreProvider(with: shop)
+        self.dataProvider = provider
+        self.userPool = FireAuthProvider(dataProvider: provider)
+        
     }
 
     public func rootVC() -> UIViewController {
@@ -34,7 +35,7 @@ class AppCoordinator {
         
     }
 
-    public func customerInfo(uuid: String) -> PlazazPerson? {
+    public func customerInfo(uuid: String) -> Person? {
         
         return self.dataProvider?.getPerson(uuid: uuid)
         
@@ -44,6 +45,10 @@ class AppCoordinator {
         
         switch action {
 
+        case .showLogin:
+            let loginVC = LoginVC.instantiate(using: self)
+            from.present(loginVC!, animated: true, completion: nil)
+            
         case .showBarbershop(let shop):
             let nextVC = BarbershopVC.instantiate(shop, using: self)
             from.present(nextVC!, animated: true, completion: nil)
@@ -62,7 +67,7 @@ class AppCoordinator {
 
         case .showProfile:
             
-            let nextVC = ProfileVC.instantiate(with: self.loggedUser?.person, using: self)
+            let nextVC = ProfileVC.instantiate(with: self.loggedUser, using: self)
             
 //            let transitionDelegate = ProfileTransitionerDelegate()
 //            from.transitioningDelegate = transitionDelegate
@@ -71,39 +76,26 @@ class AppCoordinator {
             
             from.present(nextVC!, animated: true, completion: nil)
 
-        case .requestAppointment(let shop, let barber, let date, let type, let cust):
+        case .requestAppointment( _, let barber, let appointment, let type, let cust):
 
-            shop.schedulle(for: date, type: type, with: barber, customer: cust) { (schedulleResult) in
+            self.dataProvider?.createAppointment(appointment, type: type, barber: barber, customer: cust, completion: { (success, error) in
                 
-                if schedulleResult {return} else {debugPrint("Failure!")}
+                if error != nil {debugPrint("ERROR | ERROR | ERROR -> \(error?.localizedDescription ?? "NoDescription")")}
                 
-            }
+            })
             
         case .registerUser(let user, let pwd):
             
-            self.userPool?.registerNewUser(user, password: pwd, completion: { (success, returnedUser, error) in
-                
-                guard error == nil else {
-                    debugPrint("Error!")
-                    return
-                }
-                
-                guard returnedUser != nil else {
-                    debugPrint("Error!")
-                    return
-                }
-                
-                guard success else {
-                    debugPrint("Error!")
-                    return
-                }
-
-            })
+            if user.uuid == pwd {debugPrint("EmptyTest")}
             
-        case .loginUser(let username, let password):
+        case .loginWithEmailAndPassword(_, _):
             
-            self.userLogin(username: username, password: password)
+            debugPrint("Imvalid Action -> This must be called in async mode")
 
+        case .logOut:
+            
+            self.logOut()
+            
         default:
             debugPrint("\(action) not implemented!")
             
@@ -111,20 +103,88 @@ class AppCoordinator {
         
     }
     
-    private func userLogin(username: String, password: String) -> Void {
+    public func performAction(from: UIViewController, action: AppAction, handler: @escaping (Bool, Error?) -> Void) -> Void {
         
-        self.userPool?.authenticate(username: username, password: password, completion: { (success, user, error) in
+        switch action {
+        case .registerUser(let person, let password):
             
-            if success && user != nil {self.currentUser = user
-            } else {debugPrint("Login Failed!")}
+            if let messageToken = self.getMessageToken(), messageToken != person.messageToken {person.messageToken = messageToken}
             
-        })
+            self.userPool?.registerUser(person: person, password: password, completion: { (person, error) in
+                
+                guard error == nil else {
+                    handler(false, error)
+                    return
+                }
+                
+                guard person != nil else {
+                    handler(false, nil)
+                    return
+                }
+                
+                self.currentUser = person!
+                handler(true, nil)
+                
+            })
+
+        case .loginWithEmailAndPassword(let email, let password):
+            
+            self.userPool?.authenticate(email: email, password: password, completion: { (person, error) in
+                
+                guard error == nil else {
+                    handler(false, error)
+                    return
+                }
+
+                if person != nil, let messageToken = self.getMessageToken(), messageToken != person?.messageToken {
+                    person?.messageToken = messageToken
+                    self.dataProvider?.savePerson(person!, completion: { (_, _) in return})
+                }
+                
+                self.currentUser = person
+                handler(true, nil)
+
+            })
+            
+        case .logOut:
+            
+            self.logOut()
+            handler(true, nil)
+            
+            
+        default:
+            return
+            
+        }
+        
+    }
+    
+    public func saveMessageToken(token: String) -> Void {
+        
+        debugPrint("Wiil Save Token")
+        
+        if let person = self.currentUser {
+            person.messageToken = token
+            self.dataProvider?.savePerson(person, completion: { (success, error) in if (success) {debugPrint("Token Saved!")} })
+        }
+        
+    }
+    
+    private func logOut() -> Void {
+        self.userPool?.signOut();
+        self.currentUser = nil
+    }
+    
+    private func getMessageToken() -> String? {
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        return delegate.messageToken
         
     }
     
     private func persistedUsernameAndPwd() -> (String, String)? {
         
-        return ("GusTavares", "12345")
+        return ("1B8F87ED-07A7-4B44-BB78-C0CE0FD9902A", "12345")
         
     }
     

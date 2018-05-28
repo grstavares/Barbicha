@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import PlazazCore
 
 enum AppAction {
     
@@ -16,18 +15,20 @@ enum AppAction {
     case showLocation(Barbershop)
     case showGallery
     case showProfile
-    case requestAppointment(Barbershop, Barber, Appointment, AppointmentType, PlazazPerson)
-    case requestCancellation(Appointment, PlazazPerson)
+    case showLogin
+    case requestAppointment(Barbershop, Barber, Appointment, AppointmentType, Person)
+    case requestCancellation(Appointment, Person)
     case requestChange(Appointment)
     case cancelAppointment(Appointment)
     case blockAppointment(Appointment)
     case endAppointment(Appointment)
     case evaluate(Appointment)
     
-    case sendMessage(PlazazPerson, PlazazPerson)
-    case makeCall(PlazazPerson)
+    case sendMessage(Person, Person)
+    case makeCall(Person)
     
-    case registerUser(PlazazUser, String)
-    case loginUser(String, String)
+    case registerUser(Person, String)
+    case loginWithEmailAndPassword(String, String)
+    case logOut
 
 }

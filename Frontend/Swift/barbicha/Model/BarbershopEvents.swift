@@ -14,10 +14,7 @@ extension Barbershop {
         case shopUpdated
         case imageUpdated
         case barberListUpdated
-        case appointmentSchedulled
-        case appointmentConfirmed
-        case appointmentCanceled
-        case appointmentChanged
+        case appointmentListUpdated
 
         var notificationName: Notification.Name { return Notification.Name(rawValue: self.rawValue) }
         

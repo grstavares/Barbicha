@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PlazazCore
 
 class BarberVC: UIViewController {
 
@@ -15,8 +14,8 @@ class BarberVC: UIViewController {
     private var barbershop: Barbershop!
     private var barber: Barber!
     private var appointments: [Appointment] = []
-    private var selectedDate: Date!
     private var formatter: DateFormatter!
+    private var selectedDate: Date!
     
     @IBOutlet weak var datePickerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -32,10 +31,16 @@ class BarberVC: UIViewController {
     @IBOutlet weak var buttonProfile: UIButton!
     @IBOutlet weak var buttonPrevious: UIButton!
     @IBOutlet weak var buttonNext: UIButton!
-    @IBOutlet weak var buttonDate: UIButton!
+    @IBOutlet weak var buttonDate: LoadingUIButton!
     
     @IBOutlet weak var buttonMessage: UIButton!
     @IBOutlet weak var buttonGallery: UIButton!
+    
+    private var barberIsUsing: Bool {return self.barber.uuid == self.coordinator.loggedUser?.uuid}
+    
+    private let emptyCellColor: UIColor = UIColor.white.withAlphaComponent(0.3)
+    private let occupiedCellColor: UIColor = UIColor.darkGray.withAlphaComponent(0.3)
+    private let destakCellCollor: UIColor = UIColor.blue.withAlphaComponent(0.3)
     
     static func instantiate(with barbershop: Barbershop, and barber: Barber, using coordinator: AppCoordinator) -> BarberVC? {
         
@@ -86,8 +91,11 @@ class BarberVC: UIViewController {
         self.datePicker.minimumDate = Date()
         self.datePicker.datePickerMode = .date
         
-        let observers:[Barbershop.ObservableEvent] = [.appointmentConfirmed, .appointmentSchedulled, .appointmentChanged, .appointmentChanged]
-        self.registerObservers(observers: observers.map({ $0.notificationName }), selector: #selector(self.catchBarberNotifications(notification:)))
+        let shopObservers:[Barbershop.ObservableEvent] = [.appointmentListUpdated]
+        self.registerObservers(observers: shopObservers.map({ $0.notificationName }), selector: #selector(self.catchBarberNotifications(notification:)))
+        
+        let appObservers:[Appointment.ObservableEvent] = [.statusUpdated, .dateUpdated, .infoUpdated]
+        self.registerObservers(observers: appObservers.map({ $0.notificationName }), selector: #selector(self.catchBarberNotifications(notification:)))
         
     }
     
@@ -95,6 +103,9 @@ class BarberVC: UIViewController {
         
         self.mainLabel.text = self.barber.name
         self.detailLabel.text = self.barber.detail
+        
+        self.buttonDate.layer.cornerRadius = 15
+        self.buttonDate.clipsToBounds = true
         
         self.profileView.setBorderWidth(5)
         if let image = barber.image, let uiImage = UIImage(data: image) { self.profileView.setImage(uiImage)}
@@ -107,10 +118,15 @@ class BarberVC: UIViewController {
     }
     
     @IBAction func profileViewTapped(_ sender: Any) { }
+    
     @IBAction func buttonBackClicked(_ sender: UIButton) {self.dismiss(animated: true, completion: nil)}
-    @IBAction func buttonProfileClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showProfile)}
+    
+    @IBAction func buttonProfileClicked(_ sender: UIButton) { self.coordinator.performAction(from: self, action: AppAction.showProfile)}
+    
     @IBAction func buttonPreviousClicked(_ sender: UIButton) {self.setControllerDate(appendingDays: -1)}
+    
     @IBAction func buttonNextClicked(_ sender: UIButton) {self.setControllerDate(appendingDays: 1)}
+    
     @IBAction func buttonDateClicked(_ sender: UIButton) {
 
         self.datePicker.setDate(self.selectedDate, animated: true)
@@ -124,42 +140,50 @@ class BarberVC: UIViewController {
     @IBAction func buttondatePickerOkClicked(_ sender: UIButton) {
         
         let newDate = self.datePicker.date
+        self.datePickerView.removeFromSuperview()
         self.setControllerDate(date: newDate)
         
     }
     
     @IBAction func buttonMessageClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showLocation(self.barbershop))}
+    
     @IBAction func buttonGalleryClicked(_ sender: UIButton) {self.coordinator.performAction(from: self, action: .showGallery)}
 
     private func setControllerDate(date: Date) -> Void {
-        
-        let activity: UIActivityIndicatorView = UIActivityIndicatorView()
-        activity.center = self.buttonDate.center
-        activity.hidesWhenStopped = true
-        activity.activityIndicatorViewStyle = .gray
-        self.view.addSubview(activity)
-        
-        activity.startAnimating()
+
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        if self.selectedDate != date {
-            
-            self.appointments = self.barbershop.appointments(for: date, with: barber.uuid)
-            self.table.reloadData()
+        self.buttonDate.showLoading()
+        if  Calendar.current.compare(self.selectedDate, to: date, toGranularity: .day) != .orderedSame {
             
             self.selectedDate = date
+            self.appointments = self.barbershop.appointments(for: date, with: barber.uuid)
+            self.table.reloadData()
             self.buttonDate.setTitle(formatter.string(from: self.selectedDate), for: UIControlState.normal)
+            self.buttonDate.setNeedsDisplay()
 
         }
         
         self.setVisibleCellforNow()
-
-        activity.stopAnimating()
+        self.buttonDate.hideLoading()
+        
         UIApplication.shared.endIgnoringInteractionEvents()
         
     }
     
     private func setControllerDate(appendingDays: Int) -> Void {
+        
+        if appendingDays < 0, Calendar.current.compare(self.selectedDate, to: Date(), toGranularity: .day) == .orderedSame {
+
+            let alertTit = "Seleção Inválida"
+            let alertMsg = "O agendamento não pode ser realizaado para datas antes de hoje!"
+            let alertOk = "OK"
+            let alert = UIAlertController(title: alertTit, message: alertMsg, preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: alertOk, style: .default) { _ in alert.dismiss(animated: true, completion: nil) }
+            alert.addAction(actionOk)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
         
         let interval = TimeInterval(Double(appendingDays) * secondsInDay)
         let newDate = self.selectedDate.addingTimeInterval(interval)
@@ -184,7 +208,7 @@ class BarberVC: UIViewController {
         
         switch notification.name.rawValue {
         
-        case Barbershop.ObservableEvent.appointmentSchedulled.rawValue:
+        case Barbershop.ObservableEvent.appointmentListUpdated.rawValue:
             
             let newAppointments = self.barbershop.appointments(for: self.selectedDate, with: self.barber.uuid)
             var changedAndVisible: [IndexPath] = []
@@ -230,14 +254,26 @@ extension BarberVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AppointmentCell.cellIdentifier()) as? AppointmentCell else {return UITableViewCell()}
         
         let item = self.appointments[indexPath.row]
-//        let value = AppointmentValue(startDate: item.startDate, interval: item.interval, serviceType: item.serviceType, detail: item.customerName)
-        cell.configure(item: item)
+        self.configureCell(cell: cell, with: item)
         return cell
 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    private func configureCell(cell: AppointmentCell, with item: Appointment) -> Void {
+
+        let start = AppUtilities.shared.formatDate(item.startDate, style: .onlyTime) ?? "NoTimeAvailable"
+        let end = AppUtilities.shared.formatDate(item.startDate.addingTimeInterval(item.interval), style: .onlyTime)  ?? "NoTimeAvailable"
+        let dateString: String = "\(start) - \(end)"
+        let color = item.isEmpty ? self.emptyCellColor : self.coordinator.loggedUser?.uuid == item.customerUUID ? self.destakCellCollor : self.occupiedCellColor
+        
+        cell.content.backgroundColor = color
+        cell.mainLabel.text = dateString
+        cell.secondaryLabel?.text = self.barberIsUsing ? item.customerName : nil
+        
     }
     
 }
@@ -248,13 +284,12 @@ extension BarberVC: UITableViewDelegate {
         
         let selected = self.appointments[indexPath.row]
 
-        guard let customer = self.coordinator.loggedUser?.person else {
+        guard let customer = self.coordinator.loggedUser else {
             self.requestUserInfo()
             return
         }
 
-        let isBarber = self.barber.uuid == customer.uuid
-        if isBarber {self.barberSelectedAppointment(selected)
+        if self.barberIsUsing {self.barberSelectedAppointment(selected)
         } else {self.customerSelectedAppointment(selected, customer: customer)}
 
     }
@@ -266,7 +301,10 @@ extension BarberVC: UITableViewDelegate {
         let alertCancel = "Cancelar"
         let alertOk = "OK"
         let alert = UIAlertController(title: alertTit, message: alertMsg, preferredStyle: .alert)
-        let actionOk = UIAlertAction(title: alertOk, style: .default) { (action) in alert.dismiss(animated: true, completion: {self.coordinator.performAction(from: self, action: .showProfile)})}
+        let actionOk = UIAlertAction(title: alertOk, style: .default) { (alertAction) in
+            DispatchQueue.main.async {self.coordinator.performAction(from: self, action: .showProfile)}
+        }
+        
         let actionCancel = UIAlertAction(title: alertCancel, style: .cancel) { (action) in alert.dismiss(animated: true, completion: nil)}
         alert.addAction(actionOk)
         alert.addAction(actionCancel)
@@ -281,7 +319,7 @@ extension BarberVC: UITableViewDelegate {
         
     }
     
-    private func customerSelectedAppointment(_ selected: Appointment, customer: PlazazPerson) -> Void {
+    private func customerSelectedAppointment(_ selected: Appointment, customer: Person) -> Void {
         
         if selected.isEmpty {self.requestServiceChoice(for: selected, customer: customer)
         } else {
@@ -399,7 +437,7 @@ extension BarberVC: UITableViewDelegate {
         
     }
     
-    private func requestServiceChoice(for appointment: Appointment, customer: PlazazPerson) -> Void {
+    private func requestServiceChoice(for appointment: Appointment, customer: Person) -> Void {
         
         let minimumTimeInMinutes:Int = 15
         let minimumInterval: Double = Double(minimumTimeInMinutes) * 60
@@ -437,6 +475,7 @@ extension BarberVC: UITableViewDelegate {
             
             let action = UIAlertAction(title: serviceType.label, style: .default) { (action) in
                 
+                (UIApplication.shared.delegate as! AppDelegate).requestAPNAuth()
                 let appAction = AppAction.requestAppointment(self.barbershop, self.barber, appointment, serviceType, customer)
                 self.coordinator.performAction(from: self, action: appAction)
                 alerta.dismiss(animated: true, completion: nil)
@@ -456,31 +495,7 @@ extension BarberVC: UITableViewDelegate {
         
     }
 
-    
 }
-
-struct AppointmentValue: ExposableAsAppointment {
-    
-    let startDate: Date
-    let interval: TimeInterval
-    let serviceType: AppointmentType
-    let detail: String?
-
-}
-
-extension AppointmentValue {
-    
-    init(with: Appointment) {
-        self.startDate = with.startDate
-        self.interval = with.interval
-        self.serviceType = with.serviceType
-        self.detail = with.customerName
-    }
-    
-}
-
-
-
 
 
 

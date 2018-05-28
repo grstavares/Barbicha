@@ -11,7 +11,7 @@ protocol ExposableAsAppointment {
     
     var startDate: Date { get }
     var interval: TimeInterval { get }
-    var serviceType: AppointmentType { get }
+    var serviceType: Int { get }
     var detail: String? { get }
     
 }

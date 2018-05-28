@@ -8,7 +8,6 @@
 
 import Foundation
 import PlazazCore
-//import FirebaseFirestore
 import SipHash
 
 class Barbershop: PlazazOrganization, Codable {
@@ -86,7 +85,6 @@ class Barbershop: PlazazOrganization, Codable {
         
         let oldUUIDs:Set<String> = Set(self.barbers.compactMap { $0.uuid })
         let newUUIDs:Set<String> = Set(fromWeb.compactMap { $0.uuid })
-        newUUIDs.forEach { debugPrint($0)}
         
         let toBeRemoved = oldUUIDs.subtracting(newUUIDs)
         if toBeRemoved.count > 0 {changed = true}
@@ -125,10 +123,54 @@ class Barbershop: PlazazOrganization, Codable {
     }
     
     public func updateServicesFromCloud(services: [AppointmentType]) -> Void {
-        debugPrint("Receveid \(services.count) itesn to be updated")
+        
+        self.serviceTypes = services
+        
     }
-    public func updateAppointmentsFromCloud(appointments: [Appointment]) -> Void {
-        debugPrint("Receveid \(appointments.count) itesn to be updated")
+    
+    public func updateAppointmentsFromCloud(appointments fromWeb: [Appointment]) -> Void {
+
+        var changed: Bool = false
+        
+        let oldUUIDs:Set<String> = Set(self.appointments.compactMap { $0.uuid })
+        let newUUIDs:Set<String> = Set(fromWeb.compactMap { $0.uuid })
+        
+        let toBeRemoved = oldUUIDs.subtracting(newUUIDs)
+        if toBeRemoved.count > 0 {changed = true}
+        
+        let toBeAdded = newUUIDs.subtracting(oldUUIDs)
+        if toBeAdded.count > 0 {changed = true}
+        
+        let toBeUpdated = oldUUIDs.intersection(newUUIDs)
+        
+        var updatedArray: [Appointment] = []
+        for id in toBeUpdated {
+            
+            let old = self.appointments.filter({ id == $0.uuid }).first
+            let new = fromWeb.filter({ id == $0.uuid }).first
+            
+            if old != nil {
+                
+                if new != nil {
+                    if old != new {
+                        changed = true
+                        old?.updateValues(with: new!)}}
+                
+                updatedArray.append(old!)
+                
+            }
+            
+        }
+        
+        let newArray = fromWeb.filter { toBeAdded.contains($0.uuid) }
+        
+        if changed {
+            self.appointments = newArray + updatedArray
+            self.signalChange(event: .appointmentListUpdated)
+        }
+        
+        
+        
     }
 
     public func addBarber(_ barber: Barber) -> Void {
@@ -155,7 +197,7 @@ class Barbershop: PlazazOrganization, Codable {
     }
     
     public func appointments(for date: Date, with barberId: String?) -> [Appointment] {
-        
+
         var appointmentList: [Appointment] = []
         
         let startTime:Date = self.startTime(for: date)
@@ -164,7 +206,7 @@ class Barbershop: PlazazOrganization, Codable {
         
         var dateWalk:Date = startTime
         while dateWalk <  endTime {
-            
+
             let comparationStart = dateWalk.addingTimeInterval(-10)
             let comparationEnd = dateWalk.addingTimeInterval(10)
             
@@ -185,41 +227,11 @@ class Barbershop: PlazazOrganization, Codable {
         return appointmentList
         
     }
+
+    public func confirm(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
     
-    public func schedulle(for empty: Appointment, type: AppointmentType, with barber: Barber, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
-        
-        let allAppointments = self.appointments(for: empty.startDate, with: barber.uuid)
-        for i in 0...allAppointments.count - 1 {
-            
-            let existent = allAppointments[i]
-            if existent == empty {
-                
-                let newAppointment = Appointment(time: empty.startDate, interval: type.time, type: type, status: .requested, barberId: barber.uuid, customerId: customer.uuid, customerName: customer.name)
-                self.appointments.append(newAppointment)
-                self.signalChange(event: .appointmentSchedulled)
-                handler(true)
-                return}}
-        
-        handler(false)
-        
-    }
+    public func cancel(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
     
-    public func confirm(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
-        
-        self.signalChange(event: .appointmentConfirmed)
-        
-    }
-    
-    public func cancel(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
-        
-        self.signalChange(event: .appointmentCanceled)
-        
-    }
-    
-    public func move(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {
-        
-        self.signalChange(event: .appointmentChanged)
-        
-    }
+    public func move(for date: Date, type: AppointmentType, customer: PlazazPerson, handler: @escaping (Bool) -> ()) -> Void {}
     
 }

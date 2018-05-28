@@ -40,6 +40,8 @@ class LocationVC: UIViewController {
         super.viewDidLoad()
         self.lblDistances.text = ""
         self.mapView.delegate = self
+        self.buttonDirections.layer.cornerRadius = 15
+        self.buttonDirections.clipsToBounds = true
         
     }
 

@@ -13,7 +13,7 @@ extension Barbershop {
     
     public func dayStart(for date: Date) -> Date {
         
-        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: Date())
+        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: date)
         now.setValue(6, for: .hour)
         now.setValue(0, for: .minute)
         now.setValue(0, for: .second)
@@ -23,7 +23,7 @@ extension Barbershop {
     
     public func dayEnd(for date: Date) -> Date {
         
-        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: Date())
+        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: date)
         now.setValue(23, for: .hour)
         now.setValue(0, for: .minute)
         now.setValue(0, for: .second)
@@ -33,7 +33,7 @@ extension Barbershop {
     
     public func startTime(for date: Date) -> Date {
         
-        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: Date())
+        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: date)
         now.setValue(9, for: .hour)
         now.setValue(30, for: .minute)
         now.setValue(0, for: .second)
@@ -43,7 +43,7 @@ extension Barbershop {
     
     public func endTime(for date: Date) -> Date {
         
-        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: Date())
+        var now = Calendar.current.dateComponents([.calendar, .timeZone, .day, .month, .year], from: date)
         now.setValue(21, for: .hour)
         now.setValue(0, for: .minute)
         now.setValue(0, for: .second)

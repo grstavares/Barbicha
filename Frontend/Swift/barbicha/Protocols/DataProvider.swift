@@ -7,16 +7,18 @@
 //
 
 import Foundation
-import PlazazCore
 
 protocol DataProvider {
 
     func getBarbershop(uuid: String) -> Barbershop?
-    func getPerson(uuid: String) -> PlazazPerson?
+    
+    func getPerson(uuid: String) -> Person?
+    func getPerson(uuid: String, completion: @escaping (Person?, Error?) -> ()) -> Void
     
     func saveBarbershop(_ object: Barbershop, completion: @escaping (Bool, Error?) -> Void) -> Void
-    func savePerson(_ object: Barbershop, completion: @escaping (Bool, Error?) -> Void) -> Void
+    func savePerson(_ object: Person, completion: @escaping (Bool, Error?) -> Void) -> Void
     
+    func createAppointment(_ object: Appointment, type: AppointmentType, barber: Barber, customer: Person, completion: @escaping (Bool, Error?) -> Void) -> Void
     func saveAppointment(_ object: Appointment, completion: @escaping (Bool, Error?) -> Void) -> Void
     
     func releaseResources() -> Void

@@ -8,24 +8,24 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     public var window: UIWindow?
-    public var coordinator: AppCoordinator!
+    public var coordinator: AppCoordinator?
+    public var messageToken: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
 
+        self.configureApp()
         var initialVC: UIViewController!
         if let barbershop = self.initialBarbershop() {
             
-            debugPrint(barbershop)
             self.coordinator = AppCoordinator(with: barbershop)
-            initialVC = coordinator.rootVC()
-        
+            initialVC = coordinator?.rootVC()
+            
         } else { initialVC = self.criticalErrorVC() }
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -58,6 +58,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func requestAPNAuth() -> Void {
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            switch settings.authorizationStatus {
+                
+            case .notDetermined:
+                
+                UNUserNotificationCenter.current().delegate = self
+                let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(options: options) { (_, _) in return}
+                DispatchQueue.main.async { UIApplication.shared.registerForRemoteNotifications() }
+                
+            default:
+                return
+                
+            }
+            
+        }
+
+    }
+    
     func initialBarbershop() -> Barbershop? {
 
         guard let data = AppUtilities.shared.fallbackFromCache(name: "barbershop", extension: "json") else {debugPrint("File has no Data");return  nil}
@@ -76,6 +98,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = sb.instantiateViewController(withIdentifier: "CriticalErrorVC")
         return vc
+    }
+
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if let dict = userInfo["aps"] as? Dictionary<String,Any> {
+            
+            let message = dict["alert"] as? String ?? "Did not parse alert message"
+            debugPrint(message)
+            
+        } else {debugPrint("Could not parse dictionaty")}
+        
     }
 
 }
