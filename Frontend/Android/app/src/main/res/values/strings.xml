@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Barbicha</string>
     <string name="barbershop_label">Barbershop Label</string>
+    <string name="barber_label">Barber Label</string>
 </resources>

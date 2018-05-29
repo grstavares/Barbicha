@@ -6,7 +6,7 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
                  serviceTypes: ArrayList<AppointmentType> = arrayListOf(), barbers: ArrayList<Barber> = arrayListOf(), appointments: ArrayList<Appointment> = arrayListOf()) {
 
     val uuid: String = uuid;
-    val name: String = name;
+    var name: String = name;
     var latitude: Double? = latitude;
     var longitude: Double? = longitude;
     var imageURL: URL? = imageURL;
@@ -22,6 +22,21 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         private set;
 
     fun location(): Pair<Double?, Double?> = Pair(this.latitude, this.longitude)
+
+    fun updateFromCloud(map: Map<String, Any>) {
+
+        val name = map.get(kName) as String
+        val lat = map.get(kLatitude) as Double?
+        val lon = map.get(kLongitude) as Double?
+        val image = map.get(kImageUrl) as? String
+        val imageUrl = if (image != null) URL(image) else null
+
+        this.name = name
+        this.latitude = lat
+        this.longitude = lon
+        this.imageURL = imageUrl
+
+    }
 
     fun updateBarbersFromCloud(fromWeb: Set<Barber>) {
 
@@ -111,6 +126,28 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         if (changed) {
             this.appointments = ArrayList(newArray.plus(updatedArray))
 //            self.signalChange(event: .appointmentListUpdated)
+        }
+
+    }
+
+    companion object {
+
+        val kUUID: String = "uuid";
+        val kName: String = "name"
+        val kLatitude: String = "latitude"
+        val kLongitude: String = "longitude"
+        val kImageUrl: String = "imageUrl"
+
+        fun fromMap(map: Map<String, Any>): Barbershop {
+
+            val uuid = map.get(kUUID) as String
+            val name = map.get(kName) as String
+            val lat = map.get(kLatitude) as Double?
+            val lon = map.get(kLongitude) as Double?
+            val image = map.get(kImageUrl) as? String
+            val imageUrl = if (image != null) URL(image) else null
+
+            return Barbershop(uuid, name, imageUrl, lat, lon)
         }
 
     }

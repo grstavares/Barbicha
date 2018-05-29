@@ -1,4 +1,4 @@
-package br.com.plazaz.barbicha
+package br.com.plazaz.barbicha.helpers
 
 import br.com.plazaz.barbicha.model.Barber
 import br.com.plazaz.barbicha.model.Barbershop

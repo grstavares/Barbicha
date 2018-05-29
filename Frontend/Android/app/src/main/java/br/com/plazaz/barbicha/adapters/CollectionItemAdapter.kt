@@ -1,10 +1,11 @@
-package br.com.plazaz.barbicha
+package br.com.plazaz.barbicha.adapters
 
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import br.com.plazaz.barbicha.R
 import br.com.plazaz.barbicha.activities.BarberActivity
 import br.com.plazaz.barbicha.model.Barber
 import br.com.plazaz.extensions.inflate
@@ -38,7 +39,7 @@ class CollectionItemAdapter(private val barbers: ArrayList<Barber>): RecyclerVie
 
             val context = itemView.context;
             val showBarberIntent = Intent(context, BarberActivity::class.java);
-            showBarberIntent.putExtra(BarberHolder.BARBER_KEY, this.barber);
+            showBarberIntent.putExtra(BARBER_KEY, this.barber?.name);
             context.startActivity(showBarberIntent);
 
         }
