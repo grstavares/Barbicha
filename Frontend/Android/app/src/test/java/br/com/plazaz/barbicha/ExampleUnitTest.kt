@@ -1,6 +1,6 @@
 package br.com.plazaz.barbicha
 
-import br.com.plazaz.barbicha.helpers.MockData
+import br.com.plazaz.barbicha.helpers.InitialData
 import org.junit.Test
 
 /**
@@ -12,7 +12,7 @@ class ExampleUnitTest {
     @Test
     fun LoadMockData() {
 
-        val sut = MockData.create()
+        val sut = InitialData.create()
         assert(sut.barbers.size == 2);
 
     }

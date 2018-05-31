@@ -5,6 +5,9 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import br.com.plazaz.barbicha.R
 import br.com.plazaz.barbicha.activities.BarberActivity
 import br.com.plazaz.barbicha.model.Barber
@@ -29,10 +32,14 @@ class CollectionItemAdapter(private val barbers: ArrayList<Barber>): RecyclerVie
     class BarberHolder(v: View): RecyclerView.ViewHolder(v), View.OnClickListener {
 
         private var view: View = v;
+        private var itemDescription: TextView? = null;
+        private var thumbnail: ImageView? = null;
         private var barber: Barber? = null;
 
         init {
             v.setOnClickListener(this)
+            this.itemDescription = v.findViewById(R.id.itemDescription)
+            this.thumbnail = v.findViewById(R.id.thumbnail)
         }
 
         override fun onClick(v: View?) {
@@ -47,8 +54,8 @@ class CollectionItemAdapter(private val barbers: ArrayList<Barber>): RecyclerVie
         fun bindBarber(barber: Barber) {
 
             this.barber = barber;
-            view.itemDescription.setText(barber.name);
-            view.thumbnail.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.placeholder_person));
+            this.itemDescription?.setText(barber.name);
+            this.thumbnail?.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.placeholder_person));
 
         }
 

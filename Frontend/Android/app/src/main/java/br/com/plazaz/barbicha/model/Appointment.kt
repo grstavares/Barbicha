@@ -25,15 +25,15 @@ data class Appointment(val uuid:String = UUID.randomUUID().toString(), val start
 
             val uuid = map.get(kUUID) as String
             val date = map.get(kDate) as Date
-            val interval = map.get(kInterval) as Int
-            val type = map.get(kType) as Int
+            val interval = map.get(kInterval) as Long
+            val type = map.get(kType) as Long
             val statusKey = map.get(kStatus) as String
             val status = Status.valueOf(statusKey)
             val barber = map.get(kBarber) as String
             val custId = map.get(kCustId) as String?
             val custoName = map.get(kCustName) as String?
 
-            return Appointment(uuid, date, interval, type, status, barber, custId, custoName)
+            return Appointment(uuid, date, interval.toInt(), type.toInt(), status, barber, custId, custoName)
 
         }
 

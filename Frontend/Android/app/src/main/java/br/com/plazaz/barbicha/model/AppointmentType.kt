@@ -10,10 +10,10 @@ data class AppointmentType(val index:Int, val label:String, val minutes: Int) {
 
         fun fromMap(map: Map<String, Any>): AppointmentType {
 
-            val index = map.get(kIndex) as Int
+            val index = map.get(kIndex) as Long
             val label = map.get(kLabel) as String
-            val minutes = map.get(kTime) as Int
-            return AppointmentType(index, label, minutes)
+            val minutes = map.get(kTime) as Long
+            return AppointmentType(index.toInt() , label, minutes.toInt())
 
         }
 

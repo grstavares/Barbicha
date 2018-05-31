@@ -19,6 +19,8 @@
         <activity android:name=".activities.BarberActivity" android:parentActivityName=".activities.BarberActivity">
             <meta-data android:name="android.support.PARENT-ACTIVITY" android:value=".activities.BarbershopActivity"/>
         </activity>
+
+        <service android:name=".services.DataService"/>
     </application>
 
 </manifest>

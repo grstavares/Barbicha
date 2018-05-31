@@ -10,37 +10,59 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import kotlin.collections.HashMap
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class FirebaseProvider(val barbershopUUID: String): DataProvider {
+
+
+class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
     val firestore = FirebaseFirestore.getInstance();
-    var barbershop: Barbershop
+    var listeners: HashMap<String, ProviderListener>
 
-    fun basePath(): String = "barbershops/${barbershopUUID}"
+    fun basePath(): String = "barbershops/${barbershop.uuid}"
     fun barbersPath(): String = basePath() + "/barbers";
     fun servicesPath(): String = basePath() + "/serviceTypes";
     fun appointmentsPath(): String = basePath() + "/appointments";
 
     init {
-        this.barbershop = Barbershop(barbershopUUID, "")
+        this.configFirestore()
+        this.listeners = HashMap()
         this.refresh()
     }
 
-    override fun loadData(uuid: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun addListener(listener: ProviderListener): String {
+
+        val listenerUUID = UUID.randomUUID().toString()
+        this.listeners.put(listenerUUID, listener)
+        return listenerUUID
+
     }
 
+    override fun removeListener(token: String) {
+
+        this.listeners.remove(token)
+
+    }
+
+    private fun configFirestore() {
+
+        val settings = FirebaseFirestoreSettings.Builder().setTimestampsInSnapshotsEnabled(true).build()
+        this.firestore.firestoreSettings = settings
+    }
 
     private fun refresh() {
 
+        Log.d("FirebaseProvider", "Refreshing Data")
         val reference = this.firestore.document(this.basePath())
         reference.get().addOnCompleteListener(OnCompleteListener {
 
             if (it.isSuccessful) {
 
                 val doc: DocumentSnapshot = it.getResult();
-                val data = doc.data
+                val data = HashMap(doc.data)
                 barbershop.updateFromCloud(data)
+                this.informListeners(DataProviderObservableEvent.barbershopUpdated)
 
                 val barbersReference = this.firestore.collection(this.barbersPath())
                 barbersReference.get().addOnCompleteListener {
@@ -49,13 +71,14 @@ class FirebaseProvider(val barbershopUUID: String): DataProvider {
 
                         val barbers = it.result.documents.map {
 
-                            var map = it.data
+                            var map = HashMap(it.data)
                             map.put(Barber.kUUID, it.id)
                             Barber.fromMap(map)
 
                         }.toSet()
 
                         barbershop.updateBarbersFromCloud(barbers)
+                        this.informListeners(DataProviderObservableEvent.barberListUpdated)
 
                     }
 
@@ -66,8 +89,9 @@ class FirebaseProvider(val barbershopUUID: String): DataProvider {
 
                     if (it.isSuccessful) {
 
-                        val types = ArrayList(it.result.documents.map { AppointmentType.fromMap(it.data) })
+                        val types = ArrayList(it.result.documents.map { AppointmentType.fromMap(HashMap(it.data)) })
                         barbershop.updateServicesFromCloud(types)
+                        this.informListeners(DataProviderObservableEvent.serviceTypesUpdated)
 
                     }
 
@@ -77,16 +101,17 @@ class FirebaseProvider(val barbershopUUID: String): DataProvider {
                 val appointmentsReference = this.firestore.collection(this.appointmentsPath()).whereGreaterThan("startDate", date)
                 appointmentsReference.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
 
-                    if (!querySnapshot.isEmpty) {
+                    if (!querySnapshot!!.isEmpty) {
 
                         val appointments = ArrayList(querySnapshot.documents.map {
                             
-                            var map = it.data
+                            var map = HashMap(it.data)
                             map.put(Appointment.kUUID, it.id)
                             Appointment.fromMap(map)
                         })
 
                         barbershop.updateAppointmentsFromCloud(appointments)
+                        this.informListeners(DataProviderObservableEvent.appointmensUpdated)
 
                     }
 
@@ -95,6 +120,14 @@ class FirebaseProvider(val barbershopUUID: String): DataProvider {
             }
 
         })
+
+    }
+
+    private fun informListeners(event: DataProviderObservableEvent) {
+
+        for (listener in this.listeners.values) {
+            listener.receiveMessage(event.toString())
+        }
 
     }
 

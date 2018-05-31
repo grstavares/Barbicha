@@ -1,5 +1,6 @@
 package br.com.plazaz.barbicha.model
 
+import android.support.v4.content.LocalBroadcastManager
 import java.net.URL
 
 class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Double? = null, longitude: Double? = null,
