@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_barbershop.*
 
 class BarbershopActivity : AppCompatActivity() {
 
+    private var connection: ServiceConnection? = null
     private var dataProvider: DataProvider? = null
     private var barbershop: Barbershop = Initial.instance
     private var observer: BroadcastReceiver = ObservableEventReceiver()
@@ -29,8 +30,18 @@ class BarbershopActivity : AppCompatActivity() {
         setContentView(R.layout.activity_barbershop)
 
         this.initializeCollection()
-        this.bindService()
+        this.connection = DataServiceConnection
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.bindService()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unbindService(DataServiceConnection)
     }
 
     override fun onStart() {
@@ -47,7 +58,7 @@ class BarbershopActivity : AppCompatActivity() {
 
     private fun bindService() {
         val intent = Intent(this, DataService::class.java)
-        bindService(intent, DataServiceConnection, Context.BIND_AUTO_CREATE)
+        bindService(intent, this.connection, Context.BIND_AUTO_CREATE)
     }
 
     private fun registerObservers() {

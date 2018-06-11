@@ -1,6 +1,6 @@
 package br.com.plazaz.barbicha
 
-import br.com.plazaz.barbicha.helpers.InitialData
+import br.com.plazaz.barbicha.helpers.Initial
 import org.junit.Test
 
 /**
@@ -8,11 +8,12 @@ import org.junit.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class TestAppInitialization {
+
     @Test
     fun LoadMockData() {
 
-        val sut = InitialData.create()
+        val sut = Initial.instance
         assert(sut.barbers.size == 2);
 
     }

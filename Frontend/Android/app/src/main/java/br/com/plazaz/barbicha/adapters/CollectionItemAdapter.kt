@@ -20,8 +20,10 @@ class CollectionItemAdapter(private val barbershop: Barbershop): RecyclerView.Ad
     private val barbers: ArrayList<Barber> = barbershop.barbers
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BarberHolder {
+
         val inflatedView = parent.inflate(R.layout.collection_item, false)
         return BarberHolder(inflatedView)
+
     }
 
     override fun getItemCount(): Int = barbers.size;

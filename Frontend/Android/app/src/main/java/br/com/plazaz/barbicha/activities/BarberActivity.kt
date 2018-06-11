@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.LinearLayout
 import br.com.plazaz.barbicha.adapters.AppointmentsAdapter
 import br.com.plazaz.barbicha.adapters.CollectionItemAdapter
 import br.com.plazaz.barbicha.helpers.Initial
+import br.com.plazaz.barbicha.model.Appointment
 import br.com.plazaz.barbicha.model.Barber
 import br.com.plazaz.barbicha.model.Barbershop
 import br.com.plazaz.barbicha.providers.DataProvider
@@ -21,6 +25,7 @@ import java.util.*
 
 class BarberActivity : AppCompatActivity() {
 
+    private var connection: ServiceConnection? = null
     private var dataProvider: DataProvider? = null
     private var barbershop: Barbershop = Initial.instance
     private var barber: Barber? = null
@@ -37,18 +42,31 @@ class BarberActivity : AppCompatActivity() {
 
         this.barbershop = Initial.instance
         this.barber = this.barbershop.getBarberById(barberId)
+        this.connection = DataServiceConnection
 
         this.refreshViews()
         this.initializeCollection()
-        this.bindService()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.bindService()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unbindService(DataServiceConnection)
     }
 
     private fun initializeCollection() {
 
         val appointments = this.barbershop.getAppointmentsFor(this.selectedData, this.barber?.uuid)
+        val adapter = AppointmentsAdapter(this.barbershop, appointments)
+        appointmentList.adapter = adapter
+        appointmentList.layoutManager = LinearLayoutManager(this)
+        appointmentList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun bindService() {
@@ -60,16 +78,16 @@ class BarberActivity : AppCompatActivity() {
 
         Log.d("BROADCAST", "RefreshViews")
         barberLabel.setText(this.barber?.name)
-        barberImage.setImageDrawable(ContextCompat.getDrawable(shopImage.context, R.drawable.placeholder_person))
+        barberImage.setImageDrawable(ContextCompat.getDrawable(barberImage.context, R.drawable.placeholder_person))
 
     }
 
-    private fun refreshAdapter() {
+    private fun refreshAdapter(appointments: ArrayList<Appointment>) {
 
         Log.d("BROADCAST", "RefreshAdapter")
-        val adapter = AppointmentsAdapter(this.barbershop)
-        barberCollection.adapter = adapter
-        barberCollection.adapter.notifyDataSetChanged()
+        val adapter = AppointmentsAdapter(this.barbershop, appointments)
+        appointmentList.adapter = adapter
+        appointmentList.adapter.notifyDataSetChanged()
 
     }
 

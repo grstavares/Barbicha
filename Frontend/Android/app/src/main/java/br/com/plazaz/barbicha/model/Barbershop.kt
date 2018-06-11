@@ -192,7 +192,8 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         val slot:Int = this.slotTime(date)
 
         var dateWalkInMillis:Long = startTime.time
-        while (dateWalkInMillis <  endTime.time) {
+        var dateWalkEnd = endTime.time
+        while (dateWalkInMillis <  dateWalkEnd) {
 
             var comparationStart = dateWalkInMillis - 10
             var comparationEnd = dateWalkInMillis + 10
@@ -207,7 +208,7 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
             val value = if (found.size > 0) { found.first()} else {Appointment.empty(Date(dateWalkInMillis), slot)}
 
             appointmentList.add(value)
-            dateWalkInMillis += (1000 * 60 * 60 * slot).toLong()
+            dateWalkInMillis += (1000 * 60 * slot).toLong()
 
         }
 
