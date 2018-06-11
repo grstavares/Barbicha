@@ -2,6 +2,8 @@ package br.com.plazaz.barbicha.model
 
 import android.support.v4.content.LocalBroadcastManager
 import java.net.URL
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Double? = null, longitude: Double? = null,
                  serviceTypes: ArrayList<AppointmentType> = arrayListOf(), barbers: ArrayList<Barber> = arrayListOf(), appointments: ArrayList<Appointment> = arrayListOf()) {
@@ -57,15 +59,15 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         var updatedSet: Array<Barber> = emptyArray();
         for (id in toBeUpdated) {
 
-            val old = this.barbers.filter({ id == it.uuid }).first()
-            val new = fromWeb.filter({ id == it.uuid }).first()
+            val old: Barber? = this.barbers.filter({ id == it.uuid }).first()
+            val new: Barber? = fromWeb.filter({ id == it.uuid }).first()
 
             if (old != null) {
 
                 if (new != null) {
                     if (old != new) {
                         changed = true
-                        old?.updateValues(new)}}
+                        old.updateValues(new)}}
 
                 updatedSet = updatedSet.plus(old);
 
@@ -106,15 +108,15 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         var updatedArray: Array<Appointment> = emptyArray()
         for (id in toBeUpdated) {
 
-            val old = this.appointments.filter({ id == it.uuid }).first()
-            val new = fromWeb.filter({ id == it.uuid }).first()
+            val old: Appointment? = this.appointments.filter({ id == it.uuid }).first()
+            val new: Appointment? = fromWeb.filter({ id == it.uuid }).first()
 
             if (old != null) {
 
                 if (new != null) {
                     if (old != new) {
                         changed = true
-                        old?.updateValues(new)}}
+                        old.updateValues(new)}}
 
                 updatedArray.plus(old)
 
@@ -128,6 +130,88 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
             this.appointments = ArrayList(newArray.plus(updatedArray))
 //            self.signalChange(event: .appointmentListUpdated)
         }
+
+    }
+
+    fun dayStart(date: Date): Date {
+
+        var startTime = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+        startTime.set(Calendar.HOUR_OF_DAY, 9)
+        startTime.set(Calendar.MINUTE, 0)
+        startTime.set(Calendar.SECOND, 0)
+        return startTime.time
+
+    }
+
+    fun dayEnd(date: Date): Date {
+
+        var endTime = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+        endTime.set(Calendar.HOUR_OF_DAY, 21)
+        endTime.set(Calendar.MINUTE, 0)
+        endTime.set(Calendar.SECOND, 0)
+        return endTime.time
+
+    }
+
+    fun startTime(date: Date): Date {
+
+        var startTime = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+        startTime.set(Calendar.HOUR_OF_DAY, 9)
+        startTime.set(Calendar.MINUTE, 0)
+        startTime.set(Calendar.SECOND, 0)
+        return startTime.time
+
+    }
+
+    fun endTime(date: Date): Date {
+
+        var endTime = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+        endTime.set(Calendar.HOUR_OF_DAY, 21)
+        endTime.set(Calendar.MINUTE, 0)
+        endTime.set(Calendar.SECOND, 0)
+        return endTime.time
+
+    }
+
+    fun slotTime(date: Date): Int {
+        return 30
+    }
+
+    fun getBarberById(barberId: String?): Barber? {
+
+        return this.barbers.filter { it.uuid == barberId }.first()
+
+    }
+
+    fun getAppointmentsFor(date: Date, barberUUID: String?): ArrayList<Appointment> {
+
+        var appointmentList: ArrayList<Appointment> = arrayListOf()
+
+        val startTime:Date = this.startTime(date)
+        val endTime:Date = this.endTime(date)
+        val slot:Int = this.slotTime(date)
+
+        var dateWalkInMillis:Long = startTime.time
+        while (dateWalkInMillis <  endTime.time) {
+
+            var comparationStart = dateWalkInMillis - 10
+            var comparationEnd = dateWalkInMillis + 10
+
+            var found = this.appointments.filter {
+
+                val fromBarber = if (barberUUID == null) {true} else { barberUUID == it.barberUUID}
+                it.startDate.time > comparationStart && it.startDate.time < comparationEnd && fromBarber
+
+            }
+
+            val value = if (found.size > 0) { found.first()} else {Appointment.empty(Date(dateWalkInMillis), slot)}
+
+            appointmentList.add(value)
+            dateWalkInMillis += (1000 * 60 * 60 * slot).toLong()
+
+        }
+
+        return appointmentList
 
     }
 

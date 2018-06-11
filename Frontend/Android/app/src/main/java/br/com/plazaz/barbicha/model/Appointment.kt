@@ -6,6 +6,9 @@ data class Appointment(val uuid:String = UUID.randomUUID().toString(), val start
                        var serviceType: Int, var status: Status,
                        var barberUUID:String?, var customerUUID: String?, var customerName: String?) {
 
+    var isEmpty = {this.status == Status.empty}
+    var isUnavailable = {this.status = Status.unavailable}
+
     fun updateValues(with: Appointment) {return}
 
     enum class Status {requested, cancelled, confirmed, executed, evaluated, empty, unavailable}
@@ -20,6 +23,9 @@ data class Appointment(val uuid:String = UUID.randomUUID().toString(), val start
         const val kBarber = "barberUUID"
         const val kCustId = "customerUUID"
         const val kCustName = "customerName"
+
+        fun empty(date: Date, interval: Int): Appointment {return Appointment(startDate = date, interval = interval, serviceType = AppointmentType.empty().index, status = Status.empty, barberUUID = null, customerUUID = null, customerName = null)}
+        fun unavailable(date: Date, interval: Int): Appointment {return Appointment(startDate = date, interval = interval, serviceType = AppointmentType.empty().index, status = Status.unavailable, barberUUID = null, customerUUID = null, customerName = null)}
 
         fun fromMap(map: Map<String, Any>) : Appointment {
 

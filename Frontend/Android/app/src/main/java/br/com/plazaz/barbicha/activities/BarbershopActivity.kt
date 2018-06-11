@@ -61,7 +61,7 @@ class BarbershopActivity : AppCompatActivity() {
 
     private fun initializeCollection() {
 
-        val adapter = CollectionItemAdapter(this.barbershop.barbers)
+        val adapter = CollectionItemAdapter(this.barbershop)
         barberCollection.adapter = adapter
         barberCollection.layoutManager = GridLayoutManager(this, 2);
 
@@ -78,7 +78,7 @@ class BarbershopActivity : AppCompatActivity() {
     private fun refreshAdapter() {
 
         Log.d("BROADCAST", "RefreshAdapter")
-        val adapter = CollectionItemAdapter(this.barbershop.barbers)
+        val adapter = CollectionItemAdapter(this.barbershop)
         barberCollection.adapter = adapter
         barberCollection.adapter.notifyDataSetChanged()
 
@@ -90,8 +90,8 @@ class BarbershopActivity : AppCompatActivity() {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
 
             val binder = service as DataService.DataProviderBinder
-            val service = binder.getService()
-            this@BarbershopActivity.dataProvider = service.getProvider(this@BarbershopActivity.barbershop)
+            val dataService = binder.getService()
+            this@BarbershopActivity.dataProvider = dataService.getProvider(this@BarbershopActivity.barbershop)
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
