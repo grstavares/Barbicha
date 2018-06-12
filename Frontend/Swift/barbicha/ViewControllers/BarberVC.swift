@@ -497,14 +497,3 @@ extension BarberVC: UITableViewDelegate {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-

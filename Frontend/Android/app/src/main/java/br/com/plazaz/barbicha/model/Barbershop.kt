@@ -1,6 +1,5 @@
 package br.com.plazaz.barbicha.model
 
-import android.support.v4.content.LocalBroadcastManager
 import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
@@ -191,30 +190,28 @@ class Barbershop(uuid: String, name: String, imageURL: URL? = null, latitude: Do
         val endTime:Date = this.endTime(date)
         val slot:Int = this.slotTime(date)
 
-        var dateWalkInMillis:Long = startTime.time
-        var dateWalkEnd = endTime.time
-        while (dateWalkInMillis <  dateWalkEnd) {
+        var dateWalkInMillis = startTime
+        while (dateWalkInMillis <  endTime) {
 
-            var comparationStart = dateWalkInMillis - 10
-            var comparationEnd = dateWalkInMillis + 10
+            var found = this.appointments.filter<Appointment> { it: Appointment ->
 
-            var found = this.appointments.filter {
-
-                val fromBarber = if (barberUUID == null) {true} else { barberUUID == it.barberUUID}
-                it.startDate.time > comparationStart && it.startDate.time < comparationEnd && fromBarber
+                val fromBarber = if (barberUUID == null) {true} else {barberUUID == it.barberUUID}
+                this.compareDatesWithoutMilliseconds(it.startDate, dateWalkInMillis) && fromBarber
 
             }
 
-            val value = if (found.size > 0) { found.first()} else {Appointment.empty(Date(dateWalkInMillis), slot)}
+            val value:Appointment = if (found.isEmpty()) {Appointment.empty(dateWalkInMillis, slot)} else {found.first()}
 
             appointmentList.add(value)
-            dateWalkInMillis += (1000 * 60 * slot).toLong()
+            dateWalkInMillis = Date(dateWalkInMillis.time + (1000 * 60 * value.interval).toLong())
 
         }
 
         return appointmentList
 
     }
+
+    private fun compareDatesWithoutMilliseconds(lh: Date, rh: Date): Boolean {return lh.time / 1000 == rh.time / 1000}
 
     companion object {
 

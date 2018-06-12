@@ -87,6 +87,7 @@ class FirestoreProvider: DataProvider {
 
         var dict = object.asDict
         dict.removeValue(forKey: Appointment.CodingKeys.uuid.stringValue)
+        dict[Appointment.CodingKeys.interval.stringValue] = type.minutes
         dict[Appointment.CodingKeys.serviceType.stringValue] = type.index
         dict[Appointment.CodingKeys.status.stringValue] = Appointment.Status.requested.rawValue
         dict[Appointment.CodingKeys.barberUUID.stringValue] = barber.uuid

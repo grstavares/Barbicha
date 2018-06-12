@@ -28,6 +28,14 @@ class AppointmentsAdapter(private var barbershop: Barbershop, private var appoin
         return AppointmentsHolder(inflatedView)
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun getItemCount(): Int = appointments.size
 
     override fun onBindViewHolder(holder: AppointmentsAdapter.AppointmentsHolder, position: Int) {
@@ -65,6 +73,7 @@ class AppointmentsAdapter(private var barbershop: Barbershop, private var appoin
             val endDate = Date(appointment.startDate.time + (appointment.interval  * 60 * 1000))
             val label = DateFormat.getTimeInstance(DateFormat.SHORT).format(appointment.startDate) + " - " + DateFormat.getTimeInstance(DateFormat.SHORT).format(endDate)
             this.mainLabel?.text = label
+            this.detailsLabel?.text = appointment.customerName
 
         }
 

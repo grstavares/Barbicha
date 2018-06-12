@@ -7,6 +7,7 @@ import br.com.plazaz.barbicha.model.AppointmentType
 import br.com.plazaz.barbicha.model.Barber
 import br.com.plazaz.barbicha.model.Barbershop
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -72,8 +73,9 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
                         val barbers = it.result.documents.map {
 
                             var map = HashMap(it.data)
-                            map.put(Barber.kUUID, it.id)
-                            Barber.fromMap(map)
+                            map.set(Barber.kUUID, it.id)
+                            val parsed = this.parseFirebaseMap(map)
+                            Barber.fromMap(parsed)
 
                         }.toSet()
 
@@ -89,7 +91,7 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
                     if (it.isSuccessful) {
 
-                        val types = ArrayList(it.result.documents.map { AppointmentType.fromMap(HashMap(it.data)) })
+                        val types = ArrayList(it.result.documents.map { AppointmentType.fromMap(this.parseFirebaseMap(HashMap(it.data))) })
                         barbershop.updateServicesFromCloud(types)
                         this.informListeners(DataProviderObservableEvent.serviceTypesUpdated)
 
@@ -106,8 +108,9 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
                         val appointments = ArrayList(querySnapshot.documents.map {
                             
                             var map = HashMap(it.data)
-                            map.put(Appointment.kUUID, it.id)
-                            Appointment.fromMap(map)
+                            map.set(Appointment.kUUID, it.id)
+                            val parsed = this.parseFirebaseMap(map)
+                            Appointment.fromMap(parsed)
                         })
 
                         barbershop.updateAppointmentsFromCloud(appointments)
@@ -128,6 +131,20 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
         for (listener in this.listeners.values) {
             listener.receiveMessage(event.toString())
         }
+
+    }
+
+    private fun parseFirebaseMap(map: Map<String, Any>): Map<String, Any> {
+
+        var newMap: MutableMap<String, Any> = mutableMapOf()
+        for (key in map.keys) {
+
+            val any = map.get(key) as Any
+            if (any is Timestamp) {newMap.set(key, any.toDate())} else {newMap.set(key, any)}
+
+        }
+
+        return newMap
 
     }
 
