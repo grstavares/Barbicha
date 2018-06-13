@@ -266,7 +266,7 @@ extension BarberVC: UITableViewDataSource {
     private func configureCell(cell: AppointmentCell, with item: Appointment) -> Void {
 
         let start = AppUtilities.shared.formatDate(item.startDate, style: .onlyTime) ?? "NoTimeAvailable"
-        let end = AppUtilities.shared.formatDate(item.startDate.addingTimeInterval(item.interval), style: .onlyTime)  ?? "NoTimeAvailable"
+        let end = AppUtilities.shared.formatDate(item.startDate.addingTimeInterval(item.interval * 60), style: .onlyTime)  ?? "NoTimeAvailable"
         let dateString: String = "\(start) - \(end)"
         let color = item.isEmpty ? self.emptyCellColor : self.coordinator.loggedUser?.uuid == item.customerUUID ? self.destakCellCollor : self.occupiedCellColor
         

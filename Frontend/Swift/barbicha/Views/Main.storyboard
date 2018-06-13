@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -79,7 +79,7 @@
                                 <rect key="frame" x="20" y="613.5" width="335" height="33.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-5n-U2W">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="33.5"/>
+                                        <rect key="frame" x="0.0" y="8.5" width="167.5" height="25"/>
                                         <state key="normal" image="iconLocation"/>
                                         <connections>
                                             <action selector="buttonLocationClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BJh-Kb-wEE"/>
@@ -197,9 +197,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="xyY-0u-e3n" userLabel="buttons">
                                 <rect key="frame" x="20" y="613.5" width="335" height="33.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73E-Tx-akl">
-                                        <rect key="frame" x="0.0" y="3.5" width="167.5" height="30"/>
-                                        <state key="normal" title="Message"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73E-Tx-akl">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="33.5"/>
+                                        <state key="normal" image="iconMessage"/>
                                         <connections>
                                             <action selector="buttonLocationClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Gq-cb-9hc"/>
                                             <action selector="buttonMessageClicked:" destination="d90-oG-slM" eventType="touchUpInside" id="5vD-G6-4RY"/>
@@ -448,34 +448,34 @@
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="377"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wfN-p6-EUI">
-                                                <rect key="frame" x="15" y="0.0" width="305" height="268.5"/>
+                                                <rect key="frame" x="15" y="0.0" width="305" height="190"/>
                                                 <subviews>
                                                     <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qpX-T6-zng" customClass="SkyFloatingLabelTextField" customModule="Barbicha" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="305" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8j5-gL-rEK" customClass="SkyFloatingLabelTextField" customModule="Barbicha" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="55.5" width="305" height="46"/>
+                                                        <rect key="frame" x="0.0" y="40" width="305" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="nickname"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Njh-he-fMM" customClass="SkyFloatingLabelTextField" customModule="Barbicha" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="111.5" width="305" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="80" width="305" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X4l-ix-nzg" customClass="SkyFloatingLabelTextField" customModule="Barbicha" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="167" width="305" height="46"/>
+                                                        <rect key="frame" x="0.0" y="120" width="305" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G5H-7X-XNc" customClass="SkyFloatingLabelTextField" customModule="Barbicha" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="223" width="305" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="160" width="305" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -620,7 +620,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmc-MP-5uQ">
                                         <rect key="frame" x="19" y="133.5" width="337.5" height="400"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Sjz-h1-Yzz">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundLogin" translatesAutoresizingMaskIntoConstraints="NO" id="Sjz-h1-Yzz">
                                                 <rect key="frame" x="0.0" y="0.0" width="338" height="400"/>
                                             </imageView>
                                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syz-TZ-Kyl" customClass="LoadingUIButton" customModule="Barbicha" customModuleProvider="target">
@@ -880,13 +880,14 @@
     </scenes>
     <resources>
         <image name="background" width="300" height="300"/>
+        <image name="backgroundLogin" width="768" height="1065"/>
         <image name="criticalError" width="407" height="329"/>
         <image name="iconBack" width="25" height="25"/>
         <image name="iconGallery" width="25" height="25"/>
-        <image name="iconLocation" width="50" height="50"/>
+        <image name="iconLocation" width="25" height="25"/>
+        <image name="iconMessage" width="50" height="50"/>
         <image name="iconNext" width="25" height="25"/>
         <image name="iconPrevious" width="25" height="25"/>
         <image name="iconProfile" width="25" height="25"/>
-        <image name="loginScreen" width="768" height="1065"/>
     </resources>
 </document>

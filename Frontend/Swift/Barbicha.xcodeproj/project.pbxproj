@@ -28,9 +28,12 @@
 		A186727E20B890A900ED3DD8 /* LoadingUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186727D20B890A900ED3DD8 /* LoadingUIButton.swift */; };
 		A18F811320AE6143002AF101 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18F811220AE6143002AF101 /* MapKit.framework */; };
 		A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */; };
+		A1930E7720D1C93C001281E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1930E7620D1C93C001281E2 /* LaunchScreen.storyboard */; };
 		A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */; };
 		A1B2E9A720B5A7FC0033CEF6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2E9A620B5A7FC0033CEF6 /* DataProvider.swift */; };
 		A1B2E9A920B5A8D10033CEF6 /* FirestoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2E9A820B5A8D10033CEF6 /* FirestoreProvider.swift */; };
+		A1B72F6520D1C6670091DD12 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B72F6420D1C6660091DD12 /* UIStoryboardExtension.swift */; };
+		A1B72F6720D1C6720091DD12 /* DateWithZeroedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B72F6620D1C6720091DD12 /* DateWithZeroedTime.swift */; };
 		A1BC34D620ADDE4A00C0273E /* AppointmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */; };
 		A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C77DC82086380400006DD9 /* Assets.xcassets */; };
 		A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77DE2208638A600006DD9 /* AppCoordinator.swift */; };
@@ -53,7 +56,6 @@
 		A1C77E102086395200006DD9 /* barbeiro03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0B2086395100006DD9 /* barbeiro03.jpg */; };
 		A1C77E112086395200006DD9 /* brotherhood.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0C2086395200006DD9 /* brotherhood.png */; };
 		A1C77E122086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E0D2086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg */; };
-		A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */; };
 		A1C77E1A20863CD200006DD9 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1920863CD100006DD9 /* AppImage.png */; };
 		A1C77E1E20863F3D00006DD9 /* barbeariaBeto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */; };
 		A1C77E202086474E00006DD9 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E1F2086474E00006DD9 /* ProfileVC.swift */; };
@@ -61,7 +63,6 @@
 		A1C77E58208678F700006DD9 /* ProfilePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E57208678F700006DD9 /* ProfilePresentationController.swift */; };
 		A1C77E5B20867B3500006DD9 /* ProfileTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */; };
 		A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */; };
-		A1D347DC20BA313F00FECE39 /* DateWithZeroedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D347DB20BA313F00FECE39 /* DateWithZeroedTime.swift */; };
 		A1D347E420BA6F5F00FECE39 /* AppFirebaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D347E320BA6F5F00FECE39 /* AppFirebaseConfiguration.swift */; };
 		A1D3CDF320B8689800A0FC5A /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CDEF20B8689600A0FC5A /* UITextField+fixCaretPosition.swift */; };
 		A1D3CDF420B8689800A0FC5A /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CDF120B8689700A0FC5A /* SkyFloatingLabelTextField.swift */; };
@@ -147,9 +148,12 @@
 		A186727D20B890A900ED3DD8 /* LoadingUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingUIButton.swift; path = ../../../../../Swift/CustomControls/LoadingUIButton.swift; sourceTree = "<group>"; };
 		A18F811220AE6143002AF101 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A18F811E20AE6924002AF101 /* MKRegionForAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKRegionForAnnotations.swift; sourceTree = "<group>"; };
+		A1930E7620D1C93C001281E2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A196E6BD20B5937700FF9A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B2E9A620B5A7FC0033CEF6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		A1B2E9A820B5A8D10033CEF6 /* FirestoreProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreProvider.swift; sourceTree = "<group>"; };
+		A1B72F6420D1C6660091DD12 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		A1B72F6620D1C6720091DD12 /* DateWithZeroedTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateWithZeroedTime.swift; path = ../../../../../Swift/Commom/TypeExtensions/DateWithZeroedTime.swift; sourceTree = "<group>"; };
 		A1BC34D520ADDE4A00C0273E /* AppointmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentType.swift; sourceTree = "<group>"; };
 		A1C77DBE2086380200006DD9 /* Barbicha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barbicha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C77DC82086380400006DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,7 +181,6 @@
 		A1C77E0C2086395200006DD9 /* brotherhood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brotherhood.png; sourceTree = "<group>"; };
 		A1C77E0D2086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg"; sourceTree = "<group>"; };
 		A1C77E142086397900006DD9 /* PlazazCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PlazazCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIStoryboardExtension.swift; path = ../../../../../Swift/Commom/UIKitExtensions/UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		A1C77E1920863CD100006DD9 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
 		A1C77E1D20863F3D00006DD9 /* barbeariaBeto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = barbeariaBeto.jpg; sourceTree = "<group>"; };
 		A1C77E1F2086474E00006DD9 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -185,7 +188,6 @@
 		A1C77E57208678F700006DD9 /* ProfilePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresentationController.swift; sourceTree = "<group>"; };
 		A1C77E5A20867B3500006DD9 /* ProfileTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitioner.swift; sourceTree = "<group>"; };
 		A1C77E5C2086819800006DD9 /* ProfileTransitionerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTransitionerDelegate.swift; sourceTree = "<group>"; };
-		A1D347DB20BA313F00FECE39 /* DateWithZeroedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateWithZeroedTime.swift; path = ../../../../../Swift/Commom/TypeExtensions/DateWithZeroedTime.swift; sourceTree = "<group>"; };
 		A1D347DE20BA3CB700FECE39 /* Barbicha.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Barbicha.entitlements; sourceTree = "<group>"; };
 		A1D347E320BA6F5F00FECE39 /* AppFirebaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFirebaseConfiguration.swift; sourceTree = "<group>"; };
 		A1D3CDEF20B8689600A0FC5A /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				A1C77E002086391F00006DD9 /* CollectionCell.xib */,
 				A15D00162086E3C800271B9D /* AppointmentCell.swift */,
 				A15D00172086E3C800271B9D /* AppointmentCell.xib */,
+				A1930E7620D1C93C001281E2 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -420,8 +423,8 @@
 		A1C77E16208639A100006DD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A1C77E17208639C000006DD9 /* UIStoryboardExtension.swift */,
-				A1D347DB20BA313F00FECE39 /* DateWithZeroedTime.swift */,
+				A1B72F6420D1C6660091DD12 /* UIStoryboardExtension.swift */,
+				A1B72F6620D1C6720091DD12 /* DateWithZeroedTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -497,7 +500,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Gustavo Tavares";
 				TargetAttributes = {
 					A1C77DBD2086380200006DD9 = {
@@ -577,6 +580,7 @@
 				A1C77E122086395200006DD9 /* 7A802D59-1098-4AD6-8E9E-7DC48092ED33.jpg in Resources */,
 				A1DD567120B5B67800E04504 /* barbershop.plist in Resources */,
 				A196E6C520B5937900FF9A3D /* GoogleService-Info.plist in Resources */,
+				A1930E7720D1C93C001281E2 /* LaunchScreen.storyboard in Resources */,
 				A1C77E112086395200006DD9 /* brotherhood.png in Resources */,
 				A1C77E0E2086395200006DD9 /* 04C86E47-65BE-4FE3-9597-BD224E5DC9E9.jpg in Resources */,
 				A1C77DC92086380400006DD9 /* Assets.xcassets in Resources */,
@@ -684,6 +688,7 @@
 				A1ED2B4720B73AAE00B48AF0 /* FireAuthProvider.swift in Sources */,
 				A1B2E9A920B5A8D10033CEF6 /* FirestoreProvider.swift in Sources */,
 				A15D00132086DA6100271B9D /* BarbershopAppointments.swift in Sources */,
+				A1B72F6720D1C6720091DD12 /* DateWithZeroedTime.swift in Sources */,
 				A1C77E58208678F700006DD9 /* ProfilePresentationController.swift in Sources */,
 				A1C77DFC208638EB00006DD9 /* BarberVC.swift in Sources */,
 				A1C77DFE208638EB00006DD9 /* GalleryVC.swift in Sources */,
@@ -693,7 +698,6 @@
 				A18F811F20AE6924002AF101 /* MKRegionForAnnotations.swift in Sources */,
 				A15D00182086E3C800271B9D /* AppointmentCell.swift in Sources */,
 				A1C77DF4208638E300006DD9 /* ExposableAsCollection.swift in Sources */,
-				A1D347DC20BA313F00FECE39 /* DateWithZeroedTime.swift in Sources */,
 				A1C77DE6208638A600006DD9 /* AppCoordinator.swift in Sources */,
 				A172DEE220B5EF9D0015C75D /* BarbershopExtensions.swift in Sources */,
 				A1C77DED208638CA00006DD9 /* Barbershop.swift in Sources */,
@@ -701,13 +705,13 @@
 				A1615D6A20B361D8008E0A26 /* BarbershopEvents.swift in Sources */,
 				A1D3CDF420B8689800A0FC5A /* SkyFloatingLabelTextField.swift in Sources */,
 				A1615D6E20B3693C008E0A26 /* UIViewControllerNotifications.swift in Sources */,
-				A1C77E18208639C100006DD9 /* UIStoryboardExtension.swift in Sources */,
 				A1C77DFB208638EB00006DD9 /* LocationVC.swift in Sources */,
 				A1C77E5D2086819800006DD9 /* ProfileTransitionerDelegate.swift in Sources */,
 				A1F0259B20B8525C00F80D99 /* LoginVC.swift in Sources */,
 				A150E64E20ADBC58007C2916 /* Person.swift in Sources */,
 				A1C77E5620866B5600006DD9 /* ProfileView.swift in Sources */,
 				A1D84C602086CDA300276FE0 /* Appointment.swift in Sources */,
+				A1B72F6520D1C6670091DD12 /* UIStoryboardExtension.swift in Sources */,
 				A1D347E420BA6F5F00FECE39 /* AppFirebaseConfiguration.swift in Sources */,
 				A1C77DEE208638CA00006DD9 /* Barber.swift in Sources */,
 				A15D001D2086F04200271B9D /* AppUtilities.swift in Sources */,
@@ -769,6 +773,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -829,6 +834,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
