@@ -202,7 +202,7 @@ class Barbershop: PlazazOrganization, Codable {
         
         let startTime:Date = self.startTime(for: date)
         let endTime:Date = self.endTime(for: date)
-        let slot:TimeInterval = self.slotTime(for: date)
+        let slot:Int = self.slotTime(for: date)
         
         var dateWalk:Date = startTime
         while dateWalk <  endTime {
@@ -220,7 +220,7 @@ class Barbershop: PlazazOrganization, Codable {
             let value = found.count > 0 ? found[0] : Appointment.empty(for: dateWalk, interval: slot)
 
             appointmentList.append(value)
-            dateWalk.addTimeInterval(slot)
+            dateWalk.addTimeInterval(Double(slot * 60))
             
         }
         

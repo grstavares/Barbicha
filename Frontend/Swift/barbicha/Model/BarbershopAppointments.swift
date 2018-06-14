@@ -51,8 +51,6 @@ extension Barbershop {
         
     }
     
-    public func slotTime(for date: Date) -> TimeInterval {return TimeInterval(30 * 60)}
-    
-
+    public func slotTime(for date: Date) -> Int {return 30}
 
 }

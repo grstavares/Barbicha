@@ -10,7 +10,7 @@ import Foundation
 protocol ExposableAsAppointment {
     
     var startDate: Date { get }
-    var interval: TimeInterval { get }
+    var interval: Int { get }
     var serviceType: Int { get }
     var detail: String? { get }
     

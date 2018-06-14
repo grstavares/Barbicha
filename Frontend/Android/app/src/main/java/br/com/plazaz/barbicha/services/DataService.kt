@@ -6,6 +6,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
+import br.com.plazaz.barbicha.logTag
 import br.com.plazaz.barbicha.model.Barbershop
 import br.com.plazaz.barbicha.providers.DataProvider
 import br.com.plazaz.barbicha.providers.FirebaseProvider
@@ -18,16 +19,17 @@ class DataService(): Service(), ProviderListener {
     private var listeners: HashMap<String,String> = HashMap()
 
     override fun onBind(intent: Intent): IBinder? {
-        Log.d("DataService", "Service Bound")
+        Log.d(logTag, "DataService:Service Bound")
         return this.myBinder
     }
 
     fun getProvider(barbershop: Barbershop): DataProvider {
 
-        Log.d("DataService", "Getting Provider")
+        Log.d(logTag, "DataService:Getting Provider")
         val found = this.providers.get(barbershop.uuid)
         if (found == null) {
 
+            Log.d(logTag, "DataService:Initializing New Provider")
             val provider = FirebaseProvider(barbershop)
             val token = provider.addListener(this)
 
@@ -35,13 +37,13 @@ class DataService(): Service(), ProviderListener {
             this.listeners.put(barbershop.uuid, token)
             return provider
 
-        } else {return found}
+        } else {Log.d(logTag, "DataService:Returning Provider from Cache");return found}
 
     }
 
     override fun onDestroy() {
 
-        Log.d("DataService", "Removing Provider")
+        Log.d(logTag, "DataService:Removing Provider")
         for (barbershopUUID in this.providers.keys) {
 
             val provider = this.providers.get(barbershopUUID)
@@ -56,7 +58,7 @@ class DataService(): Service(), ProviderListener {
 
     override fun receiveMessage(message: String) {
 
-        Log.d("DataService", "Message Received -> ${message}")
+        Log.d(logTag, "DataService:Message Received -> ${message}")
         val intent = Intent(message)
         intent.putExtra(kBarbershopUUID, "")
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent)

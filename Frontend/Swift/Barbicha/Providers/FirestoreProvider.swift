@@ -188,8 +188,7 @@ class FirestoreProvider: DataProvider {
         guard let uuid = _uuid else {return nil}
         guard let date = _date?.dateValue() else {return nil}
         
-        guard let intervalInt = _interval else {return nil}
-        let interval = Double(intervalInt)
+        guard let interval = _interval else {return nil}
         
         guard let typeIndex = _type, let type = self.barbershop.serviceTypes.filter({ $0.index == typeIndex}).first else {return nil}
         guard let statusKey = _status, let status = Appointment.Status(rawValue: statusKey) else {return nil}

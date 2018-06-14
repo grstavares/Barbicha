@@ -2,6 +2,7 @@ package br.com.plazaz.barbicha.providers
 
 import android.util.Log
 import br.com.plazaz.barbicha.helpers.Utils
+import br.com.plazaz.barbicha.logTag
 import br.com.plazaz.barbicha.model.Appointment
 import br.com.plazaz.barbicha.model.AppointmentType
 import br.com.plazaz.barbicha.model.Barber
@@ -13,8 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 import kotlin.collections.HashMap
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-
-
 
 class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
@@ -54,7 +53,7 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
     private fun refresh() {
 
-        Log.d("FirebaseProvider", "Refreshing Data")
+        Log.d(logTag, "FirebaseProvider:Refreshing Data")
         val reference = this.firestore.document(this.basePath())
         reference.get().addOnCompleteListener(OnCompleteListener {
 
@@ -106,7 +105,8 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
                     if (!querySnapshot!!.isEmpty) {
 
                         val appointments = ArrayList(querySnapshot.documents.map {
-                            
+
+                            Log.d(logTag, "FirebaseProvider:Appointment Found -> ${it.id}")
                             var map = HashMap(it.data)
                             map.set(Appointment.kUUID, it.id)
                             val parsed = this.parseFirebaseMap(map)

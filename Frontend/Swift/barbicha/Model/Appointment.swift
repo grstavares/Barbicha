@@ -14,7 +14,7 @@ class Appointment: Equatable, Codable {
     
     let uuid: String
     var startDate: Date
-    var interval: TimeInterval
+    var interval: Int
     var serviceType: Int
     var status: Status
     var barberUUID: String?
@@ -24,7 +24,7 @@ class Appointment: Equatable, Codable {
     var isEmpty: Bool {return self.serviceType == AppointmentType.kEmptyTypeIndex}
     var isUnavailable: Bool {return self.serviceType == AppointmentType.kUnavailableTypeIndex}
     
-    init(uuid:String, time: Date, interval: TimeInterval, type: AppointmentType, status: Status, barberId: String?, customerId: String?, customerName: String?) {
+    init(uuid:String, time: Date, interval: Int, type: AppointmentType, status: Status, barberId: String?, customerId: String?, customerName: String?) {
         
         self.uuid = uuid
         self.startDate = time
@@ -37,7 +37,7 @@ class Appointment: Equatable, Codable {
         
     }
     
-    convenience init(time: Date, interval: TimeInterval, type: AppointmentType, status: Status, barberId: String?, customerId: String?, customerName: String?) {
+    convenience init(time: Date, interval: Int, type: AppointmentType, status: Status, barberId: String?, customerId: String?, customerName: String?) {
         
         let uuid = PlazazCoreHelpers.newUUID(for: Appointment.self)
         self.init(uuid: uuid, time: time, interval: interval, type: type, status: status, barberId: barberId, customerId: customerId, customerName: customerName)
@@ -58,7 +58,7 @@ class Appointment: Equatable, Codable {
         
         self.uuid = _uuid
         self.startDate = _date
-        self.interval = Double(_interval)
+        self.interval = _interval
         self.barberUUID = _barber
         self.serviceType = _type
         self.status = Appointment.Status(rawValue: _status)!
@@ -82,12 +82,12 @@ class Appointment: Equatable, Codable {
         
     }
     
-    public static func empty(for dateTime: Date, interval: TimeInterval) -> Appointment {
+    public static func empty(for dateTime: Date, interval: Int) -> Appointment {
         let emptyApp: Appointment = Appointment(time: dateTime, interval: interval, type: .empty, status: .empty, barberId: nil, customerId: nil, customerName: nil)
         return emptyApp
     }
     
-    public static func unavailable(for dateTime: Date, interval: TimeInterval) -> Appointment {
+    public static func unavailable(for dateTime: Date, interval: Int) -> Appointment {
         let unavailableApp: Appointment = Appointment(time: dateTime, interval: interval, type: .unavailable, status: .unavailable, barberId: nil, customerId: nil, customerName: nil)
         return unavailableApp
     }
