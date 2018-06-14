@@ -23,3 +23,21 @@ The main funcionalities of Barbicha are:
 
 ## Base Architecture
 Barbicha is composed of differente mobile clientes (iOS, Android and Mobile Web) that will be connected to a cloud backend to make customer requests. Customers can be register in the application or use their profiles in third party plataforms (Facebook, Google and Twitter) to authenticate and send the requested information.
+
+<p align="center">
+    <img src="baseArchitecture.png" width="300" max-width="50%" alt="Base Architecture" />
+</p>
+
+### Frontend
+The frontend of the app will be composed of the following applications:
+1. iOS/Swift
+2. Android/Kotlin;
+3. Angular/Typescript.
+
+### Backend
+The plan is to develop three different backends, each of one composed of the alternatives of the main cloud providers available today:
+1. AWS (Lambda, DynamoDB, SNS, Cognito);
+2. Microsoft Azure;
+3. GCP (Firebase Firestore, Firebase CLoud Messaging, Firebase Cloud Functions).
+
+In the fist moment the application will be used on a single cloud provider at each instance (for example: all AWS services, or all Azure Services). For the future the application could be refactored to work with more than one cloud provider in the same instance.
