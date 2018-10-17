@@ -55,11 +55,11 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
         Log.d(logTag, "FirebaseProvider:Refreshing Data")
         val reference = this.firestore.document(this.basePath())
-        reference.get().addOnCompleteListener(OnCompleteListener {
+        reference.get().addOnCompleteListener {
 
             if (it.isSuccessful) {
 
-                val doc: DocumentSnapshot = it.getResult();
+                val doc = it.getResult();
                 val data = HashMap(doc.data)
                 barbershop.updateFromCloud(data)
                 this.informListeners(DataProviderObservableEvent.barbershopUpdated)
@@ -122,7 +122,7 @@ class FirebaseProvider(private val barbershop: Barbershop): DataProvider {
 
             }
 
-        })
+        }
 
     }
 

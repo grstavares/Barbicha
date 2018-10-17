@@ -42,8 +42,8 @@ class BarberActivity : AppCompatActivity(), EventObserver {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_barber)
 
-        val intent = getIntent();
-        val barberId = intent.getStringExtra(CollectionItemAdapter.BarberHolder.kBarberId);
+        val intent = intent
+        val barberId = intent.getStringExtra(CollectionItemAdapter.BarberHolder.kBarberId)
 
         this.barbershop = Initial.instance
         this.barber = this.barbershop.getBarberById(barberId)
@@ -101,7 +101,7 @@ class BarberActivity : AppCompatActivity(), EventObserver {
     private fun refreshViews() {
 
         Log.d(logTag, "BarberActivity:refreshViews")
-        barberLabel.setText(this.barber?.name)
+        barberLabel.text = this.barber?.name
         barberImage.setImageDrawable(ContextCompat.getDrawable(barberImage.context, R.drawable.placeholder_person))
         this.setActivityDate(this.selectedData)
 
@@ -120,7 +120,7 @@ class BarberActivity : AppCompatActivity(), EventObserver {
     private fun setActivityDate(date: Date) {
 
         val formatter = SimpleDateFormat("dd MMM", Locale.getDefault())
-        dateButton.setText(formatter.format(date))
+        dateButton.text = formatter.format(date)
 
         if (date != this.selectedData) {
             this.selectedData = date
