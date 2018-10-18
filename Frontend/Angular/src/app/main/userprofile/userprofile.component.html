@@ -5,7 +5,7 @@
     <div fxFlexFill>
 
       <mat-form-field fxFlex="100">
-        <input matInput placeholder="Nome" type="text" ngModel name="nome" value="{{ userProfile.name  }}" required>
+        <input matInput placeholder="Nome" type="text" [ngModel]="userProfile.name" name="nome" required>
         <mat-error>Campo obrigatório</mat-error>
       </mat-form-field>
 
@@ -14,13 +14,13 @@
     <div fxLayout="row" fxLayoutGap="30px">
 
       <mat-form-field>
-        <input matInput type="text" ngModel name="apelido" value="{{ userProfile.alias }}" placeholder="Apelido">
+        <input matInput type="text" [ngModel]="userProfile.alias" name="apelido" placeholder="Apelido">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput  ngModel name="nascimento"  value="{{ userProfile.birth }}" [matDatepicker]="picker" placeholder="Data de Nascimento">
+        <input matInput  [ngModel]="userProfile.birth_date" name="nascimento" [matDatepicker]="picker" placeholder="Data de Nascimento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker startView="year"></mat-datepicker>
       </mat-form-field>
 
     </div>
@@ -28,12 +28,12 @@
     <div fxLayout="column">
 
       <mat-form-field>
-        <input matInput placeholder="E-mail" type="email" ngModel name="email" value="{{ userProfile.email }}" email required>
+        <input matInput placeholder="E-mail" type="email" [ngModel]="userProfile.email" name="email" email required>
         <mat-error>Deve ser um endereço de e-mail válido!</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Telefone" type="tel" ngModel name="phone" value="{{ userProfile.phone }}">
+        <input matInput placeholder="Telefone" type="tel" [ngModel]="userProfile.phone_number" name="phone">
       </mat-form-field>
 
     </div>
@@ -43,8 +43,6 @@
       <button mat-flat-button (click)="saveUserProfile(form)" [disabled]="form.invalid">Salvar</button>
 
     </div>
-
-    <div *ngIf="isLoading" fxLayoutAlign="center center"><mat-spinner></mat-spinner></div>
 
   </form>
 </div>

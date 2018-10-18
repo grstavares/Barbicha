@@ -1,18 +1,35 @@
 import { NgModule } from '@angular/core';
+import { APP_DATE_FORMATS, AppDateAdapter } from './date-adapter';
+
 
 import {
-  MatToolbarModule, MatSidenavModule,
+  MatToolbarModule, MatSidenavModule, MatSnackBarModule,
+  MatTableModule,
   MatButtonModule, MatCheckboxModule, MatCardModule,
-  MatInputModule, MatFormFieldModule,
-  MatDatepickerModule, MatNativeDateModule,
+  MatInputModule, MatFormFieldModule, MatListModule,
+  MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS,
   MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [ MatToolbarModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule, MatFormFieldModule, MatDatepickerModule,
-    MatNativeDateModule, MatIconModule, MatProgressSpinnerModule ],
-  exports: [ MatToolbarModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatCardModule, MatInputModule, MatFormFieldModule, MatDatepickerModule,
-    MatNativeDateModule, MatIconModule, MatProgressSpinnerModule ],
-  declarations: []
+  imports: [
+    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule,
+    MatTableModule,
+    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule, MatProgressSpinnerModule
+  ],
+  exports: [
+    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule,
+    MatTableModule,
+    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule, MatProgressSpinnerModule
+  ],
+  declarations: [],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+]
 })
 export class AngularMaterialModule { }

@@ -8,9 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { MainRoutingModule } from './main.routing.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
     imports: [CommonModule, MainRoutingModule, AngularMaterialModule,  FormsModule, FlexLayoutModule ],
-    declarations: [UserProfileComponent, MessagesComponent, ActivitiesComponent, HomeComponent]
+    declarations: [UserProfileComponent, MessagesComponent, ActivitiesComponent, HomeComponent, WelcomeComponent]
 })
 export class MainModule { }

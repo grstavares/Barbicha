@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { parse } from 'url';
 
 export interface UserProfile {
   userId: string;
   name?: string;
   alias?: string;
   email?: string;
-  phone?: string;
-  birth?: string;
+  phone_number?: string;
+  birth_date?: Date;
   imageUrl?: string;
 }
 
@@ -28,6 +27,8 @@ export class AuthService {
   private authSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private fireauth: AngularFireAuth, private firedb: AngularFirestore) { }
+
+  public authUserId(): string { return this.loggedUserId; }
 
   public register(data: RegistrationData, password: string): Subject<boolean>  {
 
@@ -99,14 +100,15 @@ export class AuthService {
       .toPromise().then(snapshot => {
 
         const data = snapshot.data();
+        const date = data.birth_date === undefined ? null : data.birth_date.toDate();
 
         const userData: UserProfile = {
           userId: snapshot.id,
           name: data.name,
           alias: data.alias,
           email: data.email,
-          phone: data.phone_number,
-          birth: data.birth,
+          phone_number: data.phone_number,
+          birth_date: date,
           imageUrl: data.imageUrl
         };
 
@@ -128,19 +130,12 @@ export class AuthService {
 
     const subject = new Subject<boolean>();
     const userId = userdata.userId;
-
-    const docdata = {
-      name: userdata.name,
-      alias: userdata.alias,
-      email: userdata.email,
-      phone_number: userdata.phone,
-      birthDate: userdata.birth
-    };
+    delete userdata.userId;
 
     this.firedb
     .collection('persons')
     .doc(userId)
-    .update(docdata)
+    .update(userdata)
     .then(() => { subject.complete(); })
     .catch(reason => { subject.error(reason); });
 
@@ -150,11 +145,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean { return this.userIsLogged; }
 
-  public isLogged(): BehaviorSubject<boolean> {
-
-      return this.authSubject;
-
-  }
+  public isLogged(): BehaviorSubject<boolean> { return this.authSubject; }
 
   private signalError(error: Error) {
     console.log(error);
@@ -166,6 +157,7 @@ export class AuthService {
   }
 
   private authNotLogged() {
+    this.loggedUserId = null;
     this.userIsLogged = false;
     this.authSubject.next(this.userIsLogged);
   }

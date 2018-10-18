@@ -2,41 +2,37 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService, UserProfile  } from 'src/app/services/auth.service';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({ selector: 'app-userprofile', templateUrl: './userprofile.component.html', styleUrls: ['./userprofile.component.css'] })
 export class UserProfileComponent implements OnInit, OnDestroy {
 
-  isLoading = true;
   userSubcription: Subscription;
   userProfile: UserProfile = {
     userId: '',
     alias: '',
     name: '',
     email: '',
-    phone: '',
-    birth: '',
+    phone_number: '',
+    birth_date: null,
     imageUrl: ''
   };
 
   @ViewChild('form') form: NgForm;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private uiService: UiService) { }
 
   ngOnInit() {
 
-    this.isLoading = true;
+    this.uiService.startLoading();
     this.userSubcription = this.authService.userProfile('').subscribe({
       next: (value) => {
         this.userProfile = value;
-        this.form.controls['nome'].updateValueAndValidity();
-        this.form.controls['apelido'].updateValueAndValidity();
-        this.form.controls['nascimento'].updateValueAndValidity();
-        this.form.controls['email'].updateValueAndValidity();
-        this.isLoading = false;
+        this.uiService.stopLoading();
       },
       error: (value) => {
         console.log(value);
-        this.isLoading = false;
+        this.uiService.stopLoading();
       }
     });
 
@@ -46,7 +42,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   saveUserProfile(form: NgForm) {
 
-    this.isLoading = true;
+    this.uiService.startLoading();
 
     const name = form.value.nome;
     const alias = form.value.apelido;
@@ -57,18 +53,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     const userdata = { userId: this.userProfile.userId };
     if (name !== undefined) {userdata['name'] = name; }
     if (alias !== undefined) {userdata['alias'] = alias; }
-    if (birth !== undefined) {userdata['birth'] = birth; }
+    if (birth !== undefined) {userdata['birth_date'] = birth; }
     if (email !== undefined) {userdata['email'] = email; }
-    if (phone !== undefined) {userdata['phone'] = phone; }
+    if (phone !== undefined) {userdata['phone_number'] = phone; }
 
     this.authService.updateProfile(userdata).subscribe({
       complete: () => {
-        console.log('ok');
-        this.isLoading = false;
+        this.uiService.showToast('Perfil do usuário Salvo!');
+        this.uiService.stopLoading();
       },
       error: reason => {
         console.log(reason);
-        this.isLoading = false;
+        this.uiService.stopLoading();
       }
     });
 

@@ -1,12 +1,51 @@
 <mat-sidenav-container>
-    <mat-sidenav mode="side" opened #sidenav>
-      <ul><li *ngFor="let item of navigationItens" [routerLink]="item.link" routerLinkActive="selected">{{ item.label }}</li></ul>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">
-          <button matIcon (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-          <span>My App</span>
-        </mat-toolbar>
-        <main><router-outlet></router-outlet></main>
-    </mat-sidenav-content>
+
+  <mat-sidenav opened="true" #sidenav role="navigation">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of navigationItens">
+        <a matLine [routerLink]="item.link" routerLinkActive="selected" (click)="sidenav.close()">
+          <mat-icon> {{ item.icon }}</mat-icon> {{ item.label }}
+        </a>
+      </mat-list-item>
+      <mat-list-item *ngFor="let item of actionsItens">
+        <a matLine class="nav-item" [routerLink]="item.link" routerLinkActive="selected" (click)="sidenav.close()">
+          <mat-icon> {{ item.icon }}</mat-icon> {{ item.label }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content>
+
+    <mat-toolbar color="primary">
+
+
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+      
+
+        <a routerLink="/">My LOGO</a>
+
+      
+        <div class="loader" *ngIf="isLoading">Loading...</div>
+        
+
+        <ul>
+          <li *ngFor="let item of actionsItens" [routerLink]="item.link" routerLinkActive="selected" class="toolbar-actions">
+            <mat-icon>{{ item.icon }}</mat-icon>
+          </li>
+        </ul>
+
+
+    </mat-toolbar>
+
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+
 </mat-sidenav-container>
