@@ -25,7 +25,7 @@ const defaultItens: NavigationItens[] = [
 ];
 
 @Component({ selector: 'app-home', templateUrl: './home.component.html', styleUrls: ['./home.component.css'] })
-export class HomeComponent implements OnInit, OnDestroy, AfterContentInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   isLoadingSubscription: Subscription;
@@ -37,10 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentInit {
   ngOnInit() {
     this.navigationItens = modules;
     this.actionsItens = defaultItens;
-    // this.router.navigate(['welcome']);
-  }
-
-  ngAfterContentInit() {
     this.isLoadingSubscription = this.uiService.isLoading.subscribe(value => {this.isLoading = value; });
   }
 

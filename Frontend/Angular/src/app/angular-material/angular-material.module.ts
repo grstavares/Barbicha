@@ -3,7 +3,7 @@ import { APP_DATE_FORMATS, AppDateAdapter } from './date-adapter';
 
 
 import {
-  MatToolbarModule, MatSidenavModule, MatSnackBarModule,
+  MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatTabsModule,
   MatTableModule,
   MatButtonModule, MatCheckboxModule, MatCardModule,
   MatInputModule, MatFormFieldModule, MatListModule,
@@ -13,14 +13,14 @@ import {
 
 @NgModule({
   imports: [
-    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule,
+    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule, MatTabsModule,
     MatTableModule,
     MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule, MatProgressSpinnerModule
   ],
   exports: [
-    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule,
+    MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule, MatTabsModule,
     MatTableModule,
     MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
     MatNativeDateModule,
