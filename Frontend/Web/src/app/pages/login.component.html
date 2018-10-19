@@ -1,0 +1,39 @@
+<div class="login-page">
+    <div class="content">
+
+        <form class="login-form" #form="ngForm">
+            <div class="text-center">
+                <h2 class="app-name"> {{ appTitle }} </h2>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Email" ngModel name="email" type="email" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput type="password" placeholder="Password" ngModel name="password">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+                <div fxFlex>
+                    <mat-checkbox color="primary" ngModel name="remember">Remember Me</mat-checkbox>
+                </div>
+                <div fxFlex fxLayoutAlign="end">
+                    <a href="javascript:void(0)">Forget Password</a>
+                </div>
+            </div>
+            <div fxFlex>
+                <div fxLayout="row" fxFlexFill fxLayoutGap="20px">
+                    <button type="button" mat-raised-button class="w-50" color="primary" (click)="onLogin(form)" [disabled]="form.invalid">Entrar</button>
+                    <button type="button" mat-raised-button class="w-50" routerLink="/register">Registrar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

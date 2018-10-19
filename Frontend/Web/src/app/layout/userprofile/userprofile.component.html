@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>User Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <form #form="ngForm">
+
+          <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field class="w-100">
+                <input matInput placeholder="Nome" type="text" [ngModel]="userProfile.name" name="nome" required>
+                <mat-error>Campo obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+            <mat-form-field class="w-50">
+                <input matInput type="text" [ngModel]="userProfile.alias" name="apelido" placeholder="Apelido">
+            </mat-form-field>
+    
+            <mat-form-field class="w-50">
+                <input matInput [ngModel]="userProfile.birth_date" name="nascimento" [matDatepicker]="picker" placeholder="Data de Nascimento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+            <mat-form-field class="w-50">
+                <input matInput placeholder="E-mail" type="email" [ngModel]="userProfile.email" name="email" email required>
+                <mat-error>Deve ser um endereço de e-mail válido!</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="w-50">
+                <input matInput placeholder="Telefone" type="tel" [ngModel]="userProfile.phone_number" name="phone">
+            </mat-form-field>
+          </div>
+          </div>
+
+        </form>
+        
+      </mat-card-content>
+
+      <mat-card-actions fxLayoutAlign="end end">
+          <button mat-flat-button (click)="saveUserProfile(form)" [disabled]="form.invalid">Salvar</button>
+      </mat-card-actions>
+      
+
+</mat-card>

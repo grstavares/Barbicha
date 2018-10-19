@@ -1,0 +1,48 @@
+<div class="login-page">
+    <div class="content">
+
+        <form class="login-form" #form="ngForm">
+            <div class="text-center">
+                <h2 class="app-name"> {{ appTitle }} </h2>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Email" ngModel name="email" type="email" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Password" ngModel name="password" type="password">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="ConfirmPassword" ngModel name="confirm" type="password">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Phone" ngModel name="phone_number" type="tel" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxFlex>
+                <div fxLayout="row" fxFlexFill fxLayoutGap="20px">
+                    <button type="button" mat-raised-button class="w-50" color="primary" (click)="onSignUpClicked(form)" [disabled]="form.invalid">Register</button>
+                    <button type="button" mat-raised-button class="w-50" routerLink="/login">AlreadyHaveUser</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
