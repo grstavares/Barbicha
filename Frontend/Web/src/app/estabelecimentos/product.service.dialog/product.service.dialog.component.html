@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{ NewItem ? 'Novo Produto/Serviço' : 'Alteração'}}</h1>
+<div mat-dialog-content>
+  <form #dialogForm="ngForm">
+    <p>Tipo de Item</p>
+    <mat-form-field>
+        <mat-select placeholder="Tipo do Item" [ngModel]="data.type" name="type">
+            <mat-option *ngFor="let type of serviceTypes" [value]="type.value">
+              {{type.label}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <p>Nome do Produto/Serviço</p>
+    <mat-form-field>
+        <input matInput [ngModel]="data.label"  name="label">
+    </mat-form-field>
+    <p>Duração em Minutos</p>
+    <mat-form-field>
+        <input matInput [ngModel]="data.durationInMinutes"  name="durationInMinutes">
+    </mat-form-field>
+    <p>Preço de Venda:</p>
+    <mat-form-field>
+        <input matInput [ngModel]="data.price"  name="price">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="this.dialogRef.close()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="dialogForm" cdkFocusInitial>Ok</button>
+</div>

@@ -21,6 +21,8 @@ export class UiService implements OnInit {
   getAppName(): string { return this.appName.slice(); }
   showError(errorMessage: any, actionName?: string, duration: number = 2000): MatSnackBarRef<SimpleSnackBar> {
 
+    console.log(errorMessage);
+
     let message = '';
     if (errorMessage.code) {
       message = this.firebaseErrors.getMessage(errorMessage.code) || errorMessage;

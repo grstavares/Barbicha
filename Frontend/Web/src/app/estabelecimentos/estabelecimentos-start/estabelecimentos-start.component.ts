@@ -30,6 +30,11 @@ export class EstabelecimentosStartComponent implements OnInit, OnDestroy {
     this.serviceSubscription.unsubscribe();
   }
 
+  addEstabelecimento() {
+    const itemId = 'NewItem';
+    this.router.navigate([itemId], {relativeTo: this.route});
+  }
+
   showItem(item: any) {
     this.selectedRowIndex = item.id;
     const itemId = item.companyId;

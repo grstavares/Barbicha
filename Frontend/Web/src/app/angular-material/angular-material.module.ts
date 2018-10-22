@@ -5,8 +5,9 @@ import { APP_DATE_FORMATS, AppDateAdapter } from './date-adapter';
 import {
   MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatTabsModule, MatMenuModule,
   MatTableModule, MatPaginatorModule,
+  MatDialogModule, MatProgressBarModule,
   MatButtonModule, MatCheckboxModule, MatCardModule,
-  MatInputModule, MatFormFieldModule, MatListModule,
+  MatInputModule, MatFormFieldModule, MatListModule, MatSelectModule,
   MatDatepickerModule, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS,
   MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
@@ -15,14 +16,16 @@ import {
   imports: [
     MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule, MatTabsModule, MatMenuModule,
     MatTableModule, MatPaginatorModule,
-    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
+    MatDialogModule, MatProgressBarModule,
+    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule,
     MatNativeDateModule,
     MatIconModule, MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule, MatSidenavModule, MatSnackBarModule, MatCardModule, MatTabsModule, MatMenuModule,
     MatTableModule, MatPaginatorModule,
-    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
+    MatDialogModule, MatProgressBarModule,
+    MatFormFieldModule, MatListModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatSelectModule,
     MatNativeDateModule,
     MatIconModule, MatProgressSpinnerModule
   ],

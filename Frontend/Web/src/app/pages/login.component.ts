@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, senha)
         .subscribe({
           next: (value) => {if (value) {this.router.navigate(['/dashboard']); } },
-          error: (error) => {console.error(error); }
+          error: (error) => {this.uiService.showError(error); }
         });
 
     }

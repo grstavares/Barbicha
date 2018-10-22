@@ -15,6 +15,7 @@ import { EstabelecimentoComponent } from './estabelecimento/estabelecimento.comp
 import { EstabelecimentosStartComponent } from './estabelecimentos-start/estabelecimentos-start.component';
 import { EstabelecimentosRoutingModule } from './estabelecimento.routing.module';
 import { EstabelecimentosService } from './estabelecimentos.service';
+import { ProductServiceDialogComponent } from './product.service.dialog/product.service.dialog.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { EstabelecimentosService } from './estabelecimentos.service';
      AngularMaterialModule, FirebaseModule, AgmCoreModule.forRoot(AgmConfig),
      EstabelecimentosRoutingModule
     ],
-  declarations: [EstabelecimentosStartComponent, EstabelecimentoComponent],
+  declarations: [EstabelecimentosStartComponent, EstabelecimentoComponent, ProductServiceDialogComponent],
+  entryComponents: [ProductServiceDialogComponent],
   providers: [EstabelecimentosService, MarkerManager, GoogleMapsAPIWrapper]
 })
 export class EstabelecimentosModule { }

@@ -24,6 +24,7 @@ export class AuthService {
   private isNewUser = false;
   private loggedUserId: string;
   private userIsLogged = false;
+  private userSubject: Subject<UserProfile> = new Subject();
   private authSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private fireauth: AngularFireAuth, private firedb: AngularFirestore) { }
@@ -83,8 +84,6 @@ export class AuthService {
 
   public userProfile(userId: string): Subject<UserProfile> {
 
-    const subject = new Subject<UserProfile>();
-
     if (userId === undefined || userId === '') {userId = this.loggedUserId; }
     if (userId !== undefined) {
 
@@ -106,20 +105,19 @@ export class AuthService {
           imageUrl: data.imageUrl
         };
 
-        subject.next(userData);
+        this.userSubject.next(userData);
 
       })
-      .catch(reason => { subject.error(reason); });
+      .catch(reason => { this.userSubject.error(reason); });
 
-    } else { subject.error('Invalid UserId'); }
+    } else { this.userSubject.error('Invalid UserId'); }
 
-    return subject;
+    return this.userSubject;
 
   }
 
-  public updateProfile(userdata: UserProfile): Subject<boolean> {
+  public updateProfile(userdata: UserProfile): void {
 
-    const subject = new Subject<boolean>();
     const userId = userdata.userId;
     delete userdata.userId;
 
@@ -127,10 +125,8 @@ export class AuthService {
     .collection('persons')
     .doc(userId)
     .update(userdata)
-    .then(() => { subject.complete(); })
-    .catch(reason => { subject.error(reason); });
-
-    return subject;
+    .then(() => { this.userSubject.next(userdata); })
+    .catch(reason => { this.userSubject.error(reason); });
 
   }
 

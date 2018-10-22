@@ -3,6 +3,7 @@ import { AuthService, UiService } from '../shared/services';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject, of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { interceptingHandler } from '@angular/common/http/src/module';
 
 export interface Estabelecimento {
   companyId: string;
@@ -11,11 +12,13 @@ export interface Estabelecimento {
   natureza?: string;
   latitude?: number;
   longitude?: number;
+  fouding_date?: Date;
   imageUrl?: string;
-  serviceHours: {
+  serviceHours?: {
     start: string;
     end: string;
   };
+  users?: [UserAssociation];
 }
 
 export interface ProductOrService {
@@ -28,6 +31,8 @@ export interface ProductOrService {
 
 export interface SpecialTimes { id: string; selector: string; start: string; end: string; }
 export interface ExceptionTimes { id: string; start: Date; end: Date; }
+export interface UserAssociation { id: string; role: string; }
+export interface ServiceType {value: string; label: string; }
 
 @Injectable()
 export class EstabelecimentosService {
@@ -38,6 +43,20 @@ export class EstabelecimentosService {
   productsAndServices = new Subject<ProductOrService[]>();
 
   constructor(private authService: AuthService, private firedb: AngularFirestore, private uiService: UiService) { }
+
+  getServiceTypes(natureza: string): ServiceType[] {
+
+    const types = [
+      {value: 'PROD_PERECIVEL', label: 'Produto Perecível'},
+      {value: 'PROD_ENCOMENDA', label: 'Produto sob Encomenta'},
+      {value: 'PROD_REVENDA', label: 'Produto de Revenda'},
+      {value: 'SERV_ENCOMENDA', label: 'Serviço sob Encomenda'},
+      {value: 'SERV_AGENDADO', label: 'Serviço Agendado'}
+    ];
+
+    return types;
+
+  }
 
   getEstabelecimentos() {
 
@@ -59,8 +78,7 @@ export class EstabelecimentosService {
               companyId: snapshot.id,
               name: data.name,
               alias: data.alias,
-              natureza: data.natureza,
-              serviceHours: data.serviceHours
+              natureza: data.natureza
             };
             values.push(parsed);
           });
@@ -86,7 +104,11 @@ export class EstabelecimentosService {
         .doc(docPath)
         .snapshotChanges()
         .pipe(map(snapshot => {
+
           const data = snapshot.payload.data();
+          const founded = data['foudation_date'] === undefined ? null : data['foudation_date'].toDate();
+          const hours =  data['serviceHours'] ?  data['serviceHours'] : [];
+
           const parsed = {
             companyId: snapshot.payload.id,
             name: data['name'],
@@ -95,7 +117,8 @@ export class EstabelecimentosService {
             latitude: data['latitude'],
             longitude: data['longitude'],
             imageUrl: data['imageUrl'],
-            serviceHours: data['serviceHours']
+            foudation_date: founded,
+            serviceHours: hours
           };
           this.uiService.stopLoading();
           return parsed;
@@ -198,6 +221,106 @@ export class EstabelecimentosService {
       .toPromise()
       .then(values => { this.exceptionTimes.next(values); this.uiService.stopLoading(); })
       .catch(reason => { this.exceptionTimes.error(reason); this.uiService.stopLoading(); });
+
+  }
+
+  addEstabelecimento(newItem: Estabelecimento) {
+
+    const userId = this.authService.authUserId();
+    const roles: [UserAssociation] = [{id: userId, role: 'owner'}];
+    newItem.users = roles;
+
+    this.uiService.startLoading();
+    this.firedb.collection('companies').add(newItem)
+    .then(value => {
+
+      const companiesPath = 'persons/' + userId + '/companies';
+      this.firedb
+      .collection(companiesPath)
+      .doc(value.id)
+      .set({name: newItem.name, alias: newItem.alias, natureza: newItem.natureza})
+      .then(() => {
+        this.uiService.showMessage('Estabelecimento Cadastrado!');
+        this.uiService.stopLoading();
+      })
+      .catch(reason => {
+        this.uiService.showError(reason);
+        this.uiService.stopLoading();
+      });
+
+    });
+
+  }
+
+  updateEstabelecimento(companyId: string, updatedValues: Estabelecimento) {
+
+    const docPath = 'companies/' + companyId;
+    this.uiService.startLoading();
+    this.firedb.doc(docPath).update(updatedValues)
+    .then(() => {
+
+      this.uiService.showMessage('Estabelecimento Atualizado!');
+      this.uiService.stopLoading();
+    })
+    .catch(reason => {
+      this.uiService.showError(reason);
+      this.uiService.stopLoading();
+    });
+
+  }
+
+  addProductOrService(companyId: string, newItem: ProductOrService) {
+
+    this.uiService.startLoading();
+    const collectionPath = 'companies/' + companyId + '/productAndServices';
+    this.firedb.collection(collectionPath).add(newItem)
+    .then(value => {
+      this.uiService.showMessage('Produto Adicionado!');
+      this.uiService.stopLoading();
+    })
+    .catch(reason => {
+        this.uiService.showError(reason);
+        this.uiService.stopLoading();
+    });
+
+  }
+
+  updateProductOrService(companyId: string, productId: string, newItem: ProductOrService) {
+
+    this.uiService.startLoading();
+    const docPath = 'companies/' + companyId + '/productAndServices/' + productId;
+    this.firedb.
+    doc(docPath)
+    .update(newItem)
+    .then(() => {
+      this.uiService.showMessage('Produto Atualizado!');
+      this.uiService.stopLoading();
+    })
+    .catch(reason => {
+        this.uiService.showError(reason);
+        this.uiService.stopLoading();
+    });
+
+  }
+
+  private returnUserCompanies(userId: string): Observable<any[]> {
+
+    return new Observable<any[]>(observer => {
+
+      const docPath = 'persons/' + userId;
+      this.firedb.doc(docPath)
+      .collection('companies')
+      .get()
+      .subscribe(values => {
+        const itens = [];
+        values.forEach(doc => { itens.push(doc.data()); });
+        observer.next(itens);
+      }, reason => {
+        this.uiService.showError(reason);
+        observer.error(reason);
+      });
+
+    });
 
   }
 
