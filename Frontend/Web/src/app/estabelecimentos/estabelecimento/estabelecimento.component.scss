@@ -1,0 +1,26 @@
+agm-map {
+    height: 400px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    margin: 20px;
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.mat-row:hover {
+    background-color: lightgray;
+  }
+
+.highlight{
+    background: darkgray;
+  }

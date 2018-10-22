@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+// import { AgmModule } from '../agm/agm.module';
+import { AgmCoreModule, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmConfig } from '../agm/agm.secrets';
+
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FirebaseModule } from '../firebase/firebase.module';
 
@@ -15,10 +19,10 @@ import { EstabelecimentosService } from './estabelecimentos.service';
 @NgModule({
   imports: [
      CommonModule, FormsModule, FlexLayoutModule,
-     AngularMaterialModule, FirebaseModule,
+     AngularMaterialModule, FirebaseModule, AgmCoreModule.forRoot(AgmConfig),
      EstabelecimentosRoutingModule
     ],
   declarations: [EstabelecimentosStartComponent, EstabelecimentoComponent],
-  providers: [EstabelecimentosService]
+  providers: [EstabelecimentosService, MarkerManager, GoogleMapsAPIWrapper]
 })
 export class EstabelecimentosModule { }
